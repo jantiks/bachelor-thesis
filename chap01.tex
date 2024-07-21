@@ -1,7 +1,141 @@
-\chapter{Title of the first chapter}
+\chapter{Kempe chains and Routing graphs}
 
-An~example citation: \cite{Andel07}
+\begin{defn}[H-certificate]
+    Graph $H$ is a minor of $G$ if there exists $c := (V_{t})_{t \in V(H)}$ of pairwise disjoint $V(G)$,
+     called bags, such that $\forall t \in V(H)$ $V_{t} \neq \emptyset$ and $G[V_{t}]$ is connected, and $\forall (u,v) \in E(H)$,
+     $\exists$ edge connecting $V_{u}$ and $V_{v}$, any such $c$ is called $H$-certificate
+\end{defn}
 
-\section{Title of the first subchapter of the first chapter}
+\begin{defn}[rooted H-certificate]
+    $H$-certificate is a rooted if $V(H) \subset V(G)$ and $t \in V_{t}$ $\forall t \in V(H)$. If there is a rooted H-certificate in graph $G$,
+    then $H$ is a rooted minor of $G$
+\end{defn}
 
-\section{Title of the second subchapter of the first chapter}
+\begin{defn}[Routing Graph]
+Let $\mathcal{C}$ be a coloring of graph $G$, let $T$ be the transversal of coloring $\mathcal{C}$, 
+then routing graph $H(G, \mathcal{C}, T)$ is defined as the graph on vertices of $T$, 
+such that $\forall (i,j) \in V(H) (i \neq j)$, $(i,j) \in E(H)$ if and only if 
+$\exists$ Kempe chain between vertices $i$ and $j$ in graph $G$
+\end{defn}
+
+\begin{defn}[Property (*)]
+    All graphs $H$ which are routing graph of some $G$ with some coloring $\mathcal{C}$ and transversal $T$
+    such that $G$ has a rooted $H$-certificate, are said to have property (*)
+\end{defn}
+
+\begin{thm}
+    K has property (*) if and only if every component of K has it.
+\end{thm}
+
+\begin{proof} 
+\label{thm:first}
+    \textbf{(\(\Rightarrow\))} If \(K\) has property (*) then all components of $K$ have property (*)
+    \newline \newline
+    Let $K$ be a graph with property (*) and $K'$ is a component of $K$, let's do case analysis, we have 2 cases: \newline
+    \textbf{Case 1:} $|V(K)| = |V(K')|$ \newline
+    \textbf{Case 2:} $|V(K)| > |V(K')|$ 
+    \begin{itemize}
+        \item [\textbf{Case 1:}]
+         The component $K'$ of $K$ is a spanning subgraph of $K$, which is same as $|V(K)| = |V(K')|$.
+        \newline
+        Let $K$ have the property (*), take spanning subgraph $K'$ of $K$.
+         Now take graph $G'$ with coloring $\mathcal{C}$ such that $|\mathcal{C}| = |V(K')|$
+          and a transversal $T$ such that $K'$ is isomorphic to the spanning subgraph of routing graph $H(G', \mathcal{C}, T)$.
+          Now, $\forall (u,v) \in E(K) \setminus E(K')$ add $(u,v)$ edge to graph $G'$, we can do so without breaking the coloring
+          because the edge taken from $E(K) \setminus E(K')$ is only between vertices which have different colors, now we obtain graph $G$,
+          then $K$ is isomorphic to spanning subgraph of $H(G, \mathcal{C}, T)$, since $K$ has property (*) then there is a rooted 
+          $H$-certificate c in G, and c is also and $H'$-certificate for $G'$.
+        \item [\textbf{Case 2:}]
+        $|V(K)| > |V(K')|$ 
+        \newline
+        Take graph $G'$ with coloring $\mathcal{C'}$ such that $|\mathcal{C'}| = |V(K')|$
+        and a transversal $T'$ such that $K'$ is isomorphic to the spanning subgraph of routing graph $H(G', \mathcal{C'}, T')$,
+        take set $S := V(K) \setminus V(K')$ and construct graph $G$ as disjoint union of $G$ and $K_{S}$(Here $K_{S}$ is complete graph on vertex set $S$),
+        let coloring for $G$ be $\mathcal{C} := \mathcal{C'} \cup \{\{s\} | s \in S\}$ and $T := T' \cup S $, now by construction $K$ is isomorphic to the spanning subgraph $H$ of routing graph $H(G, \mathcal{C}, T)$,
+         and since $K$ has property (*) it also has rooted $H$-certificate in $G$ let's denote it as $c$ and by definition of rooted $H$-certificate it's defined as $c := (V_{t})_{t \in V(K)}$,
+         then let $c' := (V_{t})_{t\in V(K')}$ is a rooted $H'$-certificate in $G'$.
+        \newline
+    \end{itemize}
+
+    \textbf{(\(\Leftarrow\))} If every component of \(K\) has property (*), then $K$ also has property (*). 
+        \newline
+        Take graph $G$ with coloring $\mathcal{C}$ such that $|\mathcal{C}| = |V(K)|$
+        and a transversal $T$ such that $K$ is isomorphic to the spanning subgraph of routing graph $H(G, \mathcal{C}, T)$, 
+        then for every component $K_{i}$ of $K$ there is $G_{i}$ a subgraph of $G$(all $G_{i}$'s are disjoint), coloring $\mathcal{C}_{i}$ and $T_{i}$ such that $K_{i}$ is a spanning subgraph of $H(G_{i}, \mathcal{C}_{i}, T_{i})$.
+        Since every $K_{i}$ has property (*), then there is $c_{i}$-certificate in $G_{i}$, hence by the union of all those ($c_{1}$, $c_{2}$, ... $c_{n}$) certificates, we get a rooted $K$-certificate in $G$, hence $K$ has property (*)
+\end{proof}
+
+\begin{thm}
+    If $K$ has property (*), then all subgraphs of $K$ have property (*)
+\end{thm}
+
+\begin{proof}
+    Let $K$ have the property (*), and $K'$ be subgraph of $K$, let $L$ be the edgeless graph on vertices $V(K) \setminus V(K')$,
+    $L \cup K'$ is a spanning subgraph of $K$, hence it has property (*) (Shown in forward direction of the proof of Theorem~\ref{thm:first}), since $K'$ is a component of $K' \cup L$, by Theorem 1 it also has property (*)
+\end{proof}
+
+\begin{lemma}
+    Let $K$ be a graph, if $\exists q \in V(K)$ such that $\deg(q) = 1$ and $K - q$ has property (*), then $K$ has property (*)
+\end{lemma}
+
+\begin{proof}
+    Let $K$ be a graph such that $\exists q \in V(K)$ such that $\deg(q) = 1$ and $K - q$ has property (*), but let's assume for contradiction that $K$ doesn't have property (*).
+    This means there exists graph $G$ (with minimal $V(G) + E(G)$) with coloring $\mathcal{C}$ such that $|\mathcal{C}| = |V(K)|$
+    and a transversal $T$ such that $K$ is isomorphic to the spanning subgraph of routing graph $H(G, \mathcal{C}, T)$, but there is no rooted $H$-certificate in $G$.
+    Since $G$ is minimal it means $\forall A,B \in \mathcal{C} (A \neq B)$ $G[A \cup B]$ has at most one component which is not a single vertex,
+    which means if $\exists (u,v) \in E(H)$ and $u \in A \cap T$, $v \in B \cap T$ then there is a 2-colored path from $u$ to $v$ in $G[A \cup B]$,
+    on the other hand if there is no edge $(u,v)$ in $E(H)$ which such property then $G[A \cup B] = \emptyset$,
+    this induced that $H = H(G, \mathcal{C}, T)$. Let $r$ be the incident vertex of $q$, let $Q, R \in \mathcal{C}$ be the respective color classes of $r$ and $q$,
+    so $r \in R$, $q \in Q$, $R \neq Q$.
+    \newline Here we have 2 cases:
+    \begin{itemize}
+        \item[Case 1:] $Q = \{q\}$ \newline
+        Since $K - q$ has property (*), it means $K - q$ it means $G - q$ has rooted $H(G - q, \mathcal{C} \setminus {Q}, T - q)$-certificate,
+        hence by adding $Q = \{q\}$ bag to it, we would get rooted $H$-certificate for $G$(Contradiction)
+        \item[Case 2:] $\exists x \in Q\setminus\{q\}$ \newline
+        Then because of minimality of $G$ and the construction of it having 2 colored paths it has degree of 2, and it's in the 2-colored path between $r$ and $q$,
+        hence it has 2 neighbors which are from $R$ color class, let's denote them $y$ and $z$, let's contract $yxz$ to $w$ and give color $R$ to $w$, and we would obtain graph $G'$
+        with following coloring and transversal defined as follows: \newline
+        For \( A \in C \), define \( A' \) as follows:
+        \[
+        A' :=
+        \begin{cases}
+        (A \setminus \{y, z\}) \cup \{w\} & \text{if } A = R, \\
+        A \setminus \{x\} & \text{if } A = Q, \\
+        A & \text{otherwise}.
+        \end{cases}
+        \]
+        
+        For \( z \in T \), define \( z' \) as follows:
+        \[
+        z' :=
+        \begin{cases}
+        w & \text{if } z \in \{y, z\}, \\
+        z & \text{otherwise}.
+        \end{cases}
+        \]
+
+        For $T'$ we don't consider cases concerning $x$ because it already had representative from color class $Q$ in it ($q$),
+        so removal of $x$ doesn't affect $T'$.
+        
+        Then \( C' := \{A' : A \in C\} \) is a coloring of \( G' \) and \( T' := \{t' : t \in T\} \) is a transversal of \( C' \). \newline
+        Now, we show that $H = H(G, \mathcal{C}, T)$ is isomorphic to $H(G', \mathcal{C'}, T')$.
+        Let's consider all $(s,t) \in E(H)$:
+        \begin{itemize}
+            \item  $\{s, t\} \neq \{q, r\}$
+            Then $yxz$ don't lay on any path from $s$ to $t$, hence any $s, t$-path from $G$ is a $s', t'$-path in $G'$
+            \item $s \in T \setminus \{q, r\}$ and $t = r$ and $r \in \{y, z\}$: \newline
+            If $\{y, z\} \not\subseteq V(P_{s,r})$, then the $s,r$-path is $s',r'$-path, otherwise if $\{y, z\} \subseteq V(P_{s,r})$,
+            we can obtain new $s', r'$-path from $s, r$-path by replacing the subpath between $y$ and $z$ by $w$.
+            \item $s \in T \setminus \{q, r\}$ and $t = r$ and $r \not\in \{y, z\}$: \newline
+            If $\{y, z\} \not\subseteq V(P_{s,r})$, then $s,r$-path is $s',r'$-path in $G'$, otherwise we replace the subpath between $y$ and $z$ with $w$,
+            and obtain new $s', r'$-path in $G'$
+        \end{itemize}
+        And $yxz$ lies on $P_{q, r}$, then replacing $yxz$ by $w$ results a new $q',r'$-path.
+        By considering all cases, we showed that $H$ is isomorphic to $H(G', \mathcal{C'}, T')$.
+        Since by choice of $G$ and $G'$, $G'$ has rooted $H(G', \mathcal{C'}, T')$ certificate, if $w$ is in some bag $B$,
+        by replacing $B$ with $B \ \{w\} \cup \{x, y, z\}$, we would obtain rooted $H$-certificate for $G$ (Contradiction).
+    \end{itemize} 
+
+    Since for both cases we got contradiction, this implies that $K$ indeed has (*) property as well.
+\end{proof}
