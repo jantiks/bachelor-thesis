@@ -1,4 +1,5 @@
 \chapter{Kempe chains and Routing graphs}
+The following proofs are reformulations of those presented in \cite{matthias_2022}.
 
 \begin{defn}[H-certificate]
     Graph $H$ is a minor of $G$ if there exists $c := (V_{t})_{t \in V(H)}$ of pairwise disjoint $V(G)$,
@@ -139,3 +140,65 @@ $\exists$ Kempe chain between vertices $i$ and $j$ in graph $G$
 
     Since for both cases we got contradiction, this implies that $K$ indeed has (*) property as well.
 \end{proof}
+
+\section{Kempe chains and rooted K7-minors}
+
+To find the graphs which don't have property (*), we need to construct a graph $G$ such that it has all necessary paths between transversal vertices, to construct a routing graph,
+but not enough edges incident to transversal vertices so that it's impossible to have rooted minor as the routing graph.
+
+\begin{defn}[Z(G)]
+    For a graph $G$ $Z(G)$ is defined as follows:
+    \begin{itemize}
+        \item[1.] $V(Z(G)) := V(G) \times \{1, 2\}$ \newline
+        For example if $V(G) := \{a, b\}$, then $V(Z(G)) := \{\{a, 1\}, \{b, 1\}, \{a, 2\}, \{b, 2\}\}$,
+        in other words we are duplicating the vertices of $G$ into $Z(G)$
+        \item[2.]  $E(Z(G)) := \{(x, i)(y, j) : xy \in E(G) \land (i \neq 1 \lor j \neq 1)\}$ \newline
+        Here we keep all the edges from original graph $G$ in the component of $Z(G)$ which have label $2$, 
+        We remove all the edges between the vertices which have label $1$, which induces an anticlique between those vertices.
+        Note: $\forall xy \in E(G)$, we have the following edges in $Z(E(G))$: $\{\{(x, 2), (y, 2)\}, \{(x, 1), (y, 2)\}, \{(x, 2), (y, 1)\}\}$
+      \end{itemize}
+\end{defn}
+Let coloring for G be $\mathcal{C} := \{(x, 1)(x, 2)\ \in V(Z(G))\}$ is a coloring of $Z(G)$ and $T := V(G) \times \{1\}$
+Is transversal of the coloring.
+\begin{example}
+    An example of $Z(G)$ given $G$ is cycle of 7
+
+    \begin{figure}[H]
+        \centering
+            \begin{tikzpicture}
+                \def\radius{1.5cm}
+                \def\outerradius{3.5cm}
+                \foreach \i/\color [count=\j from 0] in {(a, 1)/red, (b, 1)/green, (c, 1)/blue, (d, 1)/yellow, (e, 1)/cyan, (f, 1)/magenta, (g, 1)/purple} {
+                    \node[circle, fill=\color, inner sep=2pt, label=above:\i] (v1\j) at ({360/7 * \j}:\radius) {};
+                }
+                \foreach \i/\color [count=\j from 0] in {(a, 2)/red, (b, 2)/green, (c, 2)/blue, (d, 2)/yellow, (e, 2)/cyan, (f, 2)/magenta, (g, 2)/purple} {
+                    \node[circle, fill=\color, inner sep=2pt, label=below:\i] (v2\j) at ({360/7 * \j}:\outerradius) {};
+                }
+                
+                \draw (v20) -- (v11);
+                \draw (v21) -- (v10);
+                \draw (v22) -- (v11);
+                \draw (v23) -- (v12);
+                \draw (v21) -- (v12);
+                \draw (v22) -- (v13);
+                \draw (v24) -- (v13);
+                \draw (v23) -- (v14);
+                \draw (v25) -- (v14);
+                \draw (v24) -- (v15);
+                \draw (v26) -- (v15);
+                \draw (v25) -- (v16);
+                \draw (v20) -- (v16);
+                \draw (v26) -- (v10);
+                \foreach \j in {20,...,25} {
+                    \draw (v\j) -- (v\the\numexpr\j+1\relax);
+                }
+                \draw (v20) -- (v26);
+            \end{tikzpicture}
+            \caption{Example of $Z(G)$ given $G$ is $C_7$}
+        \label{Fig:Main}
+    \end{figure}
+\end{example}
+    
+We can observe that routing graph $H := (Z(G), \mathcal{C}, T)$ is isomorphic to $G$ via $((x, 1) \rightarrow x)$,
+and we also have copy of $G$ in induced subgraph of $Z[V(G) \times \{2\}]$. Now we study if there exists rooted $H$-certificate in 
+$Z(G)$ for different graphs of $G$

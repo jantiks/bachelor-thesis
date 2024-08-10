@@ -16,5 +16,31 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{matthias_2022}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d8cadf89422fc1999e5c3ce6872a5857}{%
+           family={Matthias\bibnamedelima Kriesell},
+           familyi={M\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={Samuel\bibnamedelima Mohr},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d8cadf89422fc1999e5c3ce6872a5857}
+      \strng{fullhash}{d8cadf89422fc1999e5c3ce6872a5857}
+      \strng{bibnamehash}{d8cadf89422fc1999e5c3ce6872a5857}
+      \strng{authorbibnamehash}{d8cadf89422fc1999e5c3ce6872a5857}
+      \strng{authornamehash}{d8cadf89422fc1999e5c3ce6872a5857}
+      \strng{authorfullhash}{d8cadf89422fc1999e5c3ce6872a5857}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Kempe Chains and Rooted Minors}
+      \field{year}{2022}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

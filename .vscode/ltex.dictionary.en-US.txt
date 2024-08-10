@@ -3,3 +3,4 @@ subgraph
 subgraphs
 minimality
 edgeless
+anticlique
