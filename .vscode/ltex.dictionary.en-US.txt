@@ -4,3 +4,4 @@ subgraphs
 minimality
 edgeless
 anticlique
+WLOG

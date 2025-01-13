@@ -201,4 +201,113 @@ Is transversal of the coloring.
     
 We can observe that routing graph $H := (Z(G), \mathcal{C}, T)$ is isomorphic to $G$ via $((x, 1) \rightarrow x)$,
 and we also have copy of $G$ in induced subgraph of $Z[V(G) \times \{2\}]$. Now we study if there exists rooted $H$-certificate in 
-$Z(G)$ for different graphs of $G$
+$Z(G)$ for different graphs of $G$.
+
+\begin{claim}
+The bags of any H-certificate $c = (V_{t})_{t \in T}$ in $Z(G)$ have average order at most 2.
+\end{claim}
+\begin{proof}
+    $|T| = |V(H)| = |V(G)|$ and $|V(Z(G))| = 2|V(G)|$, all $V_{t}$'s are pairwise disjoint, hence the average size of any bag is:
+    \begin{equation}
+        \frac{1}{|T|} \sum_{t \in T} |V_{t}| \leq \frac{|V(Z(G))|}{|T|} = \frac{2|V(G)|}{|V(G)|} = 2
+    \end{equation}
+\end{proof}
+
+This means if we have a bag with an order 3, then there is also a bag with order 1.
+And locally the inverse implications sounds almost the same.
+
+\begin{claim}
+    \label{claim:first}
+    If $st \in E(H)$ is not on any triangle of $H$, then $|V_{s}| = 1 \implies |V_{t}| \geq 3$ 
+\end{claim}
+
+\begin{proof}
+    Let $st \in E(H)$, and suppose $V_{s} = \{s\}$, hence $|V_{s}| = 1$, $|V_{t}| \geq 2$ because $s, t$ are not adjacent in $Z(G)$.
+    If $|V_{t}| = 2$, then for $u \in V(Z(G))$, $V_{t} = \{t, u\}$, this means there is an edge $su \in E(Z(G))$ as well, at the same time 
+    the corresponding $u'$ of $u$ in $V(H)$ should be adjacent with $t$, but since $s, t$ are not in a triangle of $H$, there is no edge
+    between $s$ and $u'$, which means there is no $su$ edge as well, which is a contradiction. Hence $|V_{t}| \geq 3$
+\end{proof}
+
+If all the bags of the certificate have order 2, then we can look at a function $f: V(G) \to V(G)$, which for a bag $V_{(x, 1)} = \{(x, 1), (y, 2)\}$ is defined as $f(x) := y$.
+Since the bags are disjoint, $f$ is an injection and therefore a permutation of $V(G)$. Since all the elements of each bag are connected we can observe
+that $xf(x) \in E(G)$, and we can represent $f$ as a partial orientation of $G$, where $xy$ is oriented from $x$ to $y$ if and only if $y = f(x)$. 
+For a rooted $H$-certificate $c$ in $Z(G)$ any $xy \in E(G)$ implies that $V_{(x, 1)}$ and $V_{(y, 1)}$ are adjacent, which is equivalent to say
+$f(y)$ is adjacent to $f(x)$ or $x$, or $f(x)$ is adjacent to $f(y)$ or $y$. Conversely, if $f$ is a permutation of $V(G)$ with the following properties:
+
+\begin{itemize}
+    \item [\textbf{1.}] $(\forall x \in V(G)) (xf(x) \in E(G))$ 
+    \item [\textbf{2.}] $xy \in G$ implies that $f(x)$ is adjacent to either $y$ or $f(y)$, or $f(y)$ is adjacent to either $x$ or $f(x)$
+\end{itemize}
+Then $V_{(x, 1)} = \{(x, 1), (f(x), 2)\}$ defines an $H$-vertificate in $Z(G)$.
+Let's call such permutation as a `good permutation' throughout this chapter
+
+\begin{claim}
+    \label{claim:second}
+    If $G$ has a good permutation, then every vertex of degree at least 3 in $G$ is on a cycle of length at most 4 in $G$
+\end{claim}
+
+\begin{proof}
+    Let $f$ be good permutation and $w$ be a vertex of degree 3, let $x, y, z$ be $w$'s neighbors, WLOG $f(w) = x$ and $f(y) \neq w$.
+    Let $u := f(y) \neq w$, if $u$ is adjacent to $w$, then $wyu$ form a triangle, and we are done. \newline
+    Otherwise, let's assume $u$, $w$
+    are not adjacent, by (\textbf{2}) condition of a `good' permutation, $f(w) = x$ is adjacent to either $y$ or $u = f(y)$, or $f(y) = u$ is adjacent
+    to $f(w) = x$ or $w$, in any case $w$ will be either on $4$-cycle or $3$-cycle.
+\end{proof}
+
+\begin{thm}
+    $K_{7}$ doesn't have property (*)
+\end{thm}
+
+\begin{proof}
+    Let graph $G$ be a graph on 7 vertices, which is obtained by adding vertex $x$ to $C_{6}$ and adding
+    2 edges to $x$ such that the endpoints of the edges are at distance 3 from each other in $C_{6}$.
+    
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1]
+
+        \coordinate (v1) at (0,2);
+        \coordinate (v2) at ({2*cos(30)},{2*sin(30)});
+        \coordinate (v3) at ({2*cos(-30)},{2*sin(-30)});
+        \coordinate (v4) at (0,-2);
+        \coordinate (v5) at ({2*cos(-150)},{2*sin(-150)});
+        \coordinate (v6) at ({2*cos(150)},{2*sin(150)});
+        \coordinate (x) at (0,0);
+        
+        \draw (v1) -- (v2) -- (v3) -- (v4) -- (v5) -- (v6) -- cycle;
+        
+        \draw (x) -- (v1);
+        \draw (x) -- (v4);
+        
+        \foreach \i in {1,...,6}{
+            \filldraw (v\i) circle (2pt);
+            \node[above right] at (v\i) {$v_{\i}$};
+        }
+        
+        % Draw x
+        \filldraw (x) circle (2pt);
+        \node[below left] at (x) {$x$};
+        
+        \end{tikzpicture}
+        \caption{Graph $G$ obtained from $C_6$}
+    \end{figure}
+
+    For contradiction assume that $Z(G)$ has an $H$-certificate $(V_{t})_{t \in T}$ with $T = V(G) \times \{1\}$.
+    Let $A$ be the set of vertices $t \in T$ such that $|V_t| = 1$. Observe that there are 2 vertices of degree 3 in $G$,
+    $v_1$ and $v_4$, and both of them are in cycle of 5, and hence by \textbf{Claim \ref{claim:second}} $G$ doesn't
+    have a good permutation, which means $|A| \geq 1$. Since $|V_{t}| = 1$ for every element of $A$, it means
+    $A$ is an anticlique in $H$, hence $|A| \leq 3$. By \textbf{Claim \ref{claim:first}}, $|V_s| \geq 3$ for every $s$ in $N_{H}(A)$.
+    For each case of $|A| = 1$, $|A| = 2$, $|A| = 3$, it can be seen that $N_{H}(A) \geq |A| + 1$.
+    \begin{itemize}
+        \item $3(|A| + 1)$ is the lower bound of the number of vertices in the bags of the neighborhood of $A$, because each bag has size $\geq$ 3  and there are at least $|A| + 1$ neighbors for $A$
+        \item $1|A|$ is the number of vertices of the bags of $A$, because by definition each of $A$ has size 1
+        \item $2(7 - (|A| + 1) - |A|)$ is the number of vertices in the rest of the bags. Which all have $|V_t| = 2$
+    \end{itemize}
+    Let's denote $q$ the number of vertices in the bags of $Z(G)$ which form $H$. And let's count it.
+    \begin{equation}
+        q = \sum_{t \in T} |V_t| \geq 3(|A| + 1) + 2(7 - (|A| + 1) - |A|) + 1|A| = 15
+    \end{equation}
+    At the same time, $q \leq |V(Z(G))| = 14$, causing a contradiction. Hence, the graph $G$ doesn't have property (*),
+    and since all the subgraphs of a graph with property (*) have the proprety as well, this implies that $K_7$ doesn't have 
+    property (*).
+\end{proof}
