@@ -1,0 +1,48 @@
+\chapter{Connected transversals of 5-colorings}
+Kriesell and Mohr \cite{matthias_2022} showed that all graphs on five vertices and at most 6 edges has (*) property. 
+We will try to extend this result to 7 edges. First let us see what are those graphs on five vertices and 7 edges.
+Let us assume the graphs are connected, otherwise by Theorem 1 in \cite{matthias_2022}. we have that the graph has (*) property.
+Now let's see those graphs.
+
+\vspace{0.1cm}
+\includegraphics[width=13.5cm]{img/7-edge-cases.eps}
+
+The (c) graph has (*) property since $K_4$ has (*) property (By theorem 4 in \cite{matthias_2022}), and $K_4 + 1$ vertex with degree 1 also has (*) property (By lemma 1 in \cite{matthias_2022}).
+
+We will show that the minimal in terms of |V| + |E| counter example for graph (a) to not hold property (*) must be 3-connected.
+
+\begin{lemma}
+    A minimal counter example such that graph (a) doesn't hold property (*) is 2-connected.
+\end{lemma}
+\begin{proof}
+    Let's denote graph (a) as $H$, Let $G$ be the minimal graph such that graph $H$ is isomorphic to $H(G, \mathcal{C}, T)$, where transversal $T := \{1, 2, 3, 4, 5\}$, and $\mathcal{C}$ is the coloring of $G$
+    The minimality implies that $(\forall A,B \in \mathcal{C} : A \neq B)$ $G[A \cup B]$ is a single path between the transversal vertices of corresponding colors from $T$.
+
+    Assume for contradiction that $G$ is 1-connected. Then there exists a cut vertex in $G$, let us denote it as $x$. We have six cases to consider.
+    
+    \vspace{0.3cm}
+    \includegraphics[width=13cm]{img/hourglass+1-cases.eps}
+    \vspace{0.3cm}
+
+
+    For case (a) we have that the vertex on the right side of the cut has degree at least 2, but it can have Kempe chain only to the $x$, hence it's a contradiction.
+    For case (b) we can contract the edges of the right side of the cut and still get the counter example, hence the graph is not minimal, a contradiction.
+    For case (c) the vertex $x$ should have color $1$, otherwise if it is the vertex with color $1$ is on any side of the cut, we wouldn't be able to 
+    have Kempe chain to the 2 other transversal vertices of the opposite side of the cut. Now we have that $x$ has color $1$ and WLOG $2$ is on the left side of the cut. 
+    And the other vertex in that same side of the cut must be of color $3$ or $4$, it's not $4$ since it has degree 3, and it wouldn't be able to connect to vertex $5$, hence
+we have the following graph.
+
+\vspace{0.3cm}
+\includegraphics[width=13.5cm]{img/hourglass+1-cases-2-conn(c).eps}
+\vspace{0.1cm}
+
+
+But now we see that $2$ and $4$ can not have a Kempe chain between each other, hence they can not be connected in $H$, hence it's a contradiction.
+For the case (d) we have that the vertex on the right side of the cut has degree at least 2, hence the color of $x$ is the color of the vertex itself,
+so we can contract the paths from it to $x$ and still get the counter example, hence a contradiction since the graph wasn't minimal.
+For the case (e) on the right side of the cut we have that both of the vertices have degree at least 2, hence there should pass at least 3 paths from right 
+side of the cut to the left side of the cut, in this case the color of the vertex $x$ should be 1, and any combination of colors of vertices on right side 
+still forces to not have a Kempe chain between at least one vertex on the right side and one vertex on the left side, hence it's a contradiction.
+For the case (f) we could just contract all the vertices on the right side of the cut to vertex $x$ and still get the counter example, hence it's a contradiction.
+Hence the graph $G$ is 2-connected.
+\end{proof}
