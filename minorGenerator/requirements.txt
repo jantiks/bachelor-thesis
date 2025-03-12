@@ -1,3 +1,5 @@
-networkx
-minorminer
-matplotlib
+matplotlib==3.10.0
+minorminer==0.2.16
+networkx==3.4.2
+numpy==2.2.3
+python_igraph==0.11.8
