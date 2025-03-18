@@ -19,6 +19,487 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global}
+    \entry{appel_haken_1977}{article}{}
+      \name{author}{2}{}{%
+        {{hash=4a90bb3800f428dac0335477a2c23722}{%
+           family={Kenneth},
+           familyi={K\bibinitperiod},
+           given={Appel},
+           giveni={A\bibinitperiod}}}%
+        {{hash=0eb10df6be2a6573de8f67cd83fe65ab}{%
+           family={Haken},
+           familyi={H\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{5536c3b6e212df5a3602bfc06c725ef1}
+      \strng{fullhash}{5536c3b6e212df5a3602bfc06c725ef1}
+      \strng{bibnamehash}{5536c3b6e212df5a3602bfc06c725ef1}
+      \strng{authorbibnamehash}{5536c3b6e212df5a3602bfc06c725ef1}
+      \strng{authornamehash}{5536c3b6e212df5a3602bfc06c725ef1}
+      \strng{authorfullhash}{5536c3b6e212df5a3602bfc06c725ef1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Illinois Journal of Mathematics}
+      \field{title}{Every Planar Map is Four Colorable}
+      \field{volume}{21}
+      \field{year}{1977}
+      \field{pages}{429\bibrangedash 567}
+      \range{pages}{139}
+    \endentry
+    \entry{ROBERTSON19972}{article}{}
+      \name{author}{4}{}{%
+        {{hash=30004d929a781bee1262997e1b576502}{%
+           family={Robertson},
+           familyi={R\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
+        {{hash=b5761372b3c3ba7dee435adfbe46069c}{%
+           family={Sanders},
+           familyi={S\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=295a42902de7a6cc6dcb94ca30637596}{%
+           family={Seymour},
+           familyi={S\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=636ffdd00ee890af41f40d857746827f}{%
+           family={Thomas},
+           familyi={T\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{9a1df79c49e17a5f0128ea3493dfaf9f}
+      \strng{fullhash}{32abbb79bf69b850a772416d7f6243cf}
+      \strng{bibnamehash}{32abbb79bf69b850a772416d7f6243cf}
+      \strng{authorbibnamehash}{32abbb79bf69b850a772416d7f6243cf}
+      \strng{authornamehash}{9a1df79c49e17a5f0128ea3493dfaf9f}
+      \strng{authorfullhash}{32abbb79bf69b850a772416d7f6243cf}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The four-colour theorem, that every loopless planar graph admits a vertex-colouring with at most four different colours, was proved in 1976 by Appel and Haken, using a computer. Here we give another proof, still using a computer, but simpler than Appel and Haken's in several respects.}
+      \field{issn}{0095-8956}
+      \field{journaltitle}{Journal of Combinatorial Theory, Series B}
+      \field{number}{1}
+      \field{title}{The Four-Colour Theorem}
+      \field{volume}{70}
+      \field{year}{1997}
+      \field{pages}{2\bibrangedash 44}
+      \range{pages}{43}
+      \verb{doi}
+      \verb https://doi.org/10.1006/jctb.1997.1750
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0095895697917500
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0095895697917500
+      \endverb
+    \endentry
+    \entry{hadwiger_1943}{article}{}
+      \name{author}{1}{}{%
+        {{hash=02c55b6fa4237d626785c795ebe52de1}{%
+           family={Hadwiger},
+           familyi={H\bibinitperiod},
+           given={Hugo},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{02c55b6fa4237d626785c795ebe52de1}
+      \strng{fullhash}{02c55b6fa4237d626785c795ebe52de1}
+      \strng{bibnamehash}{02c55b6fa4237d626785c795ebe52de1}
+      \strng{authorbibnamehash}{02c55b6fa4237d626785c795ebe52de1}
+      \strng{authornamehash}{02c55b6fa4237d626785c795ebe52de1}
+      \strng{authorfullhash}{02c55b6fa4237d626785c795ebe52de1}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Vierte Jahresbericht der Deutschen Mathematiker-Vereinigung}
+      \field{title}{Uber eine Klassifikation der Streckenkomplexe}
+      \field{year}{1943}
+    \endentry
+    \entry{wagner_1937}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0ae726f2114643518b284a9d627681e0}{%
+           family={Wagner},
+           familyi={W\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{0ae726f2114643518b284a9d627681e0}
+      \strng{fullhash}{0ae726f2114643518b284a9d627681e0}
+      \strng{bibnamehash}{0ae726f2114643518b284a9d627681e0}
+      \strng{authorbibnamehash}{0ae726f2114643518b284a9d627681e0}
+      \strng{authornamehash}{0ae726f2114643518b284a9d627681e0}
+      \strng{authorfullhash}{0ae726f2114643518b284a9d627681e0}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Math. Ann.}
+      \field{title}{Über eine Eigenschaft der ebenen Komplexe}
+      \field{volume}{114}
+      \field{year}{1937}
+      \field{pages}{570\bibrangedash 590}
+      \range{pages}{21}
+      \verb{doi}
+      \verb https://doi.org/10.1007/BF01594196
+      \endverb
+    \endentry
+    \entry{robertson_seymour_1993}{article}{}
+      \name{author}{3}{}{%
+        {{hash=30004d929a781bee1262997e1b576502}{%
+           family={Robertson},
+           familyi={R\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
+        {{hash=295a42902de7a6cc6dcb94ca30637596}{%
+           family={Seymour},
+           familyi={S\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=636ffdd00ee890af41f40d857746827f}{%
+           family={Thomas},
+           familyi={T\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{9a1df79c49e17a5f0128ea3493dfaf9f}
+      \strng{fullhash}{017b105afd7143525a1283a593c952ca}
+      \strng{bibnamehash}{017b105afd7143525a1283a593c952ca}
+      \strng{authorbibnamehash}{017b105afd7143525a1283a593c952ca}
+      \strng{authornamehash}{9a1df79c49e17a5f0128ea3493dfaf9f}
+      \strng{authorfullhash}{017b105afd7143525a1283a593c952ca}
+      \field{extraname}{2}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Combinatorica}
+      \field{title}{Hadwiger's conjecture for K6-free graphs}
+      \field{volume}{13}
+      \field{year}{1993}
+      \field{pages}{279\bibrangedash 361}
+      \range{pages}{83}
+      \verb{doi}
+      \verb https://doi.org/10.1007/BF01202354
+      \endverb
+    \endentry
+    \entry{albar_goncalves_2013}{article}{}
+      \name{author}{2}{}{%
+        {{hash=4ef579e990d12f76f4cd96632317bb5d}{%
+           family={Albar},
+           familyi={A\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=4f05c470b566e1a4cdbbf739057a202c}{%
+           family={Gonçalves},
+           familyi={G\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{244cc95b18b90465e49edf1215cddd18}
+      \strng{fullhash}{244cc95b18b90465e49edf1215cddd18}
+      \strng{bibnamehash}{244cc95b18b90465e49edf1215cddd18}
+      \strng{authorbibnamehash}{244cc95b18b90465e49edf1215cddd18}
+      \strng{authornamehash}{244cc95b18b90465e49edf1215cddd18}
+      \strng{authorfullhash}{244cc95b18b90465e49edf1215cddd18}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{On triangles in {$K_r$}-minor free graphs}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb http://arXiv.org/abs/1304.5468
+      \endverb
+      \verb{url}
+      \verb http://arXiv.org/abs/1304.5468
+      \endverb
+    \endentry
+    \entry{Kawarabayashi2005}{article}{}
+      \name{author}{2}{}{%
+        {{hash=7d202500fd3ae0518905805ea4d4b336}{%
+           family={Kawarabayashi},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=48930a15080d081c980b970b2ee9269e}{%
+           family={Toft},
+           familyi={T\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{ee41015d974a16f862d3b76bc7bf172b}
+      \strng{fullhash}{ee41015d974a16f862d3b76bc7bf172b}
+      \strng{bibnamehash}{ee41015d974a16f862d3b76bc7bf172b}
+      \strng{authorbibnamehash}{ee41015d974a16f862d3b76bc7bf172b}
+      \strng{authornamehash}{ee41015d974a16f862d3b76bc7bf172b}
+      \strng{authorfullhash}{ee41015d974a16f862d3b76bc7bf172b}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Combinatorica}
+      \field{number}{3}
+      \field{title}{Any 7-chromatic graph has K7 or K4,4 as a minor}
+      \field{volume}{25}
+      \field{year}{2005}
+      \field{pages}{327\bibrangedash 353}
+      \range{pages}{27}
+      \verb{doi}
+      \verb https://doi.org/10.1007/s00493-005-0019-1
+      \endverb
+    \endentry
+    \entry{BOLLOBAS1980195}{article}{}
+      \name{author}{3}{}{%
+        {{hash=78de33c6113e257282538eae35535cc6}{%
+           family={Bollobás},
+           familyi={B\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=4be5af88291a5e92574f9b695204a86e}{%
+           family={Catlin},
+           familyi={C\bibinitperiod},
+           given={P.A.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=70d9d408fdee7264b5dc9b333c733318}{%
+           family={Erdös},
+           familyi={E\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{d47b35893b0adec923dba617b97e7db3}
+      \strng{fullhash}{d260570da0cc90a2e1cc7ea204e104ed}
+      \strng{bibnamehash}{d260570da0cc90a2e1cc7ea204e104ed}
+      \strng{authorbibnamehash}{d260570da0cc90a2e1cc7ea204e104ed}
+      \strng{authornamehash}{d47b35893b0adec923dba617b97e7db3}
+      \strng{authorfullhash}{d260570da0cc90a2e1cc7ea204e104ed}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The contraction clique number ccl(G) of a graph G is the maximal r for which G has a subcontraction to the complete graph K′. We prove that for d > 2, almost every graph of order n satisfies n((log2n)1/2+4)-1 ⩽ ccl(G) ⩽ n(log2n-d log2 log2n)1/2. This inequality implies the statement in the title.}
+      \field{issn}{0195-6698}
+      \field{journaltitle}{European Journal of Combinatorics}
+      \field{number}{3}
+      \field{title}{Hadwiger's Conjecture is True for Almost Every Graph}
+      \field{volume}{1}
+      \field{year}{1980}
+      \field{pages}{195\bibrangedash 199}
+      \range{pages}{5}
+      \verb{doi}
+      \verb https://doi.org/10.1016/S0195-6698(80)80001-1
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0195669880800011
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0195669880800011
+      \endverb
+    \endentry
+    \entry{Kostochka1984}{article}{}
+      \name{author}{1}{}{%
+        {{hash=753dbeef9daa69f2c53fa8fa0fb2b20c}{%
+           family={Kostochka},
+           familyi={K\bibinitperiod},
+           given={A.\bibnamedelimi V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{753dbeef9daa69f2c53fa8fa0fb2b20c}
+      \strng{fullhash}{753dbeef9daa69f2c53fa8fa0fb2b20c}
+      \strng{bibnamehash}{753dbeef9daa69f2c53fa8fa0fb2b20c}
+      \strng{authorbibnamehash}{753dbeef9daa69f2c53fa8fa0fb2b20c}
+      \strng{authornamehash}{753dbeef9daa69f2c53fa8fa0fb2b20c}
+      \strng{authorfullhash}{753dbeef9daa69f2c53fa8fa0fb2b20c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Combinatorica}
+      \field{number}{4}
+      \field{title}{Lower bound of the Hadwiger number of graphs by their average degree}
+      \field{volume}{4}
+      \field{year}{1984}
+      \field{pages}{307\bibrangedash 316}
+      \range{pages}{10}
+      \verb{doi}
+      \verb https://doi.org/10.1007/BF02579141
+      \endverb
+    \endentry
+    \entry{Thomason_1984}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6d49e4addec4f0f790cfbda4c7946e82}{%
+           family={Thomason},
+           familyi={T\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{6d49e4addec4f0f790cfbda4c7946e82}
+      \strng{fullhash}{6d49e4addec4f0f790cfbda4c7946e82}
+      \strng{bibnamehash}{6d49e4addec4f0f790cfbda4c7946e82}
+      \strng{authorbibnamehash}{6d49e4addec4f0f790cfbda4c7946e82}
+      \strng{authornamehash}{6d49e4addec4f0f790cfbda4c7946e82}
+      \strng{authorfullhash}{6d49e4addec4f0f790cfbda4c7946e82}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematical Proceedings of the Cambridge Philosophical Society}
+      \field{number}{2}
+      \field{title}{An extremal function for contractions of graphs}
+      \field{volume}{95}
+      \field{year}{1984}
+      \field{pages}{261\bibrangedash 265}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1017/S0305004100061521
+      \endverb
+    \endentry
+    \entry{Kriesell2021}{article}{}
+      \name{author}{1}{}{%
+        {{hash=487a3a04034ebaa7928558b1e8dc3605}{%
+           family={Kriesell},
+           familyi={K\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{fullhash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{bibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authorbibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authornamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authorfullhash}{487a3a04034ebaa7928558b1e8dc3605}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Graph Theory}
+      \field{number}{1}
+      \field{title}{A note on uniquely 10-colorable graphs}
+      \field{volume}{98}
+      \field{year}{2021}
+      \field{pages}{24\bibrangedash 26}
+      \range{pages}{3}
+    \endentry
+    \entry{Kriesell2017}{article}{}
+      \name{author}{1}{}{%
+        {{hash=487a3a04034ebaa7928558b1e8dc3605}{%
+           family={Kriesell},
+           familyi={K\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{fullhash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{bibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authorbibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authornamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authorfullhash}{487a3a04034ebaa7928558b1e8dc3605}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Graph Theory}
+      \field{number}{1}
+      \field{title}{Unique Colorability and Clique Minors}
+      \field{volume}{85}
+      \field{year}{2017}
+      \field{pages}{207\bibrangedash 216}
+      \range{pages}{10}
+    \endentry
+    \entry{Holroyd1997}{article}{}
+      \name{author}{1}{}{%
+        {{hash=7054d5ab76a346cc9ca4987a5a1f9c2c}{%
+           family={Holroyd},
+           familyi={H\bibinitperiod},
+           given={Fred},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{7054d5ab76a346cc9ca4987a5a1f9c2c}
+      \strng{fullhash}{7054d5ab76a346cc9ca4987a5a1f9c2c}
+      \strng{bibnamehash}{7054d5ab76a346cc9ca4987a5a1f9c2c}
+      \strng{authorbibnamehash}{7054d5ab76a346cc9ca4987a5a1f9c2c}
+      \strng{authornamehash}{7054d5ab76a346cc9ca4987a5a1f9c2c}
+      \strng{authorfullhash}{7054d5ab76a346cc9ca4987a5a1f9c2c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We consider the following strengthening of Hadwiger's Conjecture.Let G be any graph of chromatic number k, S any subset of V(G) which takes all k colours in each proper k-colouring of G. Then there are k pairwise adjacent connected subgraphs of G, each of whose vertex sets has non-trivial intersection with S.We show that the truth of this conjecture for all graphs of chromatic number ≤k implies the truth of Hadwiger's Conjecture for all graphs of chromatic number ≤k + 1. We also show that its truth implies the following statement (which is at first sight even stronger).For any graph G of chromatic number k and any subset S of V(G), define χ(S; G) to be the least number of colours that can appear on S in any proper k-colouring of G, and h(S; G) to be the largest number of pairwise adjacent connected subgraphs of G each having non-trivial intersection with S. Then χ(S; G) ≤ h(S; G).We define the number w(S; G) to be the largest cardinality of a subset T of S such that, however T is partitioned into pairs (possibly with one spare element), there are vertex-disjoint paths linking the elements in each pair, none passing through the spare element if it exists. We show that χ(S; G) ≤ (|S| + w(S; G))/2 for any graph G and subset S of V(G).Finally, we show that for any graph G, χ(S; G) ≤ h(S; G) whenever χ(S; G) ≤ 3. 1991 Mathematics Subject Classification 05C15.}
+      \field{issn}{0024-6093}
+      \field{journaltitle}{Bulletin of the London Mathematical Society}
+      \field{month}{03}
+      \field{number}{2}
+      \field{title}{Strengthening Hadwiger's Conjecture}
+      \field{volume}{29}
+      \field{year}{1997}
+      \field{pages}{139\bibrangedash 144}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1112/S0024609396002159
+      \endverb
+      \verb{eprint}
+      \verb https://academic.oup.com/blms/article-pdf/29/2/139/726858/29-2-139.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1112/S0024609396002159
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1112/S0024609396002159
+      \endverb
+    \endentry
+    \entry{MARTINSSON20241}{article}{}
+      \name{author}{2}{}{%
+        {{hash=41530e42ab393657f878be772c733ba1}{%
+           family={Martinsson},
+           familyi={M\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3d44714f812de38e318c729443b937ac}{%
+           family={Steiner},
+           familyi={S\bibinitperiod},
+           given={Raphael},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{8d900c4a3153aea9c53d5cc5830eb881}
+      \strng{fullhash}{8d900c4a3153aea9c53d5cc5830eb881}
+      \strng{bibnamehash}{8d900c4a3153aea9c53d5cc5830eb881}
+      \strng{authorbibnamehash}{8d900c4a3153aea9c53d5cc5830eb881}
+      \strng{authornamehash}{8d900c4a3153aea9c53d5cc5830eb881}
+      \strng{authorfullhash}{8d900c4a3153aea9c53d5cc5830eb881}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Hadwiger's famous coloring conjecture states that every t-chromatic graph contains a Kt-minor. Holroyd[11]conjectured the following strengthening of Hadwiger's conjecture: If G is a t-chromatic graph and S⊆V(G) takes all colors in every t-coloring of G, then G contains a Kt-minor rooted at S. We prove this conjecture in the first open case of t=4. Notably, our result also directly implies a stronger version of Hadwiger's conjecture for 5-chromatic graphs as follows: Every 5-chromatic graph contains a K5-minor with a singleton branch-set. In fact, in a 5-vertex-critical graph we may specify the singleton branch-set to be any vertex of the graph.}
+      \field{issn}{0095-8956}
+      \field{journaltitle}{Journal of Combinatorial Theory, Series B}
+      \field{title}{Strengthening Hadwiger's conjecture for 4- and 5-chromatic graphs}
+      \field{volume}{164}
+      \field{year}{2024}
+      \field{pages}{1\bibrangedash 16}
+      \range{pages}{16}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jctb.2023.08.009
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0095895623000692
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0095895623000692
+      \endverb
+      \keyw{Hadwiger's conjecture,Strong Hadwiger's conjecture,Four-Color-Theorem,Rooted minors}
+    \endentry
     \entry{matthias_2022}{article}{}
       \name{author}{1}{}{%
         {{hash=d8cadf89422fc1999e5c3ce6872a5857}{%

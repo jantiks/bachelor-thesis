@@ -1,29 +1,6 @@
 \chapter{Kempe chains and Routing graphs}
 The following proofs are reformulations of those presented in \cite{matthias_2022}.
 
-\begin{defn}[H-certificate]
-    Graph $H$ is a minor of $G$ if there exists $c := (V_{t})_{t \in V(H)}$ of pairwise disjoint $V(G)$,
-     called bags, such that $\forall t \in V(H)$ $V_{t} \neq \emptyset$ and $G[V_{t}]$ is connected, and $\forall (u,v) \in E(H)$,
-     $\exists$ edge connecting $V_{u}$ and $V_{v}$, any such $c$ is called $H$-certificate
-\end{defn}
-
-\begin{defn}[rooted H-certificate]
-    $H$-certificate is a rooted if $V(H) \subset V(G)$ and $t \in V_{t}$ $\forall t \in V(H)$. If there is a rooted H-certificate in graph $G$,
-    then $H$ is a rooted minor of $G$
-\end{defn}
-
-\begin{defn}[Routing Graph]
-Let $\mathcal{C}$ be a coloring of graph $G$, let $T$ be the transversal of coloring $\mathcal{C}$, 
-then routing graph $H(G, \mathcal{C}, T)$ is defined as the graph on vertices of $T$, 
-such that $\forall (i,j) \in V(H) (i \neq j)$, $(i,j) \in E(H)$ if and only if 
-$\exists$ Kempe chain between vertices $i$ and $j$ in graph $G$
-\end{defn}
-
-\begin{defn}[Property (*)]
-    All graphs $H$ which are routing graph of some $G$ with some coloring $\mathcal{C}$ and transversal $T$
-    such that $G$ has a rooted $H$-certificate, are said to have property (*)
-\end{defn}
-
 \begin{thm}
     K has property (*) if and only if every component of K has it.
 \end{thm}

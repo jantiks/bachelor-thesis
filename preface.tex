@@ -1,3 +1,97 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
+The four-color theorem, that every planar graph is four-colorable, was one of the central problems
+in graph theory for over a century. Appel and Haken proved it in 1976 \cite{appel_haken_1977} using a computer program.
+The proof was controversial because it was the first major theorem to be proved using a computer.
+The theorem was later proved in 1997 by Robertson, Sanders, Seymour, and Thomas \cite{ROBERTSON19972},
+still using a computer, but with more straightforward configurations than Appel and Haken's in several aspects. 
+
+Hadwiger's conjecture \cite{hadwiger_1943} suggests a generalization of the four-color theorem. It is considered one of 
+the most challenging problems in graph theory. The conjecture is the following: 
+
+
+\begin{conj} [Hadwiger 1943 \cite{hadwiger_1943} (Strong version)]
+ For every integer $k \geq 0$, every graph $G$ with no $K_{k+1}$ minor can be colored with $k$ colors.
+\end{conj}
+
+It was proved by Hadwiger himself for cases $k \leq 3$. The case $k = 4$ is implied by the four-color theorem, since by Wagner's theorem \cite{wagner_1937} a graph is planar if and only if
+it has no $K_5$ or $K_{3,3}$ minor. Robertson, Seymour, and Thomas proved the case $k = 5$ in 1993 \cite{robertson_seymour_1993}, 
+where they did not use a computer to prove it. However, they proved that a minimal counter-example to the case $k = 5$ should have 
+a vertex whose removal results in a planar graph, reducing the problem to the four-color theorem. $k = 6$ is still open, and there are some result in this direction is that of Albar and Gonçalves \cite{albar_goncalves_2013}. 
+\begin{thm}
+ Every graph with no $K_7$ minor is 8-colorable, and every graph with no $K_8$ minor is 10-colorable.
+\end{thm}
+
+And Kawarabayashi and Toft \cite{Kawarabayashi2005} proved that every 7-coloarable graph has $K_7$ or $K_{4,4}$ as minor.
+
+Bollobás, Catlin, and Erdös \cite{BOLLOBAS1980195} showed that the conjecture is true for almost all graphs using
+probabilistic arguments. In general, the cases $k \geq 6$ remain open.
+
+Because of the current state of the conjecture, there is an interest in a weaker version of the conjecture.
+
+\begin{conj} (Hadwiger's Conjecture weak version)
+    There exists a constant $c$ such that, for every $k \geq 0$, every graph with no $K_{k+1}$ minor can be colored with $ck$ colors.
+\end{conj}
+
+The best-known result for the weak version is that for every graph with no $K_{t+1}$ minor, there exists a constant $c$ such that the graph is $ck\sqrt{\log{k}}$-colorable.
+This was proved forty years ago by Kostochka \cite{Kostochka1984} and Thomason \cite{Thomason_1984} independently. Moreover, there has been no significant improvement since then.
+
+Since the conjecture is hard to prove in general, it is interesting to study the conjecture for specific classes of graphs.
+Hadwiger suggested looking into the graphs with a bounded number of optimal colorings \cite{hadwiger_1943}, 
+one particular class is the uniquely optimally colorable graphs.
+
+\begin{claim}
+    Let $x_1, x_2, ..., x_k$ be differently colored vertices of a uniquely $k-colorable$ graph $G$. Then there is
+    system of edge-disjoint $x_{i}, x_{j}$ paths $(\forall i, j \in [n], i \neq j)$, 
+    by taking only the edges between the corresponding two color classes. 
+\end{claim}
+
+
+\begin{proof}
+    For any given $i, j \in [n], i \neq j$, the graph $G[V_i \cup V_j]$ is a connected 
+    component, where $V_i$ and $V_j$ are the color classes of $x_i$ and $x_j$ respectively, if this wasn't the case
+    then, we could color one of the disconnected components by swapping the colors $i$ and $j$, resulting to another coloring. 
+    However, $G$ is uniquely k-colorable, hence a contradiction.
+\end{proof}
+
+The question is whether a $K_k$ minor exists rooted at $x_1, ..., x_k$. Kriesell showed that the answer is positive for 
+cases $k \leq 10$ \cite{Kriesell2021}, if the graph is antitriangle-free \cite{Kriesell2017}, 
+Moreover, with Mohr, they showed it is true for line graphs \cite{Kriesell2021}.
+
+
+Taking a vertex set of the graph containing all colors seems a natural approach to look for a $K_{t}$ minor, since it contains
+all the colors of the graph, it's a place which is 'hard to color', hence it's a good place to hope for finding a minor. And this is 
+exactly the Halroyd's conjecture.
+
+First let's define what is a colorful set.
+
+\begin{defn}
+    For graph $G$, A set of vertices $S \subseteq V(G)$ is called colorful if for every proper coloring of $G$, $S$ contains atleast one 
+    vertex for each color of the coloring.
+\end{defn}
+
+\begin{conj} (Halroyd's conjecture)
+    For every $t \geq 0$, every graph $G$ with no rooted $K_{t+1}$ minor has a colorful set of size $t$.
+\end{conj}
+
+Holroyd called it the Strong Hadwiger Conjecture since if we take $S = V(G)$, it implies Hadwiger's conjecture.
+
+Holroyd himself has proven the conjecture for cases $k \leq 3$ \cite{Holroyd1997}, and recently it has been proved for the case
+$k = 4$ by Martinsson and Steiner \cite{MARTINSSON20241}.
+
+
+Usually, in the context of Hadwiger's conjecture, only clique minors were considered; however, Kriesell and Mohr \cite{matthias_2022} considered
+the following question, which does not necessarily look for clique minors. Let $G$ be a graph with a proper coloring
+$\mathcal{C}$, let $k = |\mathcal{C}|$, and let $x_1, ..., x_{k}$ be a vertex set of $G$ with different colors.
+Then there is a system of esdge-disjoint $(x_i, x_j)$-paths for some pairs $(x_i, x_j)$.
+They examined weather there is a rooted minor $H$ of $G$ on vertices $x_1, ..., x_{k}$, where $H$ has edges between 
+$x_i, x_j$ if and only if there is an edge-disjoint path between $x_i$ and $x_j$ in $G$.
+
+The answer to this question is affirmative for the cases of $k \leq 4$; for $k = 5$, it is true for graphs
+with at most six edges, but in general open, and for $k = 6$, it's open, and it is negative for $k \geq 7$.
+
+This paper will characterize minimal counterexample graphs for $k = 5$ such that the answer is negative. 
+We also made a computer enumeration for the case $k = 6$, checking all the graphs with at most sixteen vertices, and 
+we found that the answer was positive for all of them.
+
