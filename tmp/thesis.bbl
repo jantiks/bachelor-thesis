@@ -177,8 +177,8 @@
       \strng{authornamehash}{9a1df79c49e17a5f0128ea3493dfaf9f}
       \strng{authorfullhash}{017b105afd7143525a1283a593c952ca}
       \field{extraname}{2}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Combinatorica}
@@ -210,8 +210,8 @@
       \strng{authorbibnamehash}{244cc95b18b90465e49edf1215cddd18}
       \strng{authornamehash}{244cc95b18b90465e49edf1215cddd18}
       \strng{authorfullhash}{244cc95b18b90465e49edf1215cddd18}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arXiv}
@@ -243,8 +243,8 @@
       \strng{authorbibnamehash}{ee41015d974a16f862d3b76bc7bf172b}
       \strng{authornamehash}{ee41015d974a16f862d3b76bc7bf172b}
       \strng{authorfullhash}{ee41015d974a16f862d3b76bc7bf172b}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Combinatorica}
@@ -282,8 +282,8 @@
       \strng{authorbibnamehash}{d260570da0cc90a2e1cc7ea204e104ed}
       \strng{authornamehash}{d47b35893b0adec923dba617b97e7db3}
       \strng{authorfullhash}{d260570da0cc90a2e1cc7ea204e104ed}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The contraction clique number ccl(G) of a graph G is the maximal r for which G has a subcontraction to the complete graph K′. We prove that for d > 2, almost every graph of order n satisfies n((log2n)1/2+4)-1 ⩽ ccl(G) ⩽ n(log2n-d log2 log2n)1/2. This inequality implies the statement in the title.}
@@ -363,59 +363,32 @@
       \verb 10.1017/S0305004100061521
       \endverb
     \endentry
-    \entry{Kriesell2021}{article}{}
+    \entry{JAMS2025}{article}{}
       \name{author}{1}{}{%
-        {{hash=487a3a04034ebaa7928558b1e8dc3605}{%
-           family={Kriesell},
-           familyi={K\bibinitperiod},
-           given={M.},
-           giveni={M\bibinitperiod}}}%
+        {{hash=7efdd383d7533ff56453218562a77c22}{%
+           family={{Journal of the American Mathematical Society}},
+           familyi={J\bibinitperiod}}}%
       }
-      \strng{namehash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{fullhash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{bibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{authorbibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{authornamehash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{authorfullhash}{487a3a04034ebaa7928558b1e8dc3605}
-      \field{extraname}{1}
+      \strng{namehash}{7efdd383d7533ff56453218562a77c22}
+      \strng{fullhash}{7efdd383d7533ff56453218562a77c22}
+      \strng{bibnamehash}{7efdd383d7533ff56453218562a77c22}
+      \strng{authorbibnamehash}{7efdd383d7533ff56453218562a77c22}
+      \strng{authornamehash}{7efdd383d7533ff56453218562a77c22}
+      \strng{authorfullhash}{7efdd383d7533ff56453218562a77c22}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Graph Theory}
-      \field{number}{1}
-      \field{title}{A note on uniquely 10-colorable graphs}
-      \field{volume}{98}
-      \field{year}{2021}
-      \field{pages}{24\bibrangedash 26}
-      \range{pages}{3}
-    \endentry
-    \entry{Kriesell2017}{article}{}
-      \name{author}{1}{}{%
-        {{hash=487a3a04034ebaa7928558b1e8dc3605}{%
-           family={Kriesell},
-           familyi={K\bibinitperiod},
-           given={M.},
-           giveni={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{fullhash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{bibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{authorbibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{authornamehash}{487a3a04034ebaa7928558b1e8dc3605}
-      \strng{authorfullhash}{487a3a04034ebaa7928558b1e8dc3605}
-      \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Graph Theory}
-      \field{number}{1}
-      \field{title}{Unique Colorability and Clique Minors}
-      \field{volume}{85}
-      \field{year}{2017}
-      \field{pages}{207\bibrangedash 216}
-      \range{pages}{10}
+      \field{journaltitle}{Journal of the American Mathematical Society}
+      \field{month}{4}
+      \field{note}{Article electronically published on July 24, 2024}
+      \field{number}{2}
+      \field{volume}{38}
+      \field{year}{2025}
+      \field{pages}{481\bibrangedash 507}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1090/jams/1047
+      \endverb
     \endentry
     \entry{Holroyd1997}{article}{}
       \name{author}{1}{}{%
@@ -500,6 +473,215 @@
       \endverb
       \keyw{Hadwiger's conjecture,Strong Hadwiger's conjecture,Four-Color-Theorem,Rooted minors}
     \endentry
+    \entry{Kriesell2021}{article}{}
+      \name{author}{1}{}{%
+        {{hash=487a3a04034ebaa7928558b1e8dc3605}{%
+           family={Kriesell},
+           familyi={K\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{fullhash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{bibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authorbibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authornamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authorfullhash}{487a3a04034ebaa7928558b1e8dc3605}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Graph Theory}
+      \field{number}{1}
+      \field{title}{A note on uniquely 10-colorable graphs}
+      \field{volume}{98}
+      \field{year}{2021}
+      \field{pages}{24\bibrangedash 26}
+      \range{pages}{3}
+    \endentry
+    \entry{Kriesell2017}{article}{}
+      \name{author}{1}{}{%
+        {{hash=487a3a04034ebaa7928558b1e8dc3605}{%
+           family={Kriesell},
+           familyi={K\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{fullhash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{bibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authorbibnamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authornamehash}{487a3a04034ebaa7928558b1e8dc3605}
+      \strng{authorfullhash}{487a3a04034ebaa7928558b1e8dc3605}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Graph Theory}
+      \field{number}{1}
+      \field{title}{Unique Colorability and Clique Minors}
+      \field{volume}{85}
+      \field{year}{2017}
+      \field{pages}{207\bibrangedash 216}
+      \range{pages}{10}
+    \endentry
+    \entry{RobertsonSeymourGM16}{article}{}
+      \name{author}{2}{}{%
+        {{hash=dc81bb8376196ff7fb0527af0d626abd}{%
+           family={Robertson},
+           familyi={R\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=7c1ee2240a074b9bf4f421381fcfae15}{%
+           family={Seymour},
+           familyi={S\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{fullhash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{bibnamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{authorbibnamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{authornamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{authorfullhash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Combinatorial Theory, Series B}
+      \field{title}{Graph Minors XVI: Excluding a non-planar graph}
+      \field{year}{in press}
+    \endentry
+    \entry{RobertsonSeymourGM20}{article}{}
+      \name{author}{2}{}{%
+        {{hash=dc81bb8376196ff7fb0527af0d626abd}{%
+           family={Robertson},
+           familyi={R\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=7c1ee2240a074b9bf4f421381fcfae15}{%
+           family={Seymour},
+           familyi={S\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{fullhash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{bibnamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{authorbibnamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{authornamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{authorfullhash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Combinatorial Theory, Series B}
+      \field{title}{Graph Minors XX: Wagner’s Conjecture}
+      \field{year}{to appear}
+    \endentry
+    \entry{Fiorini2025}{article}{}
+      \name{author}{5}{}{%
+        {{hash=9817054c08ed09dbb7cc5081bb690e68}{%
+           family={Fiorini},
+           familyi={F\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4e6515fca962e8c3efeec1f204400fea}{%
+           family={Kober},
+           familyi={K\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f575ea4f6a648dd9fbdb4b7327ae730d}{%
+           family={Seweryn},
+           familyi={S\bibinitperiod},
+           given={Michał\bibnamedelima T.},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=0b7c8a31206a4b562ac3e2268d4e83cd}{%
+           family={Shantanam},
+           familyi={S\bibinitperiod},
+           given={Abhinav},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f4a296b970573605cd8dc885ace25b5f}{%
+           family={Yuditsky},
+           familyi={Y\bibinitperiod},
+           given={Yelena},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{a600bd93c604b6f94c9aa7886d9f3076}
+      \strng{fullhash}{13c8bdaca1ef363acfeaa1ca23d8e89e}
+      \strng{bibnamehash}{13c8bdaca1ef363acfeaa1ca23d8e89e}
+      \strng{authorbibnamehash}{13c8bdaca1ef363acfeaa1ca23d8e89e}
+      \strng{authornamehash}{a600bd93c604b6f94c9aa7886d9f3076}
+      \strng{authorfullhash}{13c8bdaca1ef363acfeaa1ca23d8e89e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.CO}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint}
+      \field{title}{Face covers and rooted minors in bounded genus graphs}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.48550/arXiv.2503.09230
+      \endverb
+      \verb{eprint}
+      \verb 2503.09230
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2503.09230
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2503.09230
+      \endverb
+    \endentry
+    \entry{BOHME2002291}{article}{}
+      \name{author}{2}{}{%
+        {{hash=7a43dc7376ba270425ecb3cfd1a03998}{%
+           family={Böhme},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=984a9c4e45e3489881e4a5220c9d1254}{%
+           family={Mohar},
+           familyi={M\bibinitperiod},
+           given={Bojan},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{f2c65520b64bc8373367f3a8a16b0c48}
+      \strng{fullhash}{f2c65520b64bc8373367f3a8a16b0c48}
+      \strng{bibnamehash}{f2c65520b64bc8373367f3a8a16b0c48}
+      \strng{authorbibnamehash}{f2c65520b64bc8373367f3a8a16b0c48}
+      \strng{authornamehash}{f2c65520b64bc8373367f3a8a16b0c48}
+      \strng{authorfullhash}{f2c65520b64bc8373367f3a8a16b0c48}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Let G be a 3-connected planar graph and let U⊆V(G). It is shown that G contains a K2, t minor such that t is large and each vertex of degree 2 in K2, t corresponds to some vertex of U if and only if there is no small face cover of U. This result cannot be extended to 2-connected planar graphs.}
+      \field{issn}{0095-8956}
+      \field{journaltitle}{Journal of Combinatorial Theory, Series B}
+      \field{number}{2}
+      \field{title}{Labeled K2, t Minors in Plane Graphs}
+      \field{volume}{84}
+      \field{year}{2002}
+      \field{pages}{291\bibrangedash 300}
+      \range{pages}{10}
+      \verb{doi}
+      \verb https://doi.org/10.1006/jctb.2001.2083
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0095895601920830
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0095895601920830
+      \endverb
+      \keyw{graph theory,graph minor,planar graph,face cover}
+    \endentry
     \entry{matthias_2022}{article}{}
       \name{author}{1}{}{%
         {{hash=d8cadf89422fc1999e5c3ce6872a5857}{%
@@ -514,12 +696,82 @@
       \strng{authorbibnamehash}{d8cadf89422fc1999e5c3ce6872a5857}
       \strng{authornamehash}{d8cadf89422fc1999e5c3ce6872a5857}
       \strng{authorfullhash}{d8cadf89422fc1999e5c3ce6872a5857}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Kempe Chains and Rooted Minors}
       \field{year}{2022}
+    \endentry
+    \entry{dwavesystems2023minorminer}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=83cf2fdfca88bddb1d435d7732cf8c90}{%
+           family={Systems},
+           familyi={S\bibinitperiod},
+           given={D-Wave},
+           giveni={D\bibinithyphendelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{83cf2fdfca88bddb1d435d7732cf8c90}
+      \strng{fullhash}{83cf2fdfca88bddb1d435d7732cf8c90}
+      \strng{bibnamehash}{83cf2fdfca88bddb1d435d7732cf8c90}
+      \strng{authorbibnamehash}{83cf2fdfca88bddb1d435d7732cf8c90}
+      \strng{authornamehash}{83cf2fdfca88bddb1d435d7732cf8c90}
+      \strng{authorfullhash}{83cf2fdfca88bddb1d435d7732cf8c90}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2023-04-07}
+      \field{title}{minorminer}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://github.com/dwavesystems/minorminer
+      \endverb
+      \verb{url}
+      \verb https://github.com/dwavesystems/minorminer
+      \endverb
+    \endentry
+    \entry{cai2014practicalheuristicfindinggraph}{article}{}
+      \name{author}{3}{}{%
+        {{hash=704989978999b2d3adaa185bdb8dba93}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b8218a164b0224b26cf36cfb4a28aed1}{%
+           family={Macready},
+           familyi={M\bibinitperiod},
+           given={William\bibnamedelima G.},
+           giveni={W\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=7611214500fba385f3396d102e850781}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Aidan},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{97ab201ab4a60aeb54892222204db86e}
+      \strng{fullhash}{f46050f6a52221b667bc429588899ecd}
+      \strng{bibnamehash}{f46050f6a52221b667bc429588899ecd}
+      \strng{authorbibnamehash}{f46050f6a52221b667bc429588899ecd}
+      \strng{authornamehash}{97ab201ab4a60aeb54892222204db86e}
+      \strng{authorfullhash}{f46050f6a52221b667bc429588899ecd}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arXiv}
+      \field{title}{A practical heuristic for finding graph minors}
+      \field{year}{2014}
+      \verb{eprint}
+      \verb 1406.2741
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1406.2741
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1406.2741
+      \endverb
     \endentry
   \enddatalist
 \endrefsection

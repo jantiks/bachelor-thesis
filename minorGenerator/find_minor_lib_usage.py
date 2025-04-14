@@ -16,7 +16,7 @@ import copy
 import random
 
 
-def generate_graphs_base_plus_two_edges(G):
+def generate_graphs_base_plus_edges(G, n):
     vertices = list(G.nodes())
     
     all_possible_edges = list(itertools.combinations(vertices, 2))
@@ -27,7 +27,7 @@ def generate_graphs_base_plus_two_edges(G):
     print("Total missing edges:", len(missing_edges))
     
     graphs = []
-    for extra_edges in itertools.combinations(missing_edges, 2):
+    for extra_edges in itertools.combinations(missing_edges, n):
         G_new = G.copy()
         G_new.add_edges_from(extra_edges)
         graphs.append(G_new)
@@ -86,9 +86,10 @@ def label(vertex):
     return vertex[-1]
 
 def exists_kempe(G, start, end, original_begining, looked_at=set()):
+    if (start == end):
+        return True
+    
     for key in G[start]:
-        if key == end:
-            return True
         if color(key) == color(start):
             continue
         if key in looked_at:
@@ -97,30 +98,58 @@ def exists_kempe(G, start, end, original_begining, looked_at=set()):
             return True
     return False
 
-def build_kempe_chain(g1, begining, end, set_of_all_filled_g, original_begining, level=0):
-    if exists_kempe(g1, begining, end, original_begining):
-        return
-    begining_neighbours = g1[begining]
+def degree(g, vertex):
+    return len(g[vertex])
 
+def build_kempe_chain(g1, minor, current, end, set_of_all_filled_g, original_begining, current_chain=None, level=0, index=0):
+    if current_chain is None:
+        current_chain = [current]
+        
+    if current == end:
+        return
+
+    color_to_look_for = color(original_begining) if color(current) == color(end) else color(end)
+    available_vertices = [v for v in g1.keys() if v not in current_chain and color(v) == color_to_look_for and 
+                         ((label(v) != 'a' and degree(g1, v) < 20) or (label(v) == 'a' and degree(g1, v) < len(minor[v])))]
+
+    if label(current) == "a":
+        available_vertices = [v for v in available_vertices if label(v) != "a"]
+    begining_neighbours = g1[current]
     already_built = False
-    for vertex in g1.keys():
-        if (label(begining) == "a" and label(vertex) == "a"):
-            continue
-        if (vertex in begining_neighbours):
-            continue
     
-        if (color(begining) == color(end) and color(vertex) == color(original_begining)) or (color(begining) == color(original_begining) and color(vertex) == color(end)):
-            if already_built: ## already extended the inital graph, so let's create a new variation of it, for a different Kempe chain.
-                newG = copy.deepcopy(g1)
-                newG[begining].add(vertex)
-                newG[vertex].add(begining)
-                set_of_all_filled_g.append(newG)
-                build_kempe_chain(newG, vertex, end, set_of_all_filled_g, original_begining, level=level+1)
-            else:
-                g1[begining].add(vertex)
-                g1[vertex].add(begining)
-                build_kempe_chain(g1, vertex, end, set_of_all_filled_g, original_begining, level=level+1)
-                already_built = True
+    # Sort vertices: non-a vertices by degree (lowest first), then a vertices
+    def vertex_sort_key(vertex):
+        if label(vertex) == 'a':
+            return (1, 0)  # a vertices go last
+        d = degree(g1, vertex)
+        if d > 3:
+            return (2, 0)  # vertices with degree > 3 go to the end
+        return (0, d)  # non-a vertices with degree < 3 sorted by degree
+    
+    available_vertices.sort(key=vertex_sort_key)
+
+    if len(available_vertices) == 0:
+        if (exists_kempe(g1, original_begining, end, original_begining, looked_at=set([original_begining]))):
+            return
+        
+        if g1 in set_of_all_filled_g:
+            set_of_all_filled_g.remove(g1)
+        return
+
+    for vertex in available_vertices:
+        if already_built and len(set_of_all_filled_g): ## already extended the inital graph, so let's create a new variation of it, for a different Kempe chain.
+            newG = copy.deepcopy(g1)
+            newG[current].add(vertex)
+            newG[vertex].add(current)
+            set_of_all_filled_g.append(newG)
+            new_chain = current_chain + [vertex]
+            build_kempe_chain(newG, minor, vertex, end, set_of_all_filled_g, original_begining, new_chain, level=level+1, index=index)
+        else:
+            g1[current].add(vertex)
+            g1[vertex].add(current)
+            new_chain = current_chain + [vertex]
+            build_kempe_chain(g1, minor, vertex, end, set_of_all_filled_g, original_begining, new_chain, level=level+1, index=index)
+            already_built = True
 
 def get_edges_from_adjacency_list(adjacency_list):
     edges = set()
@@ -144,15 +173,63 @@ def getNetworkxGraph(dict):
     
     return G
 
+def get_all_graphs_H(n):
+    V = [i for i in range(n)]
+    E_C6 = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]
+    all_edges = list(itertools.combinations(V, 2))
+    E_rest = [e for e in all_edges if e not in E_C6]
+
+    subsets = []
+    for k in range(len(E_rest) + 1):  # From 0 to 9 additional edges
+        subsets.extend(itertools.combinations(E_rest, k))
+    print("Total number of edge subsets to consider:", len(subsets))
+
+    degree_seq_dict = {}
+
+    non_iso_graphs = []
+    for S in subsets:
+        G = nx.Graph()
+        G.add_nodes_from(V)
+        G.add_edges_from(E_C6)
+        G.add_edges_from(S)
+ 
+        deg_seq = tuple(sorted([d for n, d in G.degree()], reverse=True))
+ 
+        if deg_seq not in degree_seq_dict:
+            degree_seq_dict[deg_seq] = [G]
+            non_iso_graphs.append(G)
+        else:
+            is_new = True
+            for G_existing in degree_seq_dict[deg_seq]:
+                if nx.is_isomorphic(G, G_existing):
+                    is_new = False 
+                    break
+
+            if is_new:
+                degree_seq_dict[deg_seq].append(G) 
+                non_iso_graphs.append(G)
+
+    return non_iso_graphs
+ 
+
 if __name__ == "__main__":
     n = 15 ## build graphs on n vertices
     noMinorMinimalGraph = None
     noMinorGraph = None
     terminate = False
+    nominors = []
+    # graphs = 
     # graphs = get_all_graphs_K7_minus_one_edge()
     # graphs = generate_graphs_base_plus_two_edges(nx.Graph([('0', '1'), ('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '0'), ('0', '6'), ('6', '3')]))  ## counterexample from paper + 2edges
-    graphs = [nx.Graph([('0', '1'), ('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '0'), ('0', '6'), ('6', '3')])] ## counterexample from paper
-    num_vertices_of_minor = 7
+    # graphs = [nx.Graph([('0', '1'), ('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '0'), ('0', '6'), ('6', '3')])] ## counterexample from paper
+    # graphs = [nx.Graph([('0', '1'), ('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '0'), ('0', '3'), ('0', '4'), ('1', '4')])]
+    num_vertices_of_minor = 6
+    graphs = get_all_graphs_H(num_vertices_of_minor)
+    # graphs = generate_graphs_base_plus_edges(nx.Graph([('0', '1'), ('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '6'), ('6', '0')]), 1) ## counter example
+    # graphs = [nx.Graph([('0', '1'), ('0', '2'), ('0', '5'), ('1', '4'), ('1', '6'), ('2', '3'), ('3', '4'), ('6', '4'), ('6', '5'), ('5', '2')])] ## counter example 2
+    # graphs = [nx.Graph([('0', '1'), ('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '0'), ('2', '5')])] ## counter example
+    random.shuffle(graphs)
+    
     index = 0
     foundedMinor = 0
     noMinor = 0
@@ -168,52 +245,84 @@ if __name__ == "__main__":
         }
 
         small = get_edges_from_adjacency_list(H)
-
+        suspend_chains = {f"{i}a": [[f"{i}a"]] for i in minor.nodes}
+        # number_of_layers = n // num_vertices_of_minor
+        number_of_layers = 1
         G = {}
-        for i in range(2):
+        for i in range(number_of_layers):
             suffix = chr(ord('a') + i)
             for key in H:
                 new_key = key[:-1] + suffix
                 G[new_key] = set()
 
 
-        all_empty_g = []
-        comb_size = n % (num_vertices_of_minor * 2) ## vertices with labels a and b are always existent, here we add the left over vertices with label c to cover the number of vertices
-        if (comb_size != 0):
-            all_combs = list(combinations_with_replacement(H.keys(), comb_size))
+        colorings = []
+        number_of_colors_left = n - num_vertices_of_minor
+
+        if number_of_colors_left != 0:
+            all_combs = list(combinations_with_replacement(H.keys(), number_of_colors_left))
+            
             for comb in all_combs:
                 new_g = copy.deepcopy(G)
-                for item in comb:
-                    new_g[item[:-1] + "c"] = set()
-                all_empty_g.append(new_g)
+                
+                # combinations_with_replacement produces sorted tuples,
+                # so grouping will correctly group identical elements.
+                for value, group in itertools.groupby(comb):
+                    current_layer = number_of_layers
+                    # Iterate through all appearances (instances) of the current value
+                    for _ in list(group):
+                        # Create a new key using the value (excluding its last character) 
+                        # and a character representing the current layer.
+                        layer_char = chr(ord('a') + current_layer)
+                        new_key = value[:-1] + layer_char
+                        new_g[new_key] = set()
+                        # Move to the next layer for the next instance, even within the same group.
+                        current_layer += 1
+                
+                print(new_g)
+                print(comb)
+                colorings.append(new_g)
         else:
-            all_empty_g.append(G)
+            colorings.append(G)
 
-        ## Now the list all_g is the set of all empty graphs that we want to check for the minor
-        for g1 in all_empty_g:
-            set_of_all_filled_g = [copy.deepcopy(g1)]
-            for begining in H: 
-                for end in H[begining]:
-                    for graph in set_of_all_filled_g:
-                        build_kempe_chain(graph, begining, end, set_of_all_filled_g, begining)
+        print(len(colorings))
+        # all_empty_g = all_empty_g[:1000] ## limit the number of empty graphs to check for the minor
+        # all_empty_g = random.sample(all_empty_g, int(len(all_empty_g) * 0.2))
+        # print("ASD ", len(all_empty_g))        
+
+        edges = {(min(node, neighbor), max(node, neighbor)) for node, neighbors in H.items() for neighbor in neighbors}
+        edges = list(edges)
+
+        coloring_index = 0
+        for colroing in colorings:
+            print("Coloring:", coloring_index, index)
+            set_of_all_filled_g = [copy.deepcopy(colroing)]
+            random.shuffle(edges)  # Shuffle edge order for randomness
             
+            for beginning, end in edges:
+                current_graphs = list(set_of_all_filled_g)
+                for graph in current_graphs:
+                    build_kempe_chain(
+                        graph, H, beginning, end, set_of_all_filled_g, beginning,
+                        current_chain=[beginning], level=0, index=index
+                    )
             for kempe_graph in set_of_all_filled_g:
                 big = get_edges_from_adjacency_list(kempe_graph)
-                minor_embd = find_embedding(small, big, random_seed=10, suspend_chains={"0a": [['0a']], "1a": [["1a"]], "2a": [["2a"]], "3a": [["3a"]], "4a": [["4a"]], "5a": [["5a"]], "6a": [["6a"]]})
+                minor_embd = find_embedding(small, big, random_seed=10, suspend_chains=suspend_chains)
                 if minor_embd:
                     foundedMinor += 1
-                    pass
                 else:
                     ## Rechecking with different random seeds, to make sure that the minor is not there
                     no_minor = True
                     for i in range(10):
-                        minor_embd = find_embedding(small, big, random_seed=random.randint(1, 1000), suspend_chains={"0a": [['0a']], "1a": [["1a"]], "2a": [["2a"]], "3a": [["3a"]], "4a": [["4a"]], "5a": [["5a"]], "6a": [["6a"]]})
+                        minor_embd = find_embedding(small, big, random_seed=random.randint(1, 1000), suspend_chains=suspend_chains)
 
                         if minor_embd:
                             no_minor = False
                             
                     if no_minor:
                         ## Keeping the minimal counter example
+                        nominors.append(minor)
                         if noMinorMinimalGraph is None:
                             noMinorMinimalGraph = kempe_graph
                             noMinorGraph = minor
@@ -223,9 +332,10 @@ if __name__ == "__main__":
                         print("No minor found")
                         print(small)
                         print(kempe_graph)
-                        # terminate = True
-                        # noMinor += 1
-                        # break
+                        terminate = True
+                        noMinor += 1
+                        break
+            coloring_index += 1
             set_of_all_filled_g = []
         index += 1
         print("NEXT STEP", index, len(graphs))
@@ -235,5 +345,8 @@ if __name__ == "__main__":
         print(noMinorMinimalGraph)
         showGraph(noMinorGraph, "The minor we couldn't find")
         showGraph(getNetworkxGraph(noMinorMinimalGraph), "The minimal counter example")
+
+    for m in nominors:
+        showGraph(m, "The minor we couldn't find")
     print("STATISTICS", foundedMinor, noMinor)
     

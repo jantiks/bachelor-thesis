@@ -90,6 +90,10 @@
 \usepackage{fancyvrb}       % improved verbatim environment
 \usepackage{listings}       % pretty-printer of source code
 
+\algnewcommand{\algorithmicelseif}{\textbf{else if}}
+\algdef{SE}[IF]{If}{EndIf}[1]{\algorithmicif\ #1\ \algorithmicthen}{\algorithmicend\ \algorithmicif}
+\algdef{SE}[ELSEIF]{ElsIf}{EndElsIf}[1]{\algorithmicelseif\ #1\ \algorithmicthen}{\algorithmicend\ \algorithmicif}
+
 % You might want to use cleveref for references
 % \usepackage{cleveref}
 
@@ -134,7 +138,7 @@
 \include{chap_background}
 % \include{chap01}
 \include{chap02}
-
+\include{chap03}
 \include{epilog}
 
 %%% Bibliography
@@ -145,11 +149,11 @@
 
 %%% Tables used in the thesis (consider if this is needed)
 %%% In mathematical theses, it could be better to move the list of tables to the beginning of the thesis.
-\listoftables
+% \listoftables
 
 %%% Abbreviations used in the thesis, if any, including their explanation
 %%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
-\chapwithtoc{List of Abbreviations}
+% \chapwithtoc{List of Abbreviations}
 
 %%% Doctoral theses must contain a list of author's publications
 \ifx\ThesisType\TypePhD

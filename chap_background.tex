@@ -1,168 +1,265 @@
-\chapter{Prelimenaries}
+\chapter{Preliminaries}
 
-\begin{defn}[H-certificate]
-    Graph $H$ is a minor of $G$ if there exists $c := (V_{t})_{t \in V(H)}$ of pairwise disjoint $V(G)$,
-     called bags, such that $\forall t \in V(H)$ $V_{t} \neq \emptyset$ and $G[V_{t}]$ is connected, and $\forall (u,v) \in E(H)$,
-     $\exists$ edge connecting $V_{u}$ and $V_{v}$, any such $c$ is called $H$-certificate
+In this chapter, we will present definitions and primary results from the paper of 
+Kriesell and Mohr \cite{matthias_2022}, which we will use to build up our investigations.
+
+They introduced the concept of \textit{routing graphs} to more formally characterize the problem from the previous chapter, as we saw, was
+the following.
+
+Let $G$ be a graph with a coloring
+$\mathfrak{C}$, let $k = |\mathfrak{C}|$, and let $v_1, ..., v_{k}$ be a vertex set of $G$ with different colors.
+Then, there is a system of Kempe chains for some pairs $(v_i, v_j)$.
+They examined whether there is a rooted minor $H$ of $G$ on vertices $v_1, ..., v_{k}$, where $H$ has edges between 
+$v_i, v_j$ if and only if there is a Kempe chain between $v_i$ and $v_j$ in $G$.
+
+First, let us define the transversal of a set partition, and then we can define the routing graph.
+
+\begin{defn}[Transversal of a partition]
+ A (minimal) transversal of a partition is a set containing exactly one
+ element from each partition member and nothing else.
 \end{defn}
 
-\begin{defn}[rooted H-certificate]
-    $H$-certificate is a rooted if $V(H) \subset V(G)$ and $t \in V_{t}$ $\forall t \in V(H)$. If there is a rooted H-certificate in graph $G$,
-    then $H$ is a rooted minor of $G$
-\end{defn}
+\begin{example}
+ Coloring $\mathfrak{C}$ of a graph partitions its vertices into color classes. 
+ A transversal $T$ of this partition would contain exactly one vertex of each color from $\mathfrak{C}$.
+\end{example}
 
 \begin{defn}[Routing Graph]
-Let $\mathcal{C}$ be a coloring of graph $G$, let $T$ be the transversal of coloring $\mathcal{C}$, 
-then routing graph $H(G, \mathcal{C}, T)$ is defined as the graph on vertices of $T$, 
-such that $\forall (i,j) \in V(H) (i \neq j)$, $(i,j) \in E(H)$ if and only if 
-$\exists$ Kempe chain between vertices $i$ and $j$ in graph $G$
+Let $\mathfrak{C}$ be a coloring of graph $G$, let $T$ be the transversal of coloring $\mathfrak{C}$, 
+then the routing graph $H(G, \mathfrak{C}, T)$ is the graph with vertex set $T$,
+where for every pair of vertices $u,v$ from $T$, an edge $(u,v)$ exists if and only if
+there is a Kempe chain between $u$ and $v$ in $G$.
 \end{defn}
 
-\begin{defn}[Property (*)]
-    All graphs $H$ which are routing graph of some $G$ with some coloring $\mathcal{C}$ and transversal $T$
-    such that $G$ has a rooted $H$-certificate, are said to have property (*)
+Now, we can define the problem in a more compact way, which is as follows:
+
+Which graphs $H$ have the property that, if $H$ is a
+routing graph of some graph $G$ with coloring $\mathfrak{C}$ and a transversal $T$, then G
+has a $H$-rooted minor? We say those graphs are \textit{$km$-forcing}.
+
+\section{$km$-forcing graphs}
+
+\begin{defn}[$km$-forcing]
+ A graph $H$ is $km$-forcing if for every graph $G$, coloring $\mathfrak{C}$ and transversal $T$
+ such that $H$ is isomorphic to the routing graph $H(G, \mathfrak{C}, T)$, graph $G$ has a $H$-rooted minor.
 \end{defn}
+
+\begin{example}
+    $K_1$ is $km$-forcing. If $K_1$ is a routing graph $H(G, \mathfrak{C}, T)$, then $|T| = 1$, and $G$
+can be colored with only one color; hence, it has no Kempe chains to other colored vertices, and $K_1$ is a rooted minor of $G$.
+\end{example}
+
+\begin{example}
+ The complete graph $K_2$ is $km$-forcing. 
+ For any graph $G$ with coloring $\mathfrak{C}$ and transversal $T = \{u,v\}$ where the routing graph $H(G, \mathfrak{C}, T)$ is
+ isomorphic to $K_2$, by definition there exists a Kempe chain between $u$ and $v$ in $G$. 
+ Contracting all internal vertices of this chain while keeping $u$ and $v$ results in an edge $(u, v)$. In the contracted graph of $G$,
+ removing all unnecessary edges and vertices would result in $K_2$ as a rooted minor of $G$.
+\end{example}
+
+We will list several results from \cite{matthias_2022}, which capture properties of $km$-forcing graphs. Moreover, they are helpful 
+for later proofs. All the theorems in this chapter are proved in \cite{matthias_2022}.
 
 \begin{thm}
 \label{thm:1}
-    Property (*) inherits to subgraphs of K and K has property (*) if and only if every component of K has it.
+ If graph $K$ is $km$-forcing, all its subgraphs are also $km$-forcing.
 \end{thm}
 
-\begin{proof}
-    Proved in \cite{matthias_2022} Theorem 1
-\end{proof}
+Theorem \ref{thm:1} is crucial for later showing that $K_7$ is not $km$-forcing. It is sufficient to find a subgraph 
+of $K_7$ which is not $km$-forcing, and by theoerm \ref{thm:1} this would imply that $K_7$ is not $km$-forcing as well.
+
+Now, we will see a characterization of $km$-forcing graphs, which helps to show that $K_4$ is $km$-forcing.
+
+\begin{thm}
+\label{thm:1.5}
+ Graph $K$ is $km$-forcing if and only if every component of $K$ is $km$-forcing.
+\end{thm}
+
+Another valuable result for further investigations is that a $km$-forcing graph is still $km$-forcing if we attach a pending edge to it.
 
 \begin{thm}
 \label{thm:2}
-    Let $K$ be a graph and $q \in V(K)$ and $deg(1) = 1$. If $K - q$ has property (*), then $K$ has property (*).
+ Let $K$ be a graph and $q$ be a vertex with a degree of one. If $K - q$ is $km$-forcing, then $K$ is $km$-forcing as well.
 \end{thm}
 
-\begin{proof}
-    Proved in \cite{matthias_2022} Lemma 1
-\end{proof}
 
-\begin{thm}
-\label{thm:3}
-    $K_7$ does not have property (*)
+\section{Kempe chains and rooted $K_7$-minors}
+
+\begin{defn}
+ A coloring $\mathfrak{C}$ is a \textit{Kempe coloring} if any two vertices from distinct color classes belong 
+ to the same Kempe chain. 
+\end{defn}
+
+Hadwiger \cite{hadwiger_1943} asked whether for a given Kempe coloring $\mathfrak{C}$ of a graph $G$ and transversal $T$, the graph $H:= H(G, \mathfrak{C}, T)$ is a complete graph 
+and whether $G$ contains a rooted $H$-minor. This would follow if every complete graph were $km$-forcing. 
+By Theorem \ref{thm:1}, this would imply that \textit{every} graph is \textit{km}-forcing. 
+It would prove Hadwiger's conjecture for graphs admitting Kempe colorings if true. 
+However, as we will see, $km$-forcing is too restrictive a property—and it already fails for $K_7$.
+
+\begin{thm}\label{thm:3}
+$K_7$ is not \textit{km}-forcing.
 \end{thm}
 
-\begin{proof}
-    Proved in \cite{matthias_2022} Theorem 2
+By Theorem \ref{thm:1}, if $K_7$ were $km$-forcing, all its subgraphs would also be $km$-forcing. Thus, finding a subgraph of $K_7$ that is not \textit{km}-forcing is enough.
 
-    Since by Theorem \ref{thm:1} property (*) inherits to subgraphs of $K_7$, they found a subgraph of $K_7$, $H$, and a graph $G$ with a coloring $\mathcal{C}$ and a transversal $T$ such that 
-    $H$ is isomorphic to $H(G, \mathcal{C}, T)$, but $H$ is not a rooted minor of $K_7$.
+To construct graphs that are not $km$-forcing, we need a graph $G$ with:
+\begin{enumerate}
+\item Enough paths between transversal vertices to form a routing graph
+\item Not many edges incident to transversal vertices so that the construction of a rooted minor fails.
+\end{enumerate}
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}[scale=1]
-    
-            \coordinate (a) at (0,2);
-            \coordinate (b) at ({2*cos(30)},{2*sin(30)});
-            \coordinate (c) at ({2*cos(-30)},{2*sin(-30)});
-            \coordinate (d) at (0,-2);
-            \coordinate (e) at ({2*cos(-150)},{2*sin(-150)});
-            \coordinate (f) at ({2*cos(150)},{2*sin(150)});
-            \coordinate (g) at (0,0);
-            
-            \draw (a) -- (b) -- (c) -- (d) -- (e) -- (f) -- cycle;
-            
-            \draw (g) -- (a);
-            \draw (g) -- (d);
-            
-            \foreach \i in {a,b,c,d,e,f}{
-                \filldraw (\i) circle (2pt);
-                \node[above right] at (\i) {${\i}$};
-            }
-            
-            % Draw x
-            \filldraw (g) circle (2pt);
-            \node[below left] at (g) {$g$};
-            
-            \end{tikzpicture}
-            \caption{The subgraph of $K_7$ without (*) property}
-    \end{figure}
+A good construction with these properties is the \textit{$Z(G)$} graph:
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \def\radius{2.5cm}
-            \def\outerradius{4.5cm}
-            
-            % Add the central vertices (g, 1) and (g, 2) with the same color (orange)
-            \node[circle, fill=orange, inner sep=2pt, label=above:{(g, 1)}] (vcenter1) at (0, 1) {}; % Shifted slightly up
-            \node[circle, fill=orange, inner sep=2pt, label=below:{(g, 2)}] (vcenter2) at (0, -1) {}; % Shifted slightly down
-            
-            % Draw the inner circle vertices
-            \foreach \i/\color [count=\j from 0] in {(a, 1)/red, (b, 1)/green, (c, 1)/blue, (d, 1)/yellow, (e, 1)/cyan, (f, 1)/magenta} {
-                \node[circle, fill=\color, inner sep=2pt, label=above:\i] (v1\j) at ({360/6 * \j}:\radius) {};
-            }
-            
-            % Draw the outer circle vertices
-            \foreach \i/\color [count=\j from 0] in {(a, 2)/red, (b, 2)/green, (c, 2)/blue, (d, 2)/yellow, (e, 2)/cyan, (f, 2)/magenta} {
-                \node[circle, fill=\color, inner sep=2pt, label=below:\i] (v2\j) at ({360/6 * \j}:\outerradius) {};
-            }
-            
-            % Connect outer circle vertices
-            \foreach \j in {0,...,5} {
-                \pgfmathsetmacro{\nextj}{mod(\j+1, 6)}
-                \draw (v2\j) -- (v2\nextj);
-            }
-            
-            % Connect inner and outer circle vertices
-            \draw (v20) -- (v11);
-            \draw (v21) -- (v10);
-            \draw (v22) -- (v11);
-            \draw (v23) -- (v12);
-            \draw (v21) -- (v12);
-            \draw (v22) -- (v13);
-            \draw (v24) -- (v13);
-            \draw (v23) -- (v14);
-            \draw (v25) -- (v14);
-            \draw (v24) -- (v15);
-            \draw (v20) -- (v15);
-            
-            % Connect (g, 2) to (a, 2) and (d, 2)
-            \draw (vcenter2) -- (v20); % (g, 2) to (a, 2)
-            \draw (vcenter2) -- (v23); % (g, 2) to (d, 2)
-            
-            % Connect (g, 1) to (a, 2) and (d, 2)
-            \draw (vcenter1) -- (v20); % (g, 1) to (a, 2)
-            \draw (vcenter1) -- (v23); % (g, 1) to (d, 2)
-            
-            % Connect (a, 1) to (g, 2) and (d, 1) to (g, 2)
-            \draw (v10) -- (vcenter2); % (a, 1) to (g, 2)
-            \draw (v13) -- (vcenter2); % (d, 1) to (g, 2)
+\begin{defn}[$Z(G)$]
+\label{defn:zg}
+For a graph $G$, $Z(G)$ is defined as:
+    \begin{enumerate}
+        \item \textbf{Vertices:} $V(Z(G)) := V(G) \times \{1, 2\}$ \\
+ Example: If $V(G):= \{a, b\}$, then $V(Z(G)):= \{(a,1), (b,1), (a,2), (b,2)\}$
+
+        \item \textbf{Edges:} 
+ For each edge $(x,y)$ from $E(G)$, the graph $Z(G)$ contains edges $((x,2)(y,2)), ((x,1)(y,2)),
+ ((x,2)(y,1))$. \\
+ Formally: \[ E(Z(G)) := \{(x,i)(y,j) : xy \in E(G) \text{ and } (i \neq 1 \text{ or } j \neq 1)\} \]
+    \end{enumerate}
+ Z(G) has coloring $\mathfrak{C} := \{\{(x,1),(x,2)\} : x \in V(G)\}$, and transversal $T := V(G) \times \{1\}$.
+
+\end{defn}
+
+
+Kriesell and Mohr identified:
+\begin{itemize}
+\item A subgraph $G$ of $K_7$ (Figure \ref{Fig:counterexample})
+\item The graph $Z(G)$ (Figure \ref{Fig:Main}) with coloring $\mathfrak{C}$ and transversal $T$
+\end{itemize}
+such that:
+\begin{itemize}
+\item $G$ is isomorphic to $H(G, \mathfrak{C}, T)$, but
+\item $G$ is not a rooted minor of $Z(G)$
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1]
+
+        \coordinate (a) at (0,2);
+        \coordinate (b) at ({2*cos(30)},{2*sin(30)});
+        \coordinate (c) at ({2*cos(-30)},{2*sin(-30)});
+        \coordinate (d) at (0,-2);
+        \coordinate (e) at ({2*cos(-150)},{2*sin(-150)});
+        \coordinate (f) at ({2*cos(150)},{2*sin(150)});
+        \coordinate (g) at (0,0);
+        
+        \draw (a) -- (b) -- (c) -- (d) -- (e) -- (f) -- cycle;
+        
+        \draw (g) -- (a);
+        \draw (g) -- (d);
+        
+        \foreach \i in {a,b,c,d,e,f}{
+            \filldraw (\i) circle (2pt);
+            \node[above right] at (\i) {${\i}$};
+ }
+        
+        % Draw x
+        \filldraw (g) circle (2pt);
+        \node[below left] at (g) {$g$};
+        
         \end{tikzpicture}
-        \caption{Example of $Z(G)$ given $G$ is $C_7$ with additional connections to $(g, 1)$ and $(g, 2)$.}
-        \label{Fig:Main}
-    \end{figure}
-    In Figure \ref{Fig:Main}, the graph $G$ is shown with coloring
-    $\mathcal{C}$ and transversal $T := \{(a, 1), (b, 1), (c, 1), (d, 1), (e, 1), (f, 1), (g, 1)\}$.
-\end{proof}
+        \caption{The subgraph of $K_7$ which is not $km$-forcing}
+        \label{Fig:counterexample}
+\end{figure}
 
-\begin{thm}
-    \label{thm:6}
-        Every graph on at most four vertices has property (*).
+
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \def\radius{2.5cm}
+        \def\outerradius{4.5cm}
+        
+        % Add the central vertices (g, 1) and (g, 2) with the same color (orange)
+        \node[circle, fill=orange, inner sep=2pt, label=above:{(g, 1)}] (vcenter1) at (0, 1) {}; % Shifted slightly up
+        \node[circle, fill=orange, inner sep=2pt, label=below:{(g, 2)}] (vcenter2) at (0, -1) {}; % Shifted slightly down
+        
+        % Draw the inner circle vertices
+        \foreach \i/\color [count=\j from 0] in {(a, 1)/red, (b, 1)/green, (c, 1)/blue, (d, 1)/yellow, (e, 1)/cyan, (f, 1)/magenta} {
+            \node[circle, fill=\color, inner sep=2pt, label=above:\i] (v1\j) at ({360/6 * \j}:\radius) {};
+ }
+        
+        % Draw the outer circle vertices
+        \foreach \i/\color [count=\j from 0] in {(a, 2)/red, (b, 2)/green, (c, 2)/blue, (d, 2)/yellow, (e, 2)/cyan, (f, 2)/magenta} {
+            \node[circle, fill=\color, inner sep=2pt, label=below:\i] (v2\j) at ({360/6 * \j}:\outerradius) {};
+ }
+        
+        % Connect outer circle vertices
+        \foreach \j in {0,...,5} {
+            \pgfmathsetmacro{\nextj}{mod(\j+1, 6)}
+            \draw (v2\j) -- (v2\nextj);
+ }
+        
+        % Connect inner and outer circle vertices
+        \draw (v20) -- (v11);
+        \draw (v21) -- (v10);
+        \draw (v22) -- (v11);
+        \draw (v23) -- (v12);
+        \draw (v21) -- (v12);
+        \draw (v22) -- (v13);
+        \draw (v24) -- (v13);
+        \draw (v23) -- (v14);
+        \draw (v25) -- (v14);
+        \draw (v24) -- (v15);
+        \draw (v20) -- (v15);
+        
+        % Connect (g, 2) to (a, 2) and (d, 2)
+        \draw (vcenter2) -- (v20); % (g, 2) to (a, 2)
+        \draw (vcenter2) -- (v23); % (g, 2) to (d, 2)
+        
+        % Connect (g, 1) to (a, 2) and (d, 2)
+        \draw (vcenter1) -- (v20); % (g, 1) to (a, 2)
+        \draw (vcenter1) -- (v23); % (g, 1) to (d, 2)
+        
+        % Connect (a, 1) to (g, 2) and (d, 1) to (g, 2)
+        \draw (v10) -- (vcenter2); % (a, 1) to (g, 2)
+        \draw (v13) -- (vcenter2); % (d, 1) to (g, 2)
+    \end{tikzpicture}
+    \caption{The graph $Z(G)$ given $G$ is the graph from \ref{Fig:counterexample}}
+    \label{Fig:Main}
+\end{figure}
+In Figure \ref{Fig:Main}, the graph $Z(G)$ is shown with coloring and transversal described 
+in the definition of Z(G) \ref{defn:zg}. For clarity, the transversal $T$ is the following $T:= \{(a, 1), (b, 1), (c, 1), (d, 1), (e, 1), (f, 1), (g, 1)\}$. \newline
+
+We may be tempted to use the construction of \( Z(G) \) to check whether any graph is \( km \)-forcing. 
+However, Kriesell and Mohr showed that for any graph \( G \) with at most six vertices, \( Z(G) \) always contains a \( G \)-rooted minor.
+
+\begin{thm}\label{thm:zg-for-k_6}
+    Let $G$ be any graph with at most six vertices. Consider $Z(G)$ with coloring
+    $\mathfrak{C}$ and the transversal $T$, as it's defined in \ref{defn:zg}. Then $Z(G)$ has a 
+    rooted $H(Z(G), \mathfrak{C}, T)$-minor.
 \end{thm}
-    
-\begin{proof}
-        Proved in \cite{matthias_2022} Theorem 4
-\end{proof}
 
-\begin{thm}
-\label{thm:4}
-    Every connected graph with at most one cycle has property (*)
+
+There are also positive results, one of which is that $K_4$ is $km$-forcing.
+
+\begin{thm}\label{thm:6}
+Every graph on at most four vertices is \textit{km}-forcing.
 \end{thm}
 
-\begin{proof}
-    Proved in \cite{matthias_2022} Theorem 5
-\end{proof}
+One might ask whether the class of \textit{km}-forcing graphs is bounded. 
+This is not the case, as implied by:
 
-\begin{thm}
-\label{thm:5}
-    Every graph on five vertices and at most six edges has property (*)
+\begin{thm}\label{thm:4}
+Every connected graph with at most one cycle is \textit{km}-forcing.
 \end{thm}
 
-\begin{proof}
-    Proved in \cite{matthias_2022} Theorem 7
-\end{proof}
+As we can see, there is a gap between $K_4$ and $K_7$. We know that $K_4$ is $km$-forcing and $K_7$ is not. What about the $K_5$ and $K_6$? The question for both of them is open, but there is a partial result on graphs with five 
+vertices, which is the following:
+
+\begin{thm}\label{thm:5}
+Every graph on five vertices with at most six edges is \textit{km}-forcing.
+\end{thm}
+
+This result naturally leads us to the question of what happens when we consider graphs beyond this bound. 
+In the next chapter, we will look into graphs \( G \), colroings $\mathfrak{C}$ and transversals
+$T$ where some graph \( H \) which has at least five vertices and 
+seven edges appears as the routing graph \( H(G, \mathfrak{C}, T) \) but is not a rooted minor of \( G \).
