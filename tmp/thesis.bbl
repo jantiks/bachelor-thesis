@@ -515,8 +515,8 @@
       \strng{authornamehash}{487a3a04034ebaa7928558b1e8dc3605}
       \strng{authorfullhash}{487a3a04034ebaa7928558b1e8dc3605}
       \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Graph Theory}
@@ -527,61 +527,130 @@
       \field{pages}{207\bibrangedash 216}
       \range{pages}{10}
     \endentry
+    \entry{Kriesell2019}{article}{}
+      \name{author}{2}{}{%
+        {{hash=e96f9379fefbd4d7eeb3dc9a05d257c5}{%
+           family={Kriesell},
+           familyi={K\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3f3c86fcfb0b1722d9beb85adec86655}{%
+           family={Mohr},
+           familyi={M\bibinitperiod},
+           given={Sven},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{a41ef2aa9e89749dbafddd4495b79b33}
+      \strng{fullhash}{a41ef2aa9e89749dbafddd4495b79b33}
+      \strng{bibnamehash}{a41ef2aa9e89749dbafddd4495b79b33}
+      \strng{authorbibnamehash}{a41ef2aa9e89749dbafddd4495b79b33}
+      \strng{authornamehash}{a41ef2aa9e89749dbafddd4495b79b33}
+      \strng{authorfullhash}{a41ef2aa9e89749dbafddd4495b79b33}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Graphs and Combinatorics}
+      \field{number}{3}
+      \field{title}{Rooted Complete Minors in Line Graphs with a Kempe Coloring}
+      \field{volume}{35}
+      \field{year}{2019}
+      \field{pages}{551\bibrangedash 557}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1007/s00373-019-02012-7
+      \endverb
+    \endentry
     \entry{RobertsonSeymourGM16}{article}{}
       \name{author}{2}{}{%
-        {{hash=dc81bb8376196ff7fb0527af0d626abd}{%
+        {{hash=30004d929a781bee1262997e1b576502}{%
            family={Robertson},
            familyi={R\bibinitperiod},
-           given={N.},
+           given={Neil},
            giveni={N\bibinitperiod}}}%
-        {{hash=7c1ee2240a074b9bf4f421381fcfae15}{%
+        {{hash=9c86b2da84f8e18c3c5e6194460cbfbb}{%
            family={Seymour},
            familyi={S\bibinitperiod},
-           given={P.},
+           given={P.D},
            giveni={P\bibinitperiod}}}%
       }
-      \strng{namehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{fullhash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{bibnamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{authorbibnamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{authornamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{authorfullhash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{namehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{fullhash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{bibnamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authorbibnamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authornamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authorfullhash}{1c46a51d3b7bab4f1b95f280f231547e}
       \field{extraname}{1}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{abstract}{This paper contains the cornerstone theorem of the series. We study the structure of graphs with no minor isomorphic to a fixed graph L, when L is non-planar. (The case when L is planar was studied in an earlier paper.) We find that every graph with no minor isomorphic to L may be constructed by piecing together in a tree-structure graphs each of which “almost” embeds in some surface in which L cannot be embedded.}
+      \field{issn}{0095-8956}
       \field{journaltitle}{Journal of Combinatorial Theory, Series B}
-      \field{title}{Graph Minors XVI: Excluding a non-planar graph}
-      \field{year}{in press}
+      \field{number}{1}
+      \field{title}{Graph Minors. XVI. Excluding a non-planar graph}
+      \field{volume}{89}
+      \field{year}{2003}
+      \field{pages}{43\bibrangedash 76}
+      \range{pages}{34}
+      \verb{doi}
+      \verb https://doi.org/10.1016/S0095-8956(03)00042-X
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S009589560300042X
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S009589560300042X
+      \endverb
     \endentry
     \entry{RobertsonSeymourGM20}{article}{}
       \name{author}{2}{}{%
-        {{hash=dc81bb8376196ff7fb0527af0d626abd}{%
+        {{hash=30004d929a781bee1262997e1b576502}{%
            family={Robertson},
            familyi={R\bibinitperiod},
-           given={N.},
+           given={Neil},
            giveni={N\bibinitperiod}}}%
-        {{hash=7c1ee2240a074b9bf4f421381fcfae15}{%
+        {{hash=9c86b2da84f8e18c3c5e6194460cbfbb}{%
            family={Seymour},
            familyi={S\bibinitperiod},
-           given={P.},
+           given={P.D.},
            giveni={P\bibinitperiod}}}%
       }
-      \strng{namehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{fullhash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{bibnamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{authorbibnamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{authornamehash}{f56bd2fea5ef804e0d6e15f9ab334c30}
-      \strng{authorfullhash}{f56bd2fea5ef804e0d6e15f9ab334c30}
+      \strng{namehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{fullhash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{bibnamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authorbibnamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authornamehash}{1c46a51d3b7bab4f1b95f280f231547e}
+      \strng{authorfullhash}{1c46a51d3b7bab4f1b95f280f231547e}
       \field{extraname}{2}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{abstract}{We prove Wagner's conjecture, that for every infinite set of finite graphs, one of its members is isomorphic to a minor of another.}
+      \field{issn}{0095-8956}
       \field{journaltitle}{Journal of Combinatorial Theory, Series B}
-      \field{title}{Graph Minors XX: Wagner’s Conjecture}
-      \field{year}{to appear}
+      \field{note}{Special Issue Dedicated to Professor W.T. Tutte}
+      \field{number}{2}
+      \field{title}{Graph Minors. XX. Wagner's conjecture}
+      \field{volume}{92}
+      \field{year}{2004}
+      \field{pages}{325\bibrangedash 357}
+      \range{pages}{33}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jctb.2004.08.001
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0095895604000784
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0095895604000784
+      \endverb
+      \keyw{Graph,Minor,Surface embedding,Well-quasi-ordering}
     \endentry
     \entry{Fiorini2025}{article}{}
       \name{author}{5}{}{%

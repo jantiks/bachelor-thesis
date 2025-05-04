@@ -42,6 +42,7 @@
 \setlength\headheight{0mm}
 \let\openright=\clearpage
 
+\usepackage{amssymb}
 \usepackage{tikz}
 \tikzset{vertex/.style={fill=black, circle, minimum size=1pt, inner sep=0.3pt}, label distance=1pt, line width=0.8pt}
 
@@ -77,6 +78,10 @@
 			    % of figures/tables are included in the table
 			    % of contents
 \usepackage{xcolor}         % typesetting in color
+\usepackage{comment}
+\usepackage{soul}
+\usepackage[utf8]{inputenc}
+\DeclareRobustCommand{\comment}[1]{ {\begingroup\sethlcolor{cyan}\hl{(comment:) #1}\endgroup} }
 
 % The hyperref package for clickable links in PDF and also for storing
 % metadata to PDF (including the table of contents).

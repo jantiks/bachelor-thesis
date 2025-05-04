@@ -3,93 +3,73 @@
 Since it remains open whether \( K_5 \) and \( K_6 \) are \( km \)-forcing, it is natural to attempt to find a counter-example.
 A single counter-example would show that the graph is not \( km \)-forcing.
 We performed a computer enumeration of the process of generating graphs \( G \) with a coloring \( \mathfrak{C} \) and a transversal \( T \) for a given minor \( H \),
-ensuring that \( H \) is always isomorphic to \( H(G, \mathfrak{C}, T) \). We then checked whether \( H \) appears as a rooted minor in \( G \).
+where \( H \) is isomorphic to \( H(G, \mathfrak{C}, T) \). We then checked whether \( H \) is a rooted minor in \( G \).
 
 The idea is similar to the previous chapter's construction of \( Z(G) \). 
-We aim to maintain all necessary Kempe chains between transversal vertices while ensuring that these vertices have no more than the necessary degrees.
+We want to have all necessary Kempe chains between transversal vertices while ensuring that these vertices have no more than the necessary degrees.
 However, since Kriesell and Mohr \cite{matthias_2022} showed that for every graph \( G \) with at most six vertices, the construction \( Z(G) \) does not
 provide a counter-example \ref{thm:zg-for-k_6} (i.e., \( G \) remains a rooted minor of \( Z(G) \)), for looking for counter-examples 
-for $K_6$, we must consider graphs with at least thirteen vertices.
+for $K_6$, we must consider different constructions.
 
 At a high level, our algorithm for finding possible counter-examples works as follows.
-We begin with a given rooted minor \( H \) and construct a set of graphs with a predefined coloring but initially without edges.
-The coloring is chosen so that the vertices of \( H \) are rooted in these graphs; in other words, the transversal set corresponds to the graph \( H \). 
+We begin with a given rooted minor \( H \) and construct a set of colorings.
+The coloring is chosen so that the vertices of \( H \) are the transversals of those colorings; in other words, the transversal set corresponds to the vertex set of \( H \). 
 
-Next, for each edge of $H$, we construct the Kempe chain for each graph \( G \) in this set. After the Kempe chains are built, 
-we know that \( H \) is the routing graph of \( G \) given its coloring and transversal. 
-Then, we check whether \( G \) contains \( H \) as a rooted minor. 
+Next, we construct graphs for each coloring where each edge of $H$ corresponds to a Kempe chain between the corresponding transversal vertices. After the Kempe chains are built, 
+we know that \( H \) is the routing graph of all those graphs with their coloring and the transversal $V(H)$. 
+Then, we check whether those graphs contain \( H \) as a rooted minor. 
 If we find a graph \( G \) where \( H \) is not a rooted minor, we have found a counter-example.
 
 The algorithm follows these three main steps:
 \begin{enumerate}
-    \item Given a graph \( H \), generate a set of graphs \( G \), each with a coloring \( \mathfrak{C} \) and a transversal \( T \), such that \( T = H \).
-    \item For each such empty graph \( G \) with its assigned coloring, construct the necessary Kempe chains.
+    \item Given a graph \( H \), generate set of colorings such that the transversal \( T = V(H) \).
+    \item For each such coloring, construct graphs $G$ where each edge of $H$ corresponds to a Kempe chain in $G$ between the transversal vertices.
     \item For each constructed graph \( G \), check whether \( G \) contains \( H \) as a rooted minor.
 \end{enumerate}
 
-\section{Step 1: Generating Candidate Graphs}
-In the first step, we generate candidate graphs \(G\) that may be counter-examples, where each graph has \(n\) vertices.
+\section{Step 1: Generating Colorings}
+In the first step, we generate colorings, where each coloring has \(n\) vertices.
 
-The coloring of each graph $G$ should be such that we get graph $H$ as a transversal of its coloring. Therefore, $G$ will have the coloring of size $|V(H)|$.
-We color the vertices of each graph \(G\) using \( |V(H)| \) colors in such a way that the colors are distributed as evenly as possible. 
-The balanced distribution gives us more possibilities to create Kempe chains in the next step.
-
-To achieve this, we divide the \(n\) vertices into layers, each complete layer containing exactly \( |V(H)| \) vertices. 
-The vertices are assigned distinct colors in every complete layer, so each color appears exactly once.
-The first layer will be the transversal of the coloring (layer 0).
-
-Since \(m\) is not neccessarily an exact multiple of \( |V(H)| \), there can be a set of vertices that do not form a complete layer. 
-For these vertices, we consider all possible ways of assigning the colors.
-Each new coloring of these remaining vertices results in a different candidate graph.
+Each transversal of a coloring should be mapped to the vertices of $H$. Therefore, each coloring would have $|V(H)|$ colors.
+First, we assign the colors to the transversal vertices and map them with $V(H)$, then for the rest of $n - |V(H)|$ vertices, we assign all possible combinations with the replacement of the colors  $1, \dots |V(H)|$ 
 
 \begin{example}
- Let \(H = K_3\) (so \( |V(H)| = 3 \)) and \(n = 8\). 
- In this case, we can form two complete layers of three vertices each, each layer colored with the three colors in a fixed order.
- The remaining two vertices can then be colored by choosing two available colors.
- There are \(\binom{3}{2}\) ways to select two distinct colors from three and three ways to assign the same color to both.
- Hence, this produces \(\binom{3}{2} + 3 = 6\) distinct candidate graphs.
+ Let \(H = K_3\) (so \( |V(H)| = 3 \)) and let \(n = 8\). 
+ First, we select three vertices and make them the transversals. We give each of them a distinct color from $1, 2, 3$.
+ Then, we have $\binom{7}{3} = 35$ ways to assign colors for the five remaining vertices. Hence, we get 35 different colorings.
 \end{example}
 
 
 \begin{algorithm}[H]
-    \caption{\textsc{GenerateCandidateGraphs}$(H, n)$:}
+    \caption{\textsc{GenerateColorings}$(H, n)$:}
     \label{alg:balanced-coloring}
     \begin{algorithmic}[1]
     \Require Graph $H$ all differently colored vertices, with $k = |V(H)|$, number of vertices $n$
-    \Ensure Set of candidate graphs $\mathcal{G}$
+    \Ensure Set of colorings $\mathcal{A}$
+
+    \State Initialize empty coloring $\mathfrak{C} \gets \{\}$
     
-    \State $L \gets \lfloor n / k \rfloor$ \Comment{Number of full layers}
-    \State $R \gets n \bmod k$ \Comment{Number of leftover vertices}
-    \State Initialize empty graph $G \gets \{\}$
-    
-    \For{$i \gets 0$ to $L-1$}
-        \For{each vertex $v \in V(H)$}
-            \State Create new vertex $v'$
-            \State Set $v'.layer$ $\gets i$
-            \State Set $v'.color$  $\gets v.color$
-            \State Add $v'$ to $G$
-        \EndFor
+    \For{each vertex $v \in V(H)$}
+        \State Create new vertex $v'$
+        \State Set $v'.isTransversal$ $\gets True$
+        \State Set $v'.color$  $\gets v.color$
+        \State Add $v'$ to $\mathfrak{C}$
     \EndFor
     
-    \State Initialize empty set of graphs $\mathcal{G} \gets \{\}$
-    
-    \If{$R = 0$}
-        \State Add $G$ to $\mathcal{G}$ \Comment{We have only one generated graph}
-    \Else
-        \State $\mathcal{C} \gets$ all combinations with replacement of $R$ elements from $V(H)$
-        \For{each combination $c \in \mathcal{C}$}
-            \State $G' \gets$ copy of $G$
-            \For{each $v \in c$}
+
+        \State $R \gets$ all combinations with replacement of $|V(H)|$ elements from $n - |V(H)|$
+        \For{each combination $r \in R$}
+            \State $\mathfrak{C}' \gets$ copy of $\mathfrak{C}$
+            \For{each $v \in r$}
                 \State Create new vertex $v'$
-                \State Set $v'.layer$ $\gets L$
+                \State Set $v'.isTransversal$ $\gets False$
                 \State Set $v'.color$  $\gets v.color$
-                \State Add $v'$ to $G$
+                \State Add $v'$ to $\mathfrak{C}'$
             \EndFor
-            \State Add $G'$ to $\mathcal{G}$
+            \State Add $\mathfrak{C}'$ to $\mathcal{A}$
         \EndFor
-    \EndIf
     
-    \State \Return $\mathcal{G}$
+    \State \Return $\mathcal{A}$
     \end{algorithmic}
 \end{algorithm}
     
@@ -97,189 +77,220 @@ Each new coloring of these remaining vertices results in a different candidate g
 Let \( k = |V(H)| \) be the number of colors and \( n \) the number of vertices to generate.
 
 \begin{itemize}
-    \item In the beginning the algorithm creates \( L = \lfloor n / k \rfloor \) full layers, each with size \( k \). This takes \( \mathcal{O}(n) \) time.
+    \item In the beginning the algorithm creates $|V(H)|$ colors.
     
-    \item If \( R > 0 \), we generate all combinations with replacement of \( R \) elements from \( k \) choices. The number of such combinations is:
+    \item Then we generate all combinations with replacement.
     \[
-        \binom{k + R - 1}{R} = \mathcal{O}(k^R)
+        \binom{k + n - 1}{k} \in \mathcal{O}(k^{n + k - 1})
     \]
- For each combination, we create a new graph with \( R \) additional nodes, which takes \( \mathcal{O}(R) \) time for each graph. Hence, this step has time complexity of \( \mathcal{O}(R \cdot k^R) \).
+    \item 
+ For each combination, we create a new coloring, assuming the creation of the coloring,  
+ creating a new vertex, and adding it to the coloring takes constant time. Creating a new coloring
+ takes $\mathcal{O}(k)$ time.
     
-    \item Overall, the total time complexity is $\mathcal{O}(n + R \cdot k^R)$
-
-    \item Since $R \leq k$, in the worst case we get time complexity of $\mathcal{O}(n + k^{k+1})$
-    
+    \item Overall, since the dominating step is the generation of all combinations with replacement, and for each such combination, 
+ we use $\mathcal{O}(k)$ time to create a new coloring, we get the total time complexity \( \mathcal{O}(k^{n+k}) \).
 \end{itemize}
 
 
 \section{Step 2: Constructing Kempe Chains}
-Now, for each candidate graph $G$ and each edge of $H$, we construct a Kempe chain between the corresponding transversal vertices of $G$. After constructing all Kempe chains, 
-we will have $H$ as the routing graph of $G$, its coloring, and the transversal. First, let us have a subroutine that checks if there is a Kempe chain
-in the graph $G$ for two given vertices.
+
+For each coloring $\mathfrak{C}$, we build graphs such that $H$ is the routing graph of those graphs. After finishing the construction of 
+We check whether $H$ is a rooted minor in those graphs.
+
+Below is an overview of the algorithm. At any point, we have a graph $G$ with all vertices colored and a list of remaining edge–pairs (chains) from $H$ to construct. For each edge $(s_i,t_i)$ from $E(H)$, we attempt to connect the corresponding $s_i$ to $t_i$ from $G$ by growing a Kempe chain:
+
+\begin{itemize}
+    \item Start at the current vertex $s_i$ and identify the next color needed (either that of $t_i$ or the current vertex if we have just matched $ t_i$'s color).
+    \item Among all unvisited vertices of that color, pick one, add an edge to extend the chain, mark it visited, and recurse from this new vertex.
+    \item Repeat until we reach $t_i$, at which point the chain for $(s_i,t_i)$ is complete.
+\end{itemize}
+
+Once one chain is complete, we move on to the next pair in the list. After all Kempe chains have been built, we perform a minor check (see Section~\ref{sec:check-minor}) to confirm that $H$ appears as a rooted minor of $G$.
 
 \begin{algorithm}[H]
-    \caption{\textsc{ExistsKempe}$(G, \textit{current}, \textit{beginning}, \textit{end}, \textit{visited} = \emptyset)$}
-    \label{alg:exists-kempe}
+    \caption{\textproc{BuildKempeChains}$(G, \mathit{chains}, s, t, \mathit{visited}, \mathit{available}, H)$}
     \begin{algorithmic}[1]
-    \Require graph $G$, current vertex, end vertex, beginning vertex, set of already visited vertices
-    \Ensure \textbf{True} if there exists a Kempe chain between \textit{beginning} and \textit{end}, \textbf{False} otherwise
-    
-    \If{$\textit{current} = \textit{end}$}
-        \State \Return \textbf{True}
-    \EndIf
-    
-    \ForAll{$\textit{neighbor} \in current.neighbors$}
-        \If{$neighbor.color = current.color$ or $\textit{neighbor} \in \textit{visited}$}
-            \State \textbf{Skip iteration}
-        \ElsIf{
-            $neighbor.color$ is the alternating color of the beginning or end
- }
-            \State \Return \textsc{ExistsKempe}$(G, \textit{neighbor}, \textit{beginning}, \textit{end}, \textit{visited}  \cup \{\textit{neighbor}\})$
-        \EndIf
-    \EndFor
-    
-    \State \Return \textbf{False}
-    \end{algorithmic}
-    \end{algorithm}
-
-\paragraph{Complexity Analysis.}
-
-This is a modified version of the DFS. Therefore, the time complexity is $O(m + n)$, where $m$ is the number of edges of the graph $G$, and 
-$n$ is the number of vertices of the graph $G$.
-
-Now, we can have the main algorithm, which is building a Kempe chain in a given graph $G$ with colored vertices for two given vertices. This function also 
-adds new variations of graph $G$ into a common set in case there are multiple ways of building the Kempe chain between two vertices.
-
-\begin{algorithm}[H]
-    \caption{\textproc{BuildKempeChain}$(G, u, v_0, w_0, \mathcal{G}, C)$}
-    \begin{algorithmic}[1]
-        \Statex \textbf{Input:} 
+        \Statex \textbf{Input:}
         \begin{itemize}
-            \item \( G \) — Graph with colored and layered vertices
-            \item \( u \) — Current vertex
-            \item \( v_0 \) — Start vertex
-            \item \( w_0 \) — End vertex
-            \item \( \mathcal{G} \) — Set of all generated graph variants
-            \item \( C \) — the current Kempe chain
+            \item $G$ — adjacency map of the graph
+            \item $\mathit{chains}$ — list of pairs $(s_i,t_i)$ to connect
+            \item $s$ — current chain start vertex
+            \item $t$ — current chain end vertex
+            \item $\mathit{visited}$ — set of vertices in the current chain
+            \item $\mathit{available}$ — list of available vertices to extend chain
+            \item $H$ — minor to test existence against
         \end{itemize}
-        
-        \Statex \textbf{Output:} 
-        \begin{itemize}
-            \item The graph \( G \), modified with an extended Kempe chain from \( v_0 \) to \( w_0 \) (If it exists).
-            \item Additional graph variants, also containing the extended Kempe chain, added to the set \( \mathcal{G} \)
-        \end{itemize}
-    
-    \If{$C$ is empty}
-        \State $C \gets [u]$
-    \EndIf
-    \If{$u = w_0$}
-        \State \Return \Comment{The Kempe chain exists}
-    \EndIf
-    
-    \State Determine color $c$ to look for based on $v_0.\textcolor{gray}{color}$ and $w_0.\textcolor{gray}{color}$
-    
-    \State $availableVertices \gets$ all vertices with color $c$ and not in $C$.
-    
-    \If{$u.\textcolor{gray}{layer} = 0$}
-        \State Filter $availableVertices$ to exclude vertices with $\textcolor{gray}{layer} = 0$
-    \EndIf
-        
-    \If{$availableVertices = \emptyset$} 
-        \If{$\textproc{ExistsKempe}(G, v_0, w_0, \{v_0\})$}
+        \Statex \textbf{Procedure:}
+        \If{$s = t$}
+            \If{$\mathit{chains} = \emptyset $}
+                \If{\textproc{TestMinor}($H$, edges($G$))}
+                    \Return
+                \Else
+                    \State \textbf{report counterexample}
+                \EndIf
+            \Else \Comment{Building new chain}
+                \State $(s',t') \gets \mathit{chains.extract()}$
+                \State $c \gets$ color($t'$)
+                \State $\mathit{available} \gets \{v \in V(G): \text{color}(v)=c\}$
+                \State \Call{BuildKempeChains}{$G,\mathit{chains},s',t',\{s'\},\mathit{available},M$}
+            \EndIf
             \State \Return
         \EndIf
-        \State Remove $G$ from $\mathcal{G}$ if present \Comment {Removing degenerate cases}
-        \State \Return
-    \EndIf
 
-
-    \State \texttt{alreadyExtended} $\gets$ \textbf{false}
-    
-    \ForAll{$v \in availableVertices$}
-        \If{\texttt{alreadyExtended}}
-            \State $G' \gets$ copy of $G$
-            \State Add edge $(u, v)$ to $G'$
-            \State Add $G'$ to $\mathcal{G}$
-            \State \Call{BuildKempeChain}{$G', v, v_0, w_0, \mathcal{G}, C \cup \{w\}$}
-        \Else
-            \State Add edge $(u, v)$ to $G$
-            \State \Call{BuildKempeChain}{$G, v, v_0, w_0, \mathcal{G}, C \cup \{w\}$}
-            \State \texttt{alreadyExtended} $\gets$ \textbf{true}
-        \EndIf
-    \EndFor
-    
-    \end{algorithmic}
-    \end{algorithm}
-
-\paragraph{Complexity Analysis.}
-
-
-\section{Step 3: Checking for Rooted Minors}
-Finally, for each constructed graph \( G \), we check if it contains \( H \) as a rooted minor. If any such \( G \) does not contain \( H \), we have successfully found a counter-example.
-For this step, we use a heuristic tool for finding minor embeddings \cite{dwavesystems2023minorminer}. The main utility function that we used, \texttt{find\_embedding()},
-is an implementation of the heuristic algorithm described in \cite{cai2014practicalheuristicfindinggraph}.
-
-\begin{algorithm}[H]
-    \caption{FindCounterExample($H$, $\mathcal{G}$)}
-    \begin{algorithmic}[1]
-        \Statex \textbf{Input:} 
-        \begin{itemize}
-            \item \( H \) — the target minor graph
-            \item \( \mathcal{G} \) — a set of graphs to check
-        \end{itemize}
-        \Statex \textbf{Output:} A pair \( (G, H) \) where \( H \) is not a rooted minor of $G$.
-
-        \For{$kempeGraph$ in $\mathcal{G}$}
-            \State $embedding \gets find\_embedding(H, kempeGraph, suspend\_chains = H)$
-            \If{$embedding = \emptyset$}
-                \For{$i \gets 1$ \textbf{to} 10}
-                    \State $embedding \gets find\_embedding(H, kempeGraph, random\_seed = randomNumber, suspend\_chains = H)$
-                    \If{$embedding \neq \emptyset$}
-                        \State \textbf{continue the outer loop} \Comment{Minor exists. Skip the iteration}
-                    \EndIf
-                \EndFor
-                
-                \State \Return  $(kempeGraph, H)$ 
-            \EndIf
+        \ForAll{$v \in \mathit{available}$}
+            \State $G' \gets$ \textproc{copy}($G$)
+            \State add edge $(s,v)$ in $G'$ 
+            \State $c \gets \begin{cases}
+ \text{color}(s), & \text{if } \text{color}(v) = \text{color}(t) \\
+ \text{color}(t), & \text{otherwise}
+            \end{cases}$
+            \State $\mathit{visited}' \gets \mathit{visited} \cup \{v\}$
+            \State $\mathit{available}' \gets \{ w \in V(G'): w \notin \mathit{visited}' \wedge \text{color}(w)=c\}$
+            \State \Call{BuildKempeChains}{$G',\mathit{chains},v,t,\mathit{visited}',\mathit{available}',M,S$}
         \EndFor
     \end{algorithmic}
 \end{algorithm}
 
-\section{Bringing everything together}
+\paragraph{Complexity Analysis.}
 
-The following algorithm formalizes this process:
+Let $n: = |V(G)|, m: = |E(H)|$
 
+\begin{enumerate}
+  \item \textbf{Single chain}
+ At each recursive step, we choose at most \(n\!-\!1\) unvisited vertices of a single color and never revisit a vertex. Hence, we have recursion depth up to \(n\) in the worst case. So:
+    \[
+ \text{calls per chain}
+ = 1 + (n-1) + (n-1)(n-2) + \cdots 
+ = \mathcal{O}\bigl((n-1)!\bigr)
+      \;=\; O(n!) 
+    \]
+  \item \textbf{All chains.}
+ We build \(m\) chains, so overall we get.
+    \[
+      \mathcal{O}\bigl(m \cdot n!\bigr).
+    \]
+  \item \textbf{Minor check.}
+ We will see in \ref{sec:check-minor} that testing for the rooted minor is done in \(\mathcal{O}(n_Hn_Ge_H(e_G + n_G\log{n_G}))\), where $n_G$ is the number of vertices of the larger graph, $n_H$ the number of vertices of the minor, and $e_H$ the number of edges of the minor. This runtime is 
+ insignificant compared to $O(n!)$.
+\end{enumerate}
+
+Hence, the overall worst‑case time complexity is
+\[
+    \mathcal{O}\bigl(m \cdot n!\bigr).
+\]
+
+
+\section{Step 3: Checking for Rooted Minors}\label{sec:check-minor}
+Finally, for each constructed graph~$G$, we check whether it contains~$H$ as a rooted minor. If any such~$G$ fails to contain~$H$, we have found a counter-example.
+
+For this step, we use a heuristic tool for finding minor embeddings~\cite{dwavesystems2023minorminer}. The primary function we rely on is \texttt{find\_embedding()}, which implements the heuristic algorithm described in~\cite{cai2014practicalheuristicfindinggraph}.
+Since \texttt{find\_embedding()} is a heuristic, we can be sure it exists when it returns an embedding of~$H$ in~$G$. However, when it returns no embedding, we cannot immediately conclude that one does not exist.
+
+To reduce the false negatives, if no embedding is found, we rerun the function 10 additional times with different random seeds. While the authors of the algorithm do not provide an estimate for the probability of false negatives (returning no embedding when one exists) or any 
+probabilistic quantity that we can rely on in our practice in most cases,
+the function returns an embedding on the first try and succeeds within two or three retries.
+
+The algorithm is the following:
 \begin{algorithm}[H]
-    \caption{Searches for counter examples}
-    \label{alg:rooted_minor_search}
+    \caption{TestIfMinorExists($H$, $G$, $S$)}
     \begin{algorithmic}[1]
-            \Statex \textbf{Input:} 
-            \begin{itemize}
-                \item \( n \) — the number of vertices in the target minor \( H \)
-                \item \( m \) — the number of vertices in the parent graph \( G \)
-            \end{itemize}
-            \Statex \textbf{Output:} A pair \( (G, H) \) where \( H \) is a routing graph of $G$ with it's corresponding coloring
- and transversal but not a rooted minor in \( G \), or \textbf{None} if no such pair exists.
-            
-            \State \( \textit{candidateMinors} \gets \Call{EnumerateNonKMForcingCandidates}{n} \)
-            
-            \For{\textbf{each} candidate minor \( H \in \textit{candidateMinors} \)}
-                \State \( \textit{parentGraphs} \gets \Call{GenerateCandidateGraphs}{H, m} \)
-                
-                \For{\textbf{each} parent graph \( G \in \textit{parentGraphs} \)}
-                    \State \( \textit{currentFilledGraphs} \gets [G] \)
-                    
-                    \For{\textbf{each} edge \( e \in E(H) \)}
-                        \State \( \textit{kempeChain} \gets \Call{BuildKempeChain}{G, e, \textit{currentFilledGraphs}} \)
-                    \EndFor
-                    \State $result \gets$ \Call{FindCounterExample}{$H$, \textit{currentFilledGraphs}}
-                    \If{$result \neq$ None}
-                        \State \Return $result$ \Comment{Found a counter-example}
-                    \EndIf
-                \EndFor
-            \EndFor
-            
-            \State \Return \textbf{None} \Comment{No counter-examples found}
+        \Statex \textbf{Input:} 
+        \begin{itemize}
+            \item \( H \) — the target minor graph
+            \item \( G \) — the parent graph to check
+        \end{itemize}
+        \Statex \textbf{Output:} True if $H$ is a rooted minor of $G$, otherwise False.
+
+        \State $embedding \gets {find\_embedding}(H, G)$
+        \If{$embedding \neq \emptyset$}
+            \State \Return True
+        \EndIf
+
+        \For{$i \gets 1$ \textbf{to} 10}
+            \State $seed \gets$ random integer
+            \State $embedding \gets {find\_embedding}(H, G, \text{random\_seed} = seed)$
+            \If{$embedding \neq \emptyset$}
+                \State \Return True
+            \EndIf
+        \EndFor
+
+        \State \Return False
     \end{algorithmic}
 \end{algorithm}
 
+\paragraph{Complexity Analysis.}
+
+The \texttt{find\_embedding} function runs in
+\[
+  \mathcal{O}\bigl(n_H\,n_G\,e_H\,(e_G + n_G \log n_G)\bigr),
+\]
+as described in~\cite{cai2014practicalheuristicfindinggraph}, where $n_G$ is the number of vertices of the larger graph, $n_H$ the number of vertices of the minor, and $e_H$ the number of edges of the minor.
+
+Since, in the worst case, we perform this operation 10 times, the total complexity still is:
+\[
+  \mathcal{O}\bigl(n_H\,n_G\,e_H\,(e_G + n_G \log n_G)\bigr).
+\]
+
+\section{Bringing everything together}
+\label{main:algo:section}
+
+We combine all the subroutines discussed in the previous paragraphs for the main algorithm. For a given rooted minor  
+$H$ and a number of vertices $n$ in the parent graphs, we first generate all possible colorings for $n$ and $H$, where  
+the transversal vertices of each coloring are mapped to the vertices of $H$. Then, for each such coloring, we build graphs consisting only  
+of Kempe chains, such that there is a Kempe chain between two transversal vertices of the coloring if and only if those two transversals  
+form an edge in $H$. After constructing all Kempe chains, we test whether $H$ is a rooted minor of that graph. If it is not a  
+rooted minor, then we know that $H$ is non-$km$-forcing and that any graph such that $H$ is a subgraph of it is also non-$km$-forcing.
+
+\begin{algorithm}[H]
+    \caption{Searches for counter-examples}
+    \label{alg:rooted_minor_search}
+    \begin{algorithmic}[1]
+      \Statex \textbf{Input:}
+      \begin{itemize}
+        \item $H$ — rooted minor we look for.
+        \item $n$ — number of vertices in the parent graph $G$
+      \end{itemize}
+      \Statex \textbf{Output:} Graph $G$ where $H$ is a routing graph of $G$ with its corresponding coloring and transversal but not a rooted minor in $G$, or \textbf{None} if no such pair exists.
+  
+      \State $\textit{colorings} \gets \textsc{GenerateColorings}(H, n)$
+      \ForAll{coloring $\mathfrak{C}$ \textbf{in} $\textit{colorings}$}
+        \State $G \gets$ empty graph on $\mathfrak{C}$
+        \State $result \gets \textsc{BuildKempeChains}(G, E(H), s, t, \emptyset, \mathit{available}, H)$
+        \If{$result \neq \textbf{None}$}
+          \State \Return $result$ \Comment{Found a counter-example}
+        \EndIf
+      \EndFor
+  
+      \State \Return \textbf{None} \Comment{No counter-examples found}
+    \end{algorithmic}
+  \end{algorithm}
+
+\paragraph{Complexity Analysis.}
+Let $k$ = $|V(H)|$, let $m$ = $|E(H)|$.
+\begin{enumerate}
+    \item \textsc{GenerateColorings} takes $\mathcal{O}(k^{n+k})$ time
+    \item We have $\mathcal{O}(k^{n+k})$ colorings and for each coloring \textsc{BuildKempeChains} takes $\mathcal{O}\bigl(m \cdot n!\bigr)$ time.
+ So overall the main for loop takes $\mathcal{O}\bigl(k^{n+k} \cdot m \cdot n!\bigr)$ time
+\end{enumerate}
+
+Since the main loop dominates the time complexity, we get the overall time complexity of the algorithm as follows:
+
+\[
+    \mathcal{O}\bigl(k^{n+k} \cdot m \cdot n!\bigr)
+\]
+
+\section{Results}
+
+First, with the subroutine \textsc{TestIfMinorExists}, we verified the result of \cite{matthias_2022} that $K_7$ is non-$km$-forcing.
+
+We used the main algorithm from \ref{main:algo:section} to primarily test whether $K_6$ is non-$km$-forcing or not.  
+By \ref{thm:1}, finding any non-$km$-forcing subgraph of $K_6$ is sufficient to prove that $K_6$ is non-$km$-forcing.  
+Since we also know that $K_4$ is $km$-forcing \ref{thm:3} and that graphs with five vertices and at most six edges are $km$-forcing,  
+the subgraphs of $K_6$ we are looking for are in between dense graphs on five vertices and graphs on six vertices.  
+Moreover, we know that all cycles are $km$-forcing \ref{thm:4}, so we do not need to consider $C_6$.  
+Adding a pending edge to a $km$-forcing graph still keeps this property \ref{thm:2}.  
+So, we have a limited amount of subgraphs of $K_6$ to consider.
+
+Because the algorithm has super-exponential time complexity, we could test for all candidate subgraphs of $K_6$  
+We found no counter-examples on parent graphs with at most 13 vertices.

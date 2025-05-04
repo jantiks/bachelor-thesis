@@ -3,15 +3,7 @@
 In this chapter, we will present definitions and primary results from the paper of 
 Kriesell and Mohr \cite{matthias_2022}, which we will use to build up our investigations.
 
-They introduced the concept of \textit{routing graphs} to more formally characterize the problem from the previous chapter, as we saw, was
-the following.
-
-Let $G$ be a graph with a coloring
-$\mathfrak{C}$, let $k = |\mathfrak{C}|$, and let $v_1, ..., v_{k}$ be a vertex set of $G$ with different colors.
-Then, there is a system of Kempe chains for some pairs $(v_i, v_j)$.
-They examined whether there is a rooted minor $H$ of $G$ on vertices $v_1, ..., v_{k}$, where $H$ has edges between 
-$v_i, v_j$ if and only if there is a Kempe chain between $v_i$ and $v_j$ in $G$.
-
+They introduced the concept of \textit{routing graphs} to more formally characterize the problem from the previous chapter, as we saw. 
 First, let us define the transversal of a set partition, and then we can define the routing graph.
 
 \begin{defn}[Transversal of a partition]
@@ -35,51 +27,55 @@ Now, we can define the problem in a more compact way, which is as follows:
 
 Which graphs $H$ have the property that, if $H$ is a
 routing graph of some graph $G$ with coloring $\mathfrak{C}$ and a transversal $T$, then G
-has a $H$-rooted minor? We say those graphs are \textit{$km$-forcing}.
+has $H$ as $T$-rooted minor? We say those graphs are \textit{KM-forcing}.
 
-\section{$km$-forcing graphs}
+\section{KM-forcing graphs}
 
-\begin{defn}[$km$-forcing]
- A graph $H$ is $km$-forcing if for every graph $G$, coloring $\mathfrak{C}$ and transversal $T$
- such that $H$ is isomorphic to the routing graph $H(G, \mathfrak{C}, T)$, graph $G$ has a $H$-rooted minor.
+\begin{defn}[KM-forcing]
+ A graph $H$ is KM-forcing if for every graph $G$, coloring $\mathfrak{C}$ and transversal $T$
+ such that $H$ is isomorphic to the routing graph $H(G, \mathfrak{C}, T)$, graph $G$ has $H$ as $T$-rooted minor.
 \end{defn}
 
+\begin{rem}
+    The term \emph{KM-forcing} can be interpreted in two ways: as \emph{Kriesell–Mohr forcing} or as \emph{Kempe chain rooted minor forcing}. We leave the choice of interpretation to the reader’s imagination.
+\end{rem}
+
 \begin{example}
-    $K_1$ is $km$-forcing. If $K_1$ is a routing graph $H(G, \mathfrak{C}, T)$, then $|T| = 1$, and $G$
+    $K_1$ is KM-forcing. If $K_1$ is a routing graph $H(G, \mathfrak{C}, T)$, then $|T| = 1$, and $G$
 can be colored with only one color; hence, it has no Kempe chains to other colored vertices, and $K_1$ is a rooted minor of $G$.
 \end{example}
 
 \begin{example}
- The complete graph $K_2$ is $km$-forcing. 
+ The complete graph $K_2$ is KM-forcing. 
  For any graph $G$ with coloring $\mathfrak{C}$ and transversal $T = \{u,v\}$ where the routing graph $H(G, \mathfrak{C}, T)$ is
  isomorphic to $K_2$, by definition there exists a Kempe chain between $u$ and $v$ in $G$. 
  Contracting all internal vertices of this chain while keeping $u$ and $v$ results in an edge $(u, v)$. In the contracted graph of $G$,
  removing all unnecessary edges and vertices would result in $K_2$ as a rooted minor of $G$.
 \end{example}
 
-We will list several results from \cite{matthias_2022}, which capture properties of $km$-forcing graphs. Moreover, they are helpful 
+We will list several results from \cite{matthias_2022}, which capture properties of KM-forcing graphs. Moreover, they are helpful 
 for later proofs. All the theorems in this chapter are proved in \cite{matthias_2022}.
 
 \begin{thm}
 \label{thm:1}
- If graph $K$ is $km$-forcing, all its subgraphs are also $km$-forcing.
+ If graph $H$ is KM-forcing, all its subgraphs are also KM-forcing.
 \end{thm}
 
-Theorem \ref{thm:1} is crucial for later showing that $K_7$ is not $km$-forcing. It is sufficient to find a subgraph 
-of $K_7$ which is not $km$-forcing, and by theoerm \ref{thm:1} this would imply that $K_7$ is not $km$-forcing as well.
+Theorem \ref{thm:1} is crucial for later showing that $K_7$ is not KM-forcing. It is sufficient to find a subgraph 
+of $K_7$ which is not KM-forcing, and by theoerm \ref{thm:1} this would imply that $K_7$ is not KM-forcing as well.
 
-Now, we will see a characterization of $km$-forcing graphs, which helps to show that $K_4$ is $km$-forcing.
+Now, we will see a characterization of KM-forcing graphs, which helps to show that $K_4$ is KM-forcing.
 
 \begin{thm}
 \label{thm:1.5}
- Graph $K$ is $km$-forcing if and only if every component of $K$ is $km$-forcing.
+ Graph $H$ is KM-forcing if and only if every component of $K$ is KM-forcing.
 \end{thm}
 
-Another valuable result for further investigations is that a $km$-forcing graph is still $km$-forcing if we attach a pending edge to it.
+Another valuable result for further investigations is that a KM-forcing graph is still KM-forcing if we attach a pending edge to it.
 
 \begin{thm}
 \label{thm:2}
- Let $K$ be a graph and $q$ be a vertex with a degree of one. If $K - q$ is $km$-forcing, then $K$ is $km$-forcing as well.
+ Let $K$ be a graph and $q$ be a vertex with a degree of one. If $K - q$ is KM-forcing, then $K$ is KM-forcing as well.
 \end{thm}
 
 
@@ -91,51 +87,51 @@ Another valuable result for further investigations is that a $km$-forcing graph 
 \end{defn}
 
 Hadwiger \cite{hadwiger_1943} asked whether for a given Kempe coloring $\mathfrak{C}$ of a graph $G$ and transversal $T$, the graph $H:= H(G, \mathfrak{C}, T)$ is a complete graph 
-and whether $G$ contains a rooted $H$-minor. This would follow if every complete graph were $km$-forcing. 
-By Theorem \ref{thm:1}, this would imply that \textit{every} graph is \textit{km}-forcing. 
+and whether $G$ contains a $T$-rooted $H$ minor. This would follow if every complete graph were KM-forcing. 
+By Theorem \ref{thm:1}, this would imply that \textit{every} graph is KM-forcing. 
 It would prove Hadwiger's conjecture for graphs admitting Kempe colorings if true. 
-However, as we will see, $km$-forcing is too restrictive a property—and it already fails for $K_7$.
+However, as we will see, KM-forcing is too restrictive a property—and it already fails for $K_7$.
 
 \begin{thm}\label{thm:3}
-$K_7$ is not \textit{km}-forcing.
+$K_7$ is not KM-forcing.
 \end{thm}
 
-By Theorem \ref{thm:1}, if $K_7$ were $km$-forcing, all its subgraphs would also be $km$-forcing. Thus, finding a subgraph of $K_7$ that is not \textit{km}-forcing is enough.
+By Theorem \ref{thm:1}, if $K_7$ were KM-forcing, all its subgraphs would also be KM-forcing. Thus, finding a subgraph of $K_7$ that is not KM-forcing is enough.
 
-To construct graphs that are not $km$-forcing, we need a graph $G$ with:
+To construct graphs that are not KM-forcing, we need a graph $G$ with:
 \begin{enumerate}
 \item Enough paths between transversal vertices to form a routing graph
 \item Not many edges incident to transversal vertices so that the construction of a rooted minor fails.
 \end{enumerate}
 
-A good construction with these properties is the \textit{$Z(G)$} graph:
+A good construction with these properties is the \textit{$Z(H)$} graph:
 
-\begin{defn}[$Z(G)$]
+\begin{defn}[$Z(H)$]
 \label{defn:zg}
-For a graph $G$, $Z(G)$ is defined as:
+For a graph $G$, $Z(H)$ is defined as:
     \begin{enumerate}
-        \item \textbf{Vertices:} $V(Z(G)) := V(G) \times \{1, 2\}$ \\
- Example: If $V(G):= \{a, b\}$, then $V(Z(G)):= \{(a,1), (b,1), (a,2), (b,2)\}$
+        \item \textbf{Vertices:} $V(Z(H)) := V(H) \times \{1, 2\}$ \\
+ Example: If $V(H):= \{a, b\}$, then $V(Z(H)):= \{(a,1), (b,1), (a,2), (b,2)\}$
 
         \item \textbf{Edges:} 
- For each edge $(x,y)$ from $E(G)$, the graph $Z(G)$ contains edges $((x,2)(y,2)), ((x,1)(y,2)),
+ For each edge $(x,y)$ from $E(H)$, the graph $Z(H)$ contains edges $((x,2)(y,2)), ((x,1)(y,2)),
  ((x,2)(y,1))$. \\
- Formally: \[ E(Z(G)) := \{(x,i)(y,j) : xy \in E(G) \text{ and } (i \neq 1 \text{ or } j \neq 1)\} \]
+ Formally: \[ E(Z(H)) := \{(x,i)(y,j) : xy \in E(H) \text{ and } (i \neq 1 \text{ or } j \neq 1)\} \]
     \end{enumerate}
- Z(G) has coloring $\mathfrak{C} := \{\{(x,1),(x,2)\} : x \in V(G)\}$, and transversal $T := V(G) \times \{1\}$.
+ Z(H) has coloring $\mathfrak{C} := \{\{(x,1),(x,2)\} : x \in V(H)\}$, and transversal $T := V(H) \times \{1\}$.
 
 \end{defn}
 
 
 Kriesell and Mohr identified:
 \begin{itemize}
-\item A subgraph $G$ of $K_7$ (Figure \ref{Fig:counterexample})
-\item The graph $Z(G)$ (Figure \ref{Fig:Main}) with coloring $\mathfrak{C}$ and transversal $T$
+\item A subgraph $H$ of $K_7$ (Figure \ref{Fig:counterexample})
+\item The graph $Z(H)$ (Figure \ref{Fig:Main}) with coloring $\mathfrak{C}$ and transversal $T$
 \end{itemize}
 such that:
 \begin{itemize}
-\item $G$ is isomorphic to $H(G, \mathfrak{C}, T)$, but
-\item $G$ is not a rooted minor of $Z(G)$
+\item $H$ is isomorphic to $H(Z(H), \mathfrak{C}, T)$, but
+\item $H$ is not a $T$-rooted minor of $Z(H)$
 \end{itemize}
 
 \begin{figure}[H]
@@ -165,7 +161,7 @@ such that:
         \node[below left] at (g) {$g$};
         
         \end{tikzpicture}
-        \caption{The subgraph of $K_7$ which is not $km$-forcing}
+        \caption{The subgraph of $K_7$ which is not KM-forcing}
         \label{Fig:counterexample}
 \end{figure}
 
@@ -223,40 +219,41 @@ such that:
         \draw (v10) -- (vcenter2); % (a, 1) to (g, 2)
         \draw (v13) -- (vcenter2); % (d, 1) to (g, 2)
     \end{tikzpicture}
-    \caption{The graph $Z(G)$ given $G$ is the graph from \ref{Fig:counterexample}}
+    \caption{The graph $Z(H)$ given $H$ is the graph from \ref{Fig:counterexample}}
     \label{Fig:Main}
 \end{figure}
-In Figure \ref{Fig:Main}, the graph $Z(G)$ is shown with coloring and transversal described 
-in the definition of Z(G) \ref{defn:zg}. For clarity, the transversal $T$ is the following $T:= \{(a, 1), (b, 1), (c, 1), (d, 1), (e, 1), (f, 1), (g, 1)\}$. \newline
+In Figure \ref{Fig:Main}, the graph $Z(H)$ is shown with coloring and transversal described 
+in the definition of Z(H) \ref{defn:zg}. For clarity, the transversal $T$ is the following $T:= \{(a, 1), (b, 1), (c, 1), (d, 1), (e, 1), (f, 1), (g, 1)\}$. \newline
 
-We may be tempted to use the construction of \( Z(G) \) to check whether any graph is \( km \)-forcing. 
-However, Kriesell and Mohr showed that for any graph \( G \) with at most six vertices, \( Z(G) \) always contains a \( G \)-rooted minor.
+We may be tempted to use the construction of \( Z(H) \) to check whether any graph is KM-forcing. 
+However, Kriesell and Mohr showed that for any graph \( H \) with at most six vertices, \( Z(H) \) always contains a \( T \)-rooted minor, where $T$ is the transversal of 
+the coloring of $Z(H)$. 
 
 \begin{thm}\label{thm:zg-for-k_6}
-    Let $G$ be any graph with at most six vertices. Consider $Z(G)$ with coloring
-    $\mathfrak{C}$ and the transversal $T$, as it's defined in \ref{defn:zg}. Then $Z(G)$ has a 
-    rooted $H(Z(G), \mathfrak{C}, T)$-minor.
+    Let $H$ be any graph with at most six vertices. Consider $Z(H)$ with coloring
+    $\mathfrak{C}$ and the transversal $T$, as it's defined in \ref{defn:zg}. Then $Z(H)$ has a 
+    rooted $H(Z(H), \mathfrak{C}, T)$-minor.
 \end{thm}
 
 
-There are also positive results, one of which is that $K_4$ is $km$-forcing.
+There are also positive results, one of which is that $K_4$ is KM-forcing.
 
 \begin{thm}\label{thm:6}
-Every graph on at most four vertices is \textit{km}-forcing.
+Every graph on at most four vertices is KM-forcing.
 \end{thm}
 
-One might ask whether the class of \textit{km}-forcing graphs is bounded. 
+One might ask whether the class of KM-forcing graphs is bounded. 
 This is not the case, as implied by:
 
 \begin{thm}\label{thm:4}
-Every connected graph with at most one cycle is \textit{km}-forcing.
+Every connected graph with at most one cycle is KM-forcing.
 \end{thm}
 
-As we can see, there is a gap between $K_4$ and $K_7$. We know that $K_4$ is $km$-forcing and $K_7$ is not. What about the $K_5$ and $K_6$? The question for both of them is open, but there is a partial result on graphs with five 
+As we can see, there is a gap between $K_4$ and $K_7$. We know that $K_4$ is KM-forcing and $K_7$ is not. What about the $K_5$ and $K_6$? The question for both of them is open, but there is a partial result on graphs with five 
 vertices, which is the following:
 
 \begin{thm}\label{thm:5}
-Every graph on five vertices with at most six edges is \textit{km}-forcing.
+Every graph on five vertices with at most six edges is KM-forcing.
 \end{thm}
 
 This result naturally leads us to the question of what happens when we consider graphs beyond this bound. 

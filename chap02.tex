@@ -1,90 +1,86 @@
-\chapter{Structural Properties of Non-$km$-forcing Graphs}
+\chapter{Structural Properties of Non-KM-forcing Graphs}
 
-Earlier, in Theorem \ref{thm:3}, we saw a construction called \( Z(G) \), which generates graphs containing the necessary Kempe chains without introducing additional
-edges that would force a \( G \)-rooted minor. This suggests that connectivity plays a role in determining whether a graph is \textit{km}-forcing.
+Earlier, in Theorem \ref{thm:3}, we saw a construction called \( Z(H) \), which generates graphs containing the necessary Kempe chains without introducing additional
+edges that would force H to be a \( T \)-rooted minor ($T$ is the transversal of the coloring of $Z(H)$). This suggests that connectivity plays a role in determining whether a graph is KM-forcing.
 
-By Theorem \ref{thm:5}, all graphs with five vertices and at most six edges are \textit{km}-forcing.
-Our goal is to investigate the connectivity properties of graphs \( G \) in which some graph \( H \) is non-\textit{km}-forcing but appears as the routing graph \( H(G,\mathfrak{C},T) \).
-We show that if \( H \) has at least seven edges and five vertices, and there exists some \( G \) in which \( H \) is non-\textit{km}-forcing, then \( G \) is 2-connected.
+By Theorem \ref{thm:5}, all graphs with five vertices and at most six edges are KM-forcing.
+Our goal is to investigate the connectivity properties of graphs \( G \) in which some graph \( H \) is not a $T$-rooted minor of $G$ but appears as the routing graph \( H(G,\mathfrak{C}, T) \). We call such graphs $H$ as non-KM-forcing in $G$.
+By the following lemma, which proves a stronger statement, we will show that if \( H \) has at least seven edges and five vertices, and there exists some \( G \) in which \( H \) is non-KM-forcing, then smallest such \( G \) is 2-connected.
 
 
 \begin{lemma}
- Let $H$ be a graph on five vertices, Let $G$ be a graph with coloring $\mathfrak{C}$ and transversal $T$ such that $H$ is isomorphic to $H(G, \mathfrak{C}, T)$;
- if $H$ is not a rooted minor of $G$, then $G$ is 2-connected.
+   \label{main-lemma}
+ Let $H$ and $G$ be graphs, let $\mathfrak{C}$ be a coloring of $G$, and let $T$ be the corresponding transversal such that
+   $H$ is isomorphic to $H(G, \mathfrak{C}, T)$.
+   
+ Suppose the following hold:
+   \begin{enumerate}
+      \item $H$ is not a $T$-rooted minor in $G$.
+      \item Every proper subgraph $H'$ of $H$ is KM-forcing.
+      \item If $H$ is non-KM-forcing in any graph $G' \ncong G$, then
+     $$|V(G)| + |E(G)| \leq |V(G')| + |E(G')|.$$
+   \end{enumerate}
+ Then $G$ is 2-connected.
 \end{lemma}
+   
+   \begin{proof}
+ The condition (3) forces $G$ to be the minimal counter-example. By minimality of $G$, for each pair of distinct color classes $A, B \in \mathfrak{C}$, the subgraph of $G$ induced by $A \cup B$ is a single path connecting the corresponding transversal vertices in $T$.
+   
+ Assume, for contradiction, that $G$ is 1-connected. Then, there exists a cut vertex $x$
+ splitting $G$ into two subgraphs $L$ and $R$ that intersect only at $x$ (see Figure~\ref{fig:general-case}).
 
-\begin{proof}
- Let $G$ be the minimal such graph, the minimality of $G$ implies that for every distinct color class $A$ and $B$ from $\mathfrak{C}$ the graph $G$ induced by $A$ and $B$ is a single path between the transversal vertices of corresponding colors from $T$.
-
- Assume that $G$ is 1-connected for contradiction. Then, a cut vertex exists in $G$; let us denote it as $x$. 
-    
- We have six cases to consider.
- In the following figure, the black vertices are the transversal vertices $T$ on which we cannot build a rooted minor isomorphic to $H$, and if 
- a vertex is with a hole, then it is a non-transversal vertex.
-       
     \begin{figure}[h]
-       \centering
-       \vspace{0.3cm}
-       \includegraphics[width=13cm]{img/hourglass+1-cases.eps}
-       \vspace{0.3cm}
-       \caption{All cases of cut vertices in a 1-connected graph}
-       \label{fig:2connected_counterexamples}
-   \end{figure}
+      \centering
+      \vspace{0.3cm}
+      \includegraphics[width=6cm]{img/general-case.eps}
+      \vspace{0.3cm}
+      \caption{A cut vertex $x$ splitting $G$ into subgraphs $L$ and $R$.}
+      \label{fig:general-case}
+  \end{figure}
    
- Notice that for the cases (a), (b), and (c), the cut vertex $x$ is a transversal vertex.
+   \textbf{Case 1: $x$ is a transversal vertex.}
    
+ In this case, every Kempe chain passing from $L$ to $R$ must pass through $x$.
+ Since is a transversal, such a chain would connect $x$ to another transversal vertex,
+ contradicting the minimal-path property above. Hence no transversal in $L$
+ can connect to one in $R$ via a Kempe chain.
+   
+ Let $H_L$ be the subgraph of $H$ induced by the transversals in $L \cup \{x\}$,
+ and let $H_R$ be defined similarly for $R$. By condition (2), 
+ each is KM-forcing in the corresponding subgraph of $G$, 
+ so there are rooted minors of $H_L$ in $L$ and $H_R$ in $R$. 
+ Since these contractions occur on disjoint vertex sets (except $x$) and respect the transversal roots, 
+ combining them results a rooted minor of $H$ in $G$, contradicting condition (1).
+   
+   \textbf{Case 2: $x$ is not a transversal vertex.}
+   
+ If no Kempe chain passes through $x$ between $L$ and $R$, the same argument as in Case 1 applies.
+ Otherwise, without loss of generality, suppose there is a Kempe chain in color class $A$ passing
+ through $x$ from some transversal in $L$ to one in $R$. Then $x$ also has color $A$.
+   
+ Let $H_L$ be the subgraph of $H$ induced by the transversals in $L$ together with the color-$A$ transversal.
+ Construct $L'$ by replacing $x$ in $L$ with that transversal. Since all relevant Kempe chains remain,
+ by condition (2), $H_L$ is KM-forcing in $L'$.
+   
+ Similarly, let $H_R$ be the subgraph of $H$ induced by the transversals in $R$ plus
+ one transversal in $L$ connected by the $A$-Kempe chain. 
+ Form $R'$ by adding a single edge from that transversal in $L$ to $R$ by creating an
+ edge with $x$. This preserves the Kempe chains corresponding to edges of $H_R$. 
+ Again, by condition (2), $H_R$ is KM-forcing in $R'$.
+   
+ Since the contractions realizing the minors of $H_L$ in $L'$ and of $H_R$ in $R'$ act on disjoint parts of $G$ (except the cut vertex), 
+ they combine to give a rooted minor of $H$ in $G$, contradicting condition (1).
+   
+ In all cases, we reach a contradiction. Therefore, $G$ must be 2-connected.
+   \end{proof}
 
-   $H$ does not have a vertex of degree one, otherwise By Theorem \ref{thm:6}, we have that $K_4$ is $km$-forcing and $K_4 + 1$ vertex with degree one is also $km$-forcing (By Theorem \ref{thm:2}).
-   Since if graph is $km$-forcing then all its subgraphs are also $km$-forcing (By Theorem \ref{thm:1}), then $H$ would be $km$-forcing, which is a contradiction.
-
- We have that all vertices in $H$ have degrees at least two, and if all of them are exactly two, then $H$ is a cycle, and By Theorem 4 in \cite{matthias_2022}, we have that
- all cycles are $km$-forcing, hence $H$ would be $km$-forcing, which is a contradiction.
-
- So we have that $H$ has at least one vertex of degree at least three; if it is exactly three and the rest are two, then by handshake lemma, we have at least 
- two vertices of degree three. If its' degree is four and the rest of the vertices have degree two, then we get that the graph $H$ is 
- the hourglass graph, which by Theorem \ref{thm:5} is $km$-forcing, hence $H$ would be $km$-forcing, which is a contradiction. So we have
- at least two vertices in $H$ that have a degree of at least three, and the rest have a degree of at least two.
-
- Let $R$ be the subgraph of the right side of the cut and $L$ be the subgraph of the left side of the cut.
+   \begin{cor}
+ For every graph $H$ on five vertices and at least seven edges, if there is a graph $G$ with coloring $\mathfrak{C}$
+ and transversal $T$ such that $H$ is isomorphic to $H(G, \mathfrak{C}, T)$ but there is no $T$-rooted minor $H$ in $G$. Then
+      $G$ is 2-connected
+   \end{cor}
  
- \begin{itemize}
-    \item \textbf{Case (a)}: 
-    Let us denote the transversal vertex in $R$ as $y$, and since 
- all vertices in $H$ have degrees at least two, then we have to have at least two Kempe chains between $y$ and two other transversal vertices in $G$. All paths from $y$ to other transversal vertices may only pass through
-    $x$ because except $x$, all other transversals are in $L$; since $x$ is a transversal vertex itself, we can have a kempe chain from $y$ to $x$, but since $y$ and $x$ have different
- colors, we cannot have more Kempe chains going from $y$ through $x$ to other transversal vertices. Hence, we have only one Kempe chain from $y$ to other transversal vertices, bringing us to a contradiction.
-
-
-    \item \textbf{Case (b)}: 
-    Unlike case (a), we can realize all necessary Kempe chains. If no Kempe chain between transversals has edges in $R$, we can contract
- all vertices of $R$ into $x$ and preserve all Kempe chains between transversals; hence, $G$ was not a minimal graph, a contradiction.
- So let us assume there is some Kempe chain which has a subpath in $R$; since all Kempe chains start from $L$, such a Kempe chain has to pass through $x$; this means that if 
-    $G$ is a counter-example; after contracting all edges of the $R$ into $x$, we still have left Kempe chains between all necessary transversals in $L$, but we got a smaller graph
- which still should be a counter-example; if the contracted version is not a counter-example, then it would mean $G$ was not a counter-example in the beginning since we could get a 
- rooted minor $H$ from G. Hence, the graph $G$ is not minimal, which is a contradiction.
-
-    \item \textbf{Case (c)}: 
-    If both vertices with degrees at least three are in $R$, let us denote them as $y, z$, then we can only have Kempe chains from $y$
- to $x$ and $z$, and from $z$ to $x$ and $y$, but $deg(y) >= 3, deg(z) >= 3$ in $H$, which is a contradiction since they can have 
- at most two Kempe chains in $G$ in this case. Then, assume only one vertex of degree, at least three, is in $R$, and let it be $y$. Similarly, we get that $y$ can have
- at most two Kempe chains, which is a contradiction. Symmetrically, the same holds if $x$ and $y$ were in $L$ or one of them was in $L$; hence, in all cases, we get a contradiction.
-
-    \item \textbf{Case (d)}: 
-    The vertex in $R$ has a degree of at least two. Hence, the color of $x$ is the color of the vertex itself,
-so we can contract the paths from it to $x$ and still get the counter-example, which is a contradiction since the graph $G$ was not minimal.
-    \item \textbf{Case (e)}:
-    Let vertices in $L$ be denoted as $a,b,c$ and the vertices in $R$ as $y, z$, if we have at least one vertex with degree at least three in $R$, let it be $y$, then we can have
-one Kempe chain between $y$ and $z$, and at least two Kempe chains from $y$ to $L$, hence $x$ has the color of $y$, but now since $z$ has 
-degree at least two, at least one Kempe chain from $z$ should go to $L$, and it can pass only through $x$, since the color of $x$ is the same color as $y$, the 
-Kempe chain from $z$, even if it includes $x$, can only be connected to $y$; hence, it cannot pass to $L$, which is a contradiction.
-So we have that both vertices with degrees at least three are in $L$; in $L$ we have three vertices, and if all of them are maximally connected to each other, 
-we get the $abc$ cycle, and since two vertices in $L$ have a degree of at least three, at least two Kempe chains should pass from $L$ to $R$, both of them pass through $x$, 
-so both of them should be connected to the same transversal vertex in $R$, WLOG it is $y$, but then $z$ in $R$ can only be connected to $y$ if it has
-Kempe chain to any other transversal than $y$, it has to pass through $x$ but $x$ has color of $y$, so the only Kempe chain from $z$ including $x$ can go to $y$
-which is a contradiction since in $H$ $deg(z) >= 2$, we only can have one Kempe chain in $G$ from $z$
-    \item \textbf{Case (f)}:
-    We could contract all the vertices from $R$ into $x$ and still get the counter-example
-    because all the Kempe chains still exist between the transversals, it contradicts the minimality of $G$.
- \end{itemize}
-Thus, $G$ is 2-connected.
-\end{proof}
+   \begin{proof}
+ By Theorem \ref{thm:5}, all graphs with five vertices and, at most, six edges are KM-forcing.
+ Hence, we can apply the Lemma \ref{main-lemma} and get that $G$ is 2-connected.
+   \end{proof}
