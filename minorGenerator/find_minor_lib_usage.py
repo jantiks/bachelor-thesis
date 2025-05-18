@@ -17,6 +17,18 @@ import random
 import multiprocessing
 
 
+def even_weight_bitstrings(n):
+    return [
+        format(i, f"0{n}b")
+        for i in range(2**n)
+        if format(i, f"0{n}b").count("1") % 2 == 0
+    ]
+
+
+def hamming_distance(s1, s2):
+    return sum(c1 != c2 for c1, c2 in zip(s1, s2))
+
+
 def generate_graphs_base_plus_edges(G, n):
     vertices = list(G.nodes())
 
@@ -314,10 +326,19 @@ if __name__ == "__main__":
         "4a": [["4a"]],
         "5a": [["5a"]],
     }
-    print("ASD", suspend_chains)
-    if testIfMinorExists(
-        minor, get_edges_from_adjacency_list(counter_example), suspend_chains
-    ):
+
+    vertices = even_weight_bitstrings(5)
+
+    # Build the Clebsch graph
+    G = nx.Graph()
+    G.add_nodes_from(vertices)
+
+    for u, v in itertools.combinations(vertices, 2):
+        if hamming_distance(u, v) == 2:
+            G.add_edge(u, v)
+    minor = nx.complete_graph(5)
+    print("ASD", G.edges())
+    if testIfMinorExists(minor.edges(), G.edges(), suspend_chains):
         print("FASLE CALL")
     else:
         print("HAPPPY")

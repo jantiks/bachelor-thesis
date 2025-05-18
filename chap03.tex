@@ -1,14 +1,15 @@
 \chapter{Computer Enumeration for Finding Counter-Examples in \( K_6 \)}
+\label{chap:enumeration}
 
-Since it remains open whether \( K_5 \) and \( K_6 \) are \( km \)-forcing, it is natural to attempt to find a counter-example.
-A single counter-example would show that the graph is not \( km \)-forcing.
+Since it remains open whether \( K_5 \) and \( K_6 \) are KM-forcing, it is natural to attempt to find a counter-example.
+A single counter-example would show that the graph is non-KM-forcing.
 We performed a computer enumeration of the process of generating graphs \( G \) with a coloring \( \mathfrak{C} \) and a transversal \( T \) for a given minor \( H \),
-where \( H \) is isomorphic to \( H(G, \mathfrak{C}, T) \). We then checked whether \( H \) is a rooted minor in \( G \).
+where \( H \) is isomorphic to \( H(G, \mathfrak{C}, T) \). We then checked whether \( H(G, \mathfrak{C}, T) \) is a $T$-rooted minor in \( G \).
 
-The idea is similar to the previous chapter's construction of \( Z(G) \). 
+The idea is similar to the previous chapter's construction of \( Z(H) \). 
 We want to have all necessary Kempe chains between transversal vertices while ensuring that these vertices have no more than the necessary degrees.
-However, since Kriesell and Mohr \cite{matthias_2022} showed that for every graph \( G \) with at most six vertices, the construction \( Z(G) \) does not
-provide a counter-example \ref{thm:zg-for-k_6} (i.e., \( G \) remains a rooted minor of \( Z(G) \)), for looking for counter-examples 
+However, since Kriesell and Mohr \cite{matthias_2022} showed that for every graph \( G \) with at most six vertices, the construction \( Z(H) \) does not
+provide a counter-example \ref{thm:zg-for-k_6}, for looking for counter-examples 
 for $K_6$, we must consider different constructions.
 
 At a high level, our algorithm for finding possible counter-examples works as follows.
@@ -29,14 +30,13 @@ The algorithm follows these three main steps:
 
 \section{Step 1: Generating Colorings}
 In the first step, we generate colorings, where each coloring has \(n\) vertices.
-
 Each transversal of a coloring should be mapped to the vertices of $H$. Therefore, each coloring would have $|V(H)|$ colors.
-First, we assign the colors to the transversal vertices and map them with $V(H)$, then for the rest of $n - |V(H)|$ vertices, we assign all possible combinations with the replacement of the colors  $1, \dots |V(H)|$ 
-
+First, we assign the colors to the transversal vertices and map them with~$V(H)$, then for the rest of~$n - |V(H)|$ vertices, 
+we assign all possible combinations with the replacement of the colors~$1, \dots |V(H)|$ 
 \begin{example}
  Let \(H = K_3\) (so \( |V(H)| = 3 \)) and let \(n = 8\). 
  First, we select three vertices and make them the transversals. We give each of them a distinct color from $1, 2, 3$.
- Then, we have $\binom{7}{3} = 35$ ways to assign colors for the five remaining vertices. Hence, we get 35 different colorings.
+ Then, we have $\binom{7}{2} = 21$ ways to assign colors for the five remaining vertices. Hence, we get 35 different colorings.
 \end{example}
 
 
@@ -81,7 +81,7 @@ Let \( k = |V(H)| \) be the number of colors and \( n \) the number of vertices 
     
     \item Then we generate all combinations with replacement.
     \[
-        \binom{k + n - 1}{k} \in \mathcal{O}(k^{n + k - 1})
+        \binom{k + n - 1}{k - 1} \in \mathcal{O}(n^{k-1})
     \]
     \item 
  For each combination, we create a new coloring, assuming the creation of the coloring,  
@@ -89,7 +89,7 @@ Let \( k = |V(H)| \) be the number of colors and \( n \) the number of vertices 
  takes $\mathcal{O}(k)$ time.
     
     \item Overall, since the dominating step is the generation of all combinations with replacement, and for each such combination, 
- we use $\mathcal{O}(k)$ time to create a new coloring, we get the total time complexity \( \mathcal{O}(k^{n+k}) \).
+ we use $\mathcal{O}(k)$ time to create a new coloring, we get the total time complexity \( \mathcal{O}(kn^{k-1}) \).
 \end{itemize}
 
 
@@ -124,7 +124,7 @@ Once one chain is complete, we move on to the next pair in the list. After all K
         \Statex \textbf{Procedure:}
         \If{$s = t$}
             \If{$\mathit{chains} = \emptyset $}
-                \If{\textproc{TestMinor}($H$, edges($G$))}
+                \If{\textproc{TestMinor}($H$, $E(G)$, $V(H)$)}
                     \Return
                 \Else
                     \State \textbf{report counterexample}
@@ -192,13 +192,15 @@ probabilistic quantity that we can rely on in our practice in most cases,
 the function returns an embedding on the first try and succeeds within two or three retries.
 
 The algorithm is the following:
+
 \begin{algorithm}[H]
-    \caption{TestIfMinorExists($H$, $G$, $S$)}
+    \caption{TestMinor($H$, $G$, $S$)}
     \begin{algorithmic}[1]
         \Statex \textbf{Input:} 
         \begin{itemize}
             \item \( H \) — the target minor graph
             \item \( G \) — the parent graph to check
+            \item \( S \) — a set of vertices rooted vertices on which we want to get the rooted minor $H$ 
         \end{itemize}
         \Statex \textbf{Output:} True if $H$ is a rooted minor of $G$, otherwise False.
 
@@ -209,8 +211,9 @@ The algorithm is the following:
 
         \For{$i \gets 1$ \textbf{to} 10}
             \State $seed \gets$ random integer
-            \State $embedding \gets {find\_embedding}(H, G, \text{random\_seed} = seed)$
-            \If{$embedding \neq \emptyset$}
+            \State $embedding \gets find\_embedding(H, G,$
+            \Statex \hspace{\algorithmicindent}$\text{random\_seed} = seed, \text{suspend\_chains} = S)$
+                        \If{$embedding \neq \emptyset$}
                 \State \Return True
             \EndIf
         \EndFor
@@ -240,7 +243,7 @@ $H$ and a number of vertices $n$ in the parent graphs, we first generate all pos
 the transversal vertices of each coloring are mapped to the vertices of $H$. Then, for each such coloring, we build graphs consisting only  
 of Kempe chains, such that there is a Kempe chain between two transversal vertices of the coloring if and only if those two transversals  
 form an edge in $H$. After constructing all Kempe chains, we test whether $H$ is a rooted minor of that graph. If it is not a  
-rooted minor, then we know that $H$ is non-$km$-forcing and that any graph such that $H$ is a subgraph of it is also non-$km$-forcing.
+rooted minor, then we know that $H$ is non-KM-forcing and that any graph such that $H$ is a subgraph of it is also non-KM-forcing.
 
 \begin{algorithm}[H]
     \caption{Searches for counter-examples}
@@ -269,28 +272,31 @@ rooted minor, then we know that $H$ is non-$km$-forcing and that any graph such 
 \paragraph{Complexity Analysis.}
 Let $k$ = $|V(H)|$, let $m$ = $|E(H)|$.
 \begin{enumerate}
-    \item \textsc{GenerateColorings} takes $\mathcal{O}(k^{n+k})$ time
+    \item \textsc{GenerateColorings} takes $\mathcal{O}(kn^{k-1})$ time
     \item We have $\mathcal{O}(k^{n+k})$ colorings and for each coloring \textsc{BuildKempeChains} takes $\mathcal{O}\bigl(m \cdot n!\bigr)$ time.
- So overall the main for loop takes $\mathcal{O}\bigl(k^{n+k} \cdot m \cdot n!\bigr)$ time
+ So overall the main for loop takes $\mathcal{O}\bigl(kn^{k-1} \cdot m \cdot n!\bigr)$ time
 \end{enumerate}
 
 Since the main loop dominates the time complexity, we get the overall time complexity of the algorithm as follows:
 
 \[
-    \mathcal{O}\bigl(k^{n+k} \cdot m \cdot n!\bigr)
+    \mathcal{O}\bigl(kn^{k-1} \cdot m \cdot n!\bigr)
 \]
 
 \section{Results}
 
-First, with the subroutine \textsc{TestIfMinorExists}, we verified the result of \cite{matthias_2022} that $K_7$ is non-$km$-forcing.
+First, with the subroutine \textsc{TestMinor}, we verified the result of \cite{matthias_2022} that $K_7$ is non-KM-forcing.
 
-We used the main algorithm from \ref{main:algo:section} to primarily test whether $K_6$ is non-$km$-forcing or not.  
-By \ref{thm:1}, finding any non-$km$-forcing subgraph of $K_6$ is sufficient to prove that $K_6$ is non-$km$-forcing.  
-Since we also know that $K_4$ is $km$-forcing \ref{thm:3} and that graphs with five vertices and at most six edges are $km$-forcing,  
-the subgraphs of $K_6$ we are looking for are in between dense graphs on five vertices and graphs on six vertices.  
-Moreover, we know that all cycles are $km$-forcing \ref{thm:4}, so we do not need to consider $C_6$.  
-Adding a pending edge to a $km$-forcing graph still keeps this property \ref{thm:2}.  
+We used the main algorithm from \ref{main:algo:section} to primarily test whether $K_6$ is non-KM-forcing or not.  
+By \ref{thm:1}, finding any non-KM-forcing subgraph of $K_6$ is sufficient to prove that $K_6$ is non-KM-forcing.  
+Since we also know that $K_4$ is KM-forcing \ref{thm:3} and that graphs with five vertices and at most six edges are KM-forcing,  
+the subgraphs of $K_6$ we are looking for are between dense graphs on five vertices and graphs on six vertices.  
+Moreover, we know that all cycles are KM-forcing \ref{thm:4}, so we do not need to consider $C_6$.  
+Adding a pending edge to a KM-forcing graph still keeps this property \ref{thm:2}.  
 So, we have a limited amount of subgraphs of $K_6$ to consider.
 
-Because the algorithm has super-exponential time complexity, we could test for all candidate subgraphs of $K_6$  
-We found no counter-examples on parent graphs with at most 13 vertices.
+Because the algorithm has super-exponential time complexity, we could test for all candidate subgraphs of $K_6$ that have a parent 
+graph with at most 13 vertices. 
+We found no counter-examples on such parent graphs.
+
+\comment{I should add the other results here regarding other subgraphs of $K_7$, if there are any.}

@@ -348,6 +348,37 @@ h
 <use name="mark/disk(sx)" pos="87.7888 767.352" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="92.9425 782.96" size="normal" stroke="black"/>
 </group>
+<group layer="EDIT-GROUP">
+<use matrix="0.99979 -0.0204905 0.0204905 0.99979 -21.4796 -72.4412" name="mark/disk(sx)" pos="128.502 784.347" size="normal" stroke="black"/>
+<path matrix="0.99979 -0.0204905 0.0204905 0.99979 -19.9776 -72.7683" stroke="black">
+128.502 784.347 m
+165.598 820.543
+199.476 794.248
+175.273 756.957
+148.899 763.855
+128.502 784.347
+128.502 784.347
+128.502 784.347 c
+</path>
+<path matrix="-0.999997 0.00247146 -0.00247146 -0.999997 251.939 1492.81" stroke="black">
+128.502 784.347 m
+165.598 820.543
+199.476 794.248
+175.273 756.957
+148.899 763.855
+128.502 784.347
+128.502 784.347
+128.502 784.347 c
+</path>
+<text matrix="0.99979 -0.0204905 0.0204905 0.99979 -22.9176 -75.1273" transformations="translations" pos="126.542 794.314" stroke="black" type="label" width="5.694" height="4.289" depth="0" valign="baseline" style="math">x</text>
+<use matrix="1 0 0 1 -5.44462 -75.2446" name="mark/disk(sx)" pos="82.9867 795.179" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 -5.44462 -75.2446" name="mark/disk(sx)" pos="105.646 792.404" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 50.3984 -66.8972" name="mark/disk(sx)" pos="107.337 776.108" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 -5.44462 -75.2446" name="mark/disk(sx)" pos="87.7888 767.352" size="normal" stroke="black"/>
+<group>
+<text matrix="1 0 0 1 -12.6476 -74.301" transformations="translations" pos="128.491 756.584" stroke="black" type="label" width="13.015" height="7.473" depth="2.49" valign="baseline" style="math">(a)</text>
+</group>
+</group>
 <use layer="EDIT-GROUP*" matrix="0.99979 -0.0204905 0.0204905 0.99979 123.805 -72.3089" name="mark/disk(sx)" pos="128.502 784.347" size="normal" stroke="black"/>
 <path matrix="0.99979 -0.0204905 0.0204905 0.99979 125.307 -72.6361" stroke="black">
 128.502 784.347 m
@@ -692,9 +723,8 @@ h
 320.603 610.519
 320.679 610.705 c
 </path>
-<group>
-<use matrix="0.99979 -0.0204905 0.0204905 0.99979 -21.4796 7.5588" name="mark/disk(sx)" pos="128.502 784.347" size="normal" stroke="black"/>
-<path matrix="0.99979 -0.0204905 0.0204905 0.99979 -19.9776 7.2317" stroke="black">
+<use matrix="2.2444 -0.0530055 0.0459986 2.58629 -178.182 -1829.75" name="mark/circle(sx)" pos="128.502 784.347" size="normal" stroke="black"/>
+<path matrix="1.87368 -0.0345333 0.0384007 1.68498 -122.881 -1125.41" stroke="black">
 128.502 784.347 m
 165.598 820.543
 199.476 794.248
@@ -704,19 +734,26 @@ h
 128.502 784.347
 128.502 784.347 c
 </path>
-<path matrix="-0.999997 0.00247146 -0.00247146 -0.999997 251.939 1572.81" stroke="black">
-128.502 784.347 m
-165.598 820.543
-199.476 794.248
-175.273 756.957
-148.899 763.855
-128.502 784.347
-128.502 784.347
-128.502 784.347 c
+<use matrix="2.24488 0 0 2.58684 10.036 -1818.49" name="mark/disk(sx)" pos="92.9425 782.96" size="normal" stroke="black"/>
+<text matrix="1.41969 0 0 1.51173 -274.653 -535.435" transformations="translations" pos="350.396 490.773" stroke="black" type="label" width="4.276" height="6.918" depth="0" valign="baseline" style="math">b</text>
+<text matrix="1.41969 0 0 1.51173 -282.47 -503.431" transformations="translations" pos="353.091 446.372" stroke="black" type="label" width="9.009" height="8.169" depth="0" valign="baseline" size="large" style="math">R</text>
+<use matrix="1 0 0 1 -0.0204449 -0.275316" name="mark/disk(sx)" pos="112 192" size="normal" stroke="black"/>
+<path matrix="1 0 0 1 1.00345 -0.257325" stroke="black">
+112 192 m
+144 192 l
 </path>
-<text matrix="0.99979 -0.0204905 0.0204905 0.99979 -22.9176 4.8727" transformations="translations" pos="126.542 794.314" stroke="black" type="label" width="5.694" height="4.289" depth="0" valign="baseline" style="math">x</text>
-<text matrix="1 0 0 1 2.82171 1.78059" transformations="translations" pos="80 784" stroke="black" type="label" width="6.227" height="6.808" depth="0" valign="baseline">L</text>
-<text matrix="1 0 0 1 -4.48315 1.14514" transformations="translations" pos="160 784" stroke="black" type="label" width="7.334" height="6.808" depth="0" valign="baseline">R</text>
-</group>
+<path matrix="1 0 0 1 45.776 -61.2033" stroke="black" cap="1">
+139.337 192.274 m
+139.337 192.274 l
+</path>
+<text matrix="1 0 0 1 -30.2972 -31.3446" transformations="translations" pos="133.824 224.377" stroke="black" type="label" width="4.981" height="4.289" depth="0" valign="baseline">a</text>
+<path stroke="black">
+146.307 191.984 m
+166.753 191.979
+179.904 211.389
+194.288 193.09
+210.225 215.061
+218.681 206.901 c
+</path>
 </page>
 </ipe>
