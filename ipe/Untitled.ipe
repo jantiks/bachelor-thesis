@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20250222130651" modified="D:20250223230854"/>
+<info created="D:20250222130651" modified="D:20250515095358"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -722,6 +722,38 @@ h
 320.603 610.519
 320.603 610.519
 320.679 610.705 c
+</path>
+<use matrix="2.2444 -0.0530055 0.0459986 2.58629 -178.182 -1829.75" name="mark/circle(sx)" pos="128.502 784.347" size="normal" stroke="black"/>
+<path matrix="1.87368 -0.0345333 0.0384007 1.68498 -122.881 -1125.41" stroke="black">
+128.502 784.347 m
+165.598 820.543
+199.476 794.248
+175.273 756.957
+148.899 763.855
+128.502 784.347
+128.502 784.347
+128.502 784.347 c
+</path>
+<use matrix="2.24488 0 0 2.58684 10.036 -1818.49" name="mark/disk(sx)" pos="92.9425 782.96" size="normal" stroke="black"/>
+<text matrix="1.41969 0 0 1.51173 -274.653 -535.435" transformations="translations" pos="350.396 490.773" stroke="black" type="label" width="4.276" height="6.918" depth="0" valign="baseline" style="math">b</text>
+<text matrix="1.41969 0 0 1.51173 -282.47 -503.431" transformations="translations" pos="353.091 446.372" stroke="black" type="label" width="9.009" height="8.169" depth="0" valign="baseline" size="large" style="math">R</text>
+<use matrix="1 0 0 1 -0.0204449 -0.275316" name="mark/disk(sx)" pos="112 192" size="normal" stroke="black"/>
+<path matrix="1 0 0 1 1.00345 -0.257325" stroke="black">
+112 192 m
+144 192 l
+</path>
+<path matrix="1 0 0 1 45.776 -61.2033" stroke="black" cap="1">
+139.337 192.274 m
+139.337 192.274 l
+</path>
+<text matrix="1 0 0 1 -30.2972 -31.3446" transformations="translations" pos="133.824 224.377" stroke="black" type="label" width="4.981" height="4.289" depth="0" valign="baseline">a</text>
+<path stroke="black">
+146.307 191.984 m
+166.753 191.979
+179.904 211.389
+194.288 193.09
+210.225 215.061
+218.681 206.901 c
 </path>
 </page>
 </ipe>

@@ -11,57 +11,63 @@
 % Language of your study programme:
 %	"cs" for Czech
 %	"en" for English
-\def\StudyLanguage{cs}
+\def\StudyLanguage{en}
 
 % Thesis title in English (exactly as in the official assignment)
 % (Note: \xxx is a "ToDo label" which makes the unfilled visible. Remove it.)
-\def\ThesisTitle{\xxx{Thesis title}}
+\def\ThesisTitle{Kempe chains and rooted minors}
 
 % Author of the thesis (you)
-\def\ThesisAuthor{\xxx{Tigran Arsenyan}}
+\def\ThesisAuthor{Tigran Arsenyan}
 
 % Year when the thesis is submitted
-\def\YearSubmitted{\xxx{2025}}
+\def\YearSubmitted{2025}
 
 % Name of the department or institute, where the work was officially assigned
 % (according to the Organizational Structure of MFF UK in English,
 % see https://www.mff.cuni.cz/en/faculty/organizational-structure,
 % or a full name of a department outside MFF)
-\def\Department{\xxx{Computer Science Institute of Charles University}}
+\def\Department{Computer Science Institute of Charles University}
 
 % Is it a department (katedra), or an institute (ústav)?
-\def\DeptType{\xxx{Department}}
+\def\DeptType{institute}
 
 % Thesis supervisor: name, surname and titles
-\def\Supervisor{\xxx{Supername Supersurname}}
+\def\Supervisor{prof. Mgr. Zdeněk Dvořák, Ph.D.}
 
 % Supervisor's department (again according to Organizational structure of MFF)
-\def\SupervisorsDepartment{\xxx{department}}
+\def\SupervisorsDepartment{Computer Science Institute of Charles University}
 
 % Study programme (does not apply to rigorosum theses)
-\def\StudyProgramme{\xxx{study programme}}
+\def\StudyProgramme{Computer Science}
 
 % An optional dedication: you can thank whomever you wish (your supervisor,
 % consultant, who provided you with tea and pizza, etc.)
 \def\Dedication{%
-\xxx{Dedication.}
+First, I would like to thank my supervisor, Prof. Zdeněk Dvořák, for his endless patience and invaluable guidance, as well as for pointing out the mistakes I made along the way.
+I am also deeply grateful to my family for their support throughout my studies, and to my friends and loved ones for always being there for me.
+Finally, I would like to acknowledge the contributions of the authors whose works I have cited in this thesis.
 }
+
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
-\xxx{Use the most precise, shortest sentences that state what problem the
-thesis addresses, how it is approached, pinpoint the exact result achieved, and
-describe the applications and significance of the results. Highlight anything
-novel that was discovered or improved by the thesis. Maximum length is 200
-words, but try to fit into 120. Abstracts are often used for deciding if
-a reviewer will be suitable for the thesis; a well-written abstract thus
-increases the probability of getting a reviewer who will like the thesis.}
+Kempe chains are one of the basic tools used to prove variations of Hadwiger's conjecture. 
+Thus, it is important to understand what the existence of particular Kempe chains guarantees in terms of (rooted) minors. 
+In this thesis, we survey the known results on this topic and focus on the results of Kriesell and Mohr, who studied the following question: 
+For any transversal $T$ of a coloring $\mathfrak{C}$ of order $k$ of a graph $G$, such that any pair of color classes induces a connected subgraph, 
+does there exist a partition $H$ of a subset of $V(G)$ into connected sets such that $T$ is a transversal of $H$ and the sets of $H$ are 
+pairwise adjacent whenever the corresponding vertices in $T$ are connected by a 2-colored path? This is open for $k \geq 5$; 
+they proved the case $k = 5$ when the subgraph induced by $T$ is connected. They also showed that for $k \geq 7$, it is not sufficient to only 
+guarantee 2-colored paths. We contribute by using computer-assisted enumeration to search for counterexamples for $k=6$, and show that minimal counterexamples $G$
+for $k=5$ must be 2-connected.
 }
+
 
 % 3 to 5 keywords (recommended) separated by \sep
 % Keywords are useful for indexing and searching for the theses by topic.
 \def\ThesisKeywords{%
-\xxx{keyword\sep key phrase}
+Kempe Chain\sep Rooted Minor \sep Hadwiger's Conjecture
 }
 
 % If any of your metadata strings contains TeX macros, you need to provide
@@ -70,7 +76,9 @@ increases the probability of getting a reviewer who will like the thesis.}
 \def\ThesisAuthorXMP{\ThesisAuthor}
 \def\ThesisTitleXMP{\ThesisTitle}
 \def\ThesisKeywordsXMP{\ThesisKeywords}
-\def\AbstractXMP{\Abstract}
+\def\AbstractXMP{%
+Kempe chains are important tools in proofs related to Hadwiger's conjecture. This thesis surveys known results, focusing on a question by Kriesell and Mohr regarding colorings with connected color classes and the existence of routing graphs. For k = 6, no counterexamples were found in graphs up to 13 vertices. We also show that any minimal counterexample for k = 5 must be 2-connected.
+}
 
 % If your abstracts are long and do not fit in the infopage, you can make the
 % fonts a bit smaller by this setting. (Also, you should try to compress your abstract more.)

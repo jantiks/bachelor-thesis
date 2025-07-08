@@ -10,24 +10,30 @@ Hadwiger's conjecture \cite{hadwiger_1943} suggests a generalization of the four
 the most challenging problems in graph theory. Before stating the conjecture, we define the notion of a \textit{graph minor}.
 
 \begin{defn}[Minor]
-    The $G$ contains a graph $H$ as a \textit{minor} if there exist pairwise disjoint subsets $\{S_1, S_2, \dots, S_{|V(H)|}\}$ of $V(G)$
-    such that:
+ The graph $G$ contains a graph $H$ as a \emph{minor} if there exist a system $\{B_v : v \in V(H)\}$ of pairwise disjoint subsets of $V(G)$
+ such that:
        \begin{itemize}
-           \item For each $i$ from $1, 2, ... |V(H)|$, the subgraph of $G$ induced by vertices $S_i$, denoted $G[S_i]$, is connected
-           \item For every edge $(u,v)$ in $H$, there is an edge of $G$ with one end in $S_u$ and the other end in $S_v$.
+           \item For every vertex $v$ from $V(H)$, the subgraph of $G$ induced by vertices $B_v$, denoted $G[B_v]$, is connected.
+           \item For every edge $u,v$ in $E(H)$, there is an edge of $G$ with one end in $G[B_u]$ and the other end in $G[B_v]$.
        \end{itemize} 
+
+ We say that the system $\{B_v : v \in V(H)\}$ is a model of $H$ in $G$.
 \end{defn}
 
 \begin{conj} [Hadwiger 1943 \cite{hadwiger_1943}]
  For every integer $k \geq 0$, every graph $G$ with no $K_{k+1}$ minor can be colored with $k$ colors.
 \end{conj}
 
-Equivalently, it can be stated that every graph with chromatic number at least $k$ contains $K_k$ minor.
+Equivalently, every graph with a chromatic number of at least $k$ contains $K_k$ minor.
 
-It was proved by Hadwiger himself for cases $k \leq 3$. Wagner \cite{wagner_1937} showed that the case $k = 4$ is equivalent to the four-color theorem.
+\begin{rem}
+   Throughout this paper, all colorings are assumed to be proper, i.e., adjacent vertices receive different colors.
+\end{rem}
+
+The conjecture was proved by Hadwiger himself for cases $k \leq 3$. Wagner \cite{wagner_1937} showed that the case $k = 4$ is equivalent to the four-color theorem.
 \begin{enumerate}
     \item \textit{Forward direction:} The case $k = 4$ implies the four color theorem since by Wagner \cite{wagner_1937}, every planar graph has no $K_5$ or $K_{3, 3}$ as 
- minors, hence all planar graphs do not have $K_5$ as minor and Hadwiger's conjecture for case $k = 4$ claims if graph doesn't contain
+ minors. Hence, all planar graphs do not have $K_5$ as minor. Hadwiger's conjecture for case $k = 4$ claims if the graph does not contain
     $K_5$ as minor, then it is $4$-colorable.
     \item \textit{Reverse direction:} Wagner \cite{wagner_1937} showed that a graph $G$ is $K_5$-minor free if it is obtained by 
 clique sums of planar graphs and a Wagner graph $W$, where $W$ is a 3-colorable non-planar graph on eight vertices.
@@ -39,14 +45,13 @@ Robertson, Seymour, and Thomas proved the case $k = 5$ in 1993 \cite{robertson_s
 where they did not use a computer to prove it. However, they proved that a minimal counter-example to the case $k = 5$ should have 
 a vertex whose removal results in a planar graph, reducing the problem to the four-color theorem. The case $k = 6$ is still open, and there are some results in this direction as that of Albar and Gonçalves \cite{albar_goncalves_2013}. 
 \begin{thm}
+\label{thm:albargoncalves}
  Every graph with no $K_7$ minor is 8-colorable, and every graph with no $K_8$ minor is 10-colorable.
 \end{thm}
 
 Moreover, Kawarabayashi and Toft \cite{Kawarabayashi2005} proved that every 7-chromatic graph has $K_7$ or $K_{4,4}$ as minor.
-
 Bollobás, Catlin, and Erdös \cite{BOLLOBAS1980195} showed that the conjecture is true for almost all graphs using
 probabilistic arguments. In general, the cases $k \geq 6$ remain open.
-
 Because of the conjecture's current state, there is interest in a weaker version known as the Linear Hadwiger's Conjecture.
 
 \begin{conj} (Linear Hadwiger's Conjecture)
@@ -57,84 +62,145 @@ For more than forty years, the best-known result for the linear version was that
 This was proved in the 1980s by Kostochka \cite{Kostochka1984} and Thomason \cite{Thomason_1984} independently.
 Recently, in 2025, Delcours and Postle \cite{JAMS2025} lowered this bound to $O(k \log \log(k))$.
 
+Holroyd\cite{Holroyd1997} tried to strengthen Hadwiger's conjecture by looking at specific regions in a graph where a minor of a complete graph is likely to appear based on the coloring of the region.
+Before stating his conjecture, we must define the concepts of rooted minors and colorful sets.
+
 \begin{defn}[Rooted minor]
-    $H$ is a \textit{rooted minor} in $G$ if $H$ is a minor of $G$ and there exists a predeteremined set of vertices
-    $\{x_i \in V(G) | i = 1, \dots, |V(H)|\}$, called the roots, such that $x_i$ is in $S_i$ for all $i$
+ Let $G$ and $H$ be graphs and let $S = \{x_v: v \in V(H)\}$ be a system of distinct vertices of $G$. Then $H$
+ is an \emph{$S$-rooted minor} of $G$ if exists a model $\{B_v : v \in V(H)\}$ of $H$ in $G$ such that for every
+ vertex $v \in V(H)$ $x_v \in B_v$.
+\end{defn}
+
+\begin{defn}[Chromatic coloring]
+ Let $G$ be a graph. The chromatic number of $G$ denoted as $\chi(G)$ is the smallest integer $k$ such that $G$ is 
+ properly colored with $k$ colors. We say that a coloring $\mathfrak{C}$ is \emph{chromatic coloring} of the graph $G$ if 
+ it has exactly $\chi(G)$ color classes.
 \end{defn}
 
 \begin{defn}[Colorful set]
- For a graph $G$, a set of vertices $S \subseteq V(G)$ is called \textit{colorful} in $G$ if for every chromatic coloring of $G$, $S$ contains at least one 
+ For a graph $G$, a set of vertices $S \subseteq V(G)$ is called \emph{colorful} in $G$ if for every chromatic coloring of $G$, $S$ contains at least one 
  vertex from each color of the coloring.
 \end{defn}
 
-The colorful sets of the graph are places that are 'hard to color'. Hence, we might hope to find the $K_{t}$ minors rooted in those sets. And this is 
-exactly the Halroyd's conjecture.
+The colorful sets of the graph are places that are 'hard to color.' Hence, we might find the $K_{t}$ minors rooted in those sets. And this is 
+exactly the Holroyd's conjecture.
 
-\begin{conj} (Halroyd's conjecture)
- Let $G$ be a graph with chromatic number $k$, let $S$ be a colorful set in $G$, then $G$ has an S-rooted $K_k$ minor. 
+\begin{conj} (Holroyd's conjecture)
+ Let $G$ be a graph with chromatic number $k$, and let $S$ be a colorful set in $G$. Then there exists
+ a subset $ S' \subseteq S$ of size $k$ such that $G$ contains an $S'$-rooted $K_k$ minor. 
 \end{conj}
 
+
+\begin{rem}
+   In the case of rooted clique‐minors $K_k$, the labels of the vertices of $K_k$ play no role,
+   since any two bijections $S'\to V(K_k)$ differ by a permutation of the bags and hence give isomorphic models.
+   Equivalently, once we have chosen the colourful set $S'$ of size $k$,
+   there is no need to specify which $x_v\in S'$ goes into which bag: 
+   any assignment results in an $S'$‐rooted $K_k$‐minor.
+ \end{rem}
+
+
 Holroyd called it the Strong Hadwiger Conjecture because it generalizes Hadwiger's conjecture. If we take $S = V(G)$,
-then the Halroyd's conjecture states that graph $G$ has $S$-rooted $K_k$ minor, but since set $S$ is the all vertices of graph $G$, it means $G$ contains $K_k$ as a minor
+then the Holroyd's conjecture states that there exists an $S' \subseteq S$ of size $k$ such that the graph $G$ has $S'$-rooted $K_k$ minor. 
+Since the set $S$ is the all vertices of graph $G$, it means $G$ contains $K_k$ as a minor
 which is exactly the statement of Hadwiger's conjecture.
 
-Holroyd himself proved conjecture for cases $k \leq 3$ \cite{Holroyd1997}, and in 2024  the case
+Holroyd himself proved the conjecture for cases $k \leq 3$ \cite{Holroyd1997}, and in 2024  the case
 $k = 4$ was proved by Martinsson and Steiner \cite{MARTINSSON20241}.
 
-A classical tool in studying Hadwiger's conjecture is the notion of Kempe chains. It was first introduced by Kempe in an attempt
-to prove the four-color theorem. Even though his proof was not correct, Kempe chains were shown to be very useful in problems 
-related to graph coloring.
+The notion of Kempe chains is a classical tool in studying Hadwiger's conjecture. Kempe first introduced it in an attempt
+to prove the four-color theorem. Even though his proof was incorrect, they were later used to prove the four-color and five-color theorems.
+Kempe chains show to be very useful in problems related to Hadwiger's conjecture.
 
 \section{Kempe chains}
 
 \begin{defn}[Kempe chain]
- Let $G$ be a graph with proper coloring. 
- For a vertex $v \in V(G)$ and two distinct colors $i$ and $j$ such that $v$ has either color $i$ or $j$, 
- the \textit{Kempe chain} containing $v$ with respect to colors $i$ and $j$ is the maximal connected subgraph
-    $H$ of $G$ such that:
-    \begin{enumerate}
-        \item Every vertex $u \in V(H)$ has either color $i$ or $j$.
-        \item For every edge $(u, w) \in E(H)$, both $u$ and $w$ are colored only with colors $i$ and $j$.
-    \end{enumerate}
+ Let $G$ be a graph with a coloring. Then, for two distinct color classes, $i$, and $j$, the \emph{Kempe chain}
+ in colors $i$ and $j$ is the maximal connected subgraph of $G$ where vertices have only colors of $i$ or $j$.
 \end{defn}
 
-We can observe that the vertices of colorful sets from Halroyd's conjecture must be connected by Kempe chains.
-Suppose, for contradiction, that there exist two vertices  $u, v$ in a colorful set, colored  $i$ and  $j$ respectively,
-but no Kempe chain of colors  $i$ and  $j$ connects them.
-Then, consider the Kempe chain of colors  $i$ and  $j$ that contains  $u$. Swapping the colors within this chain—replacing every  $i$ with  $j$ and vice versa—produces a new proper coloring of the graph.
-However, this would result in  $u$ taking the same color as  $v$, contradicting the assumption that the set is colorful.
-Thus, every pair of vertices in a colorful set must be connected by a Kempe chain.
+\begin{lemma}
+    \label{colorful_kempe}
+ Let $G$ be a graph with a coloring and let $S$ be a colorful set in $G$. For a color class $i$, let 
+    $S_i$ be the set of vertices from $S$ that have color $i$. Then, for every distinct color class $i$ and $j$
+ a Kempe chain exists between some vertices of $S_i$ and $S_j$.
+\end{lemma}
+\begin{proof}
+ Assume for contradiction that there is no Kempe chain between $S_i$ and $S_j$. We will show that we can recolor the vertices of $S_i$ with color $j$ and still maintain a proper coloring, contradicting the assumption that $S$ is colorful (since in the new coloring, no vertex of $S$ has color $i$).
+    
+    \begin{enumerate}
+      \item Let $v\in S_i$.
+        \begin{itemize}
+          \item If $v$ is not contained in any Kempe chain of colors $i$ and $j$, switch the color of $v$ to $j$.
+          \item Otherwise, $v$ lies in some Kempe chain of colors $i$ and $j$.  Assuming the Kempe chain contains no vertices of $S_j$, we can switch the colors $i\leftrightarrow j$ along that chain. The resulting coloring is proper, where $v$ now has color $j$.
+        \end{itemize}
+      \item Repeat this for each vertex of $S_i$. The coloring is maintained at each step, and no vertex of $S_j$ is ever recolored (since there are no $i$–$j$ chains reaching~$S_j$). After recoloring all of $S_i$, the colorful set $S$ no longer contains any vertex of color $i$, a contradiction.
+    \end{enumerate}
+    
+ Hence, a Kempe chain exists connecting some vertex in $S_i$ to some vertex in~$S_j$.
+    \end{proof}
 
-Since Hadwiger's conjecture is difficult to prove in general, it is interesting to study it for specific classes of graphs.
-Hadwiger suggested looking into the graphs with a bounded number of optimal colorings \cite{hadwiger_1943}, 
-one particular class is the uniquely optimally colorable graphs.
+    Since Hadwiger's conjecture is difficult to prove in general, it is interesting to study it for specific classes of graphs.
 
-\begin{claim}
+    \begin{defn}
+    \label{def:uniquely_colorable}
+    A graph $G$ is called \emph{uniquely optimally colorable} if it has only one chromatic coloring up to permutation of the colors.
+    \end{defn}
+    
+    Hadwiger suggested looking into the graphs with a bounded number of optimal colorings \cite{hadwiger_1943}.
+    One particular class is the uniquely optimally colorable graphs,
+    which Kriesell proved for uniquely $k$-colorable graphs where $k \leq 10$ \cite{Kriesell2021}.
+    Kriesell also proved Hadwiger's conjecture for the antitriangle-free graphs \cite{Kriesell2017}.
+    Moreover, with Mohr, they proved it is true for line graphs \cite{Kriesell2019}.
+
+    \begin{claim}
  Let $G$ be a uniquely $k$-colorable graph with colors $\{1, 2, \dots, k\}$ Let $v_1, v_2, \dots, v_k$ be differently colored vertices of the graph $G$, 
  where $v_i$ is has color $i$.
  Then there are Kempe chains between all pairs of $v_i$ and $v_j$ from $\{v_1, v_2, \dots, v_k\}$.
-\end{claim}
+    \end{claim}
+    
+    
+    \begin{proof}
+ Let $S := \{v_1, v_2, \dots, v_k\}$, then $S$ is a colorful set. By the lemma \ref{colorful_kempe} for every distinct color classes
+        $i$ and $j$ there exists a Kempe chain between $S_i$ and $S_j$. Since each color appears only once in $S$, 
+ each $S_i$ has a size of 1. Hence, there is a Kempe chain between each distinct pair of the vertices of the colorful set.
+    \end{proof}
+
+This shows a structural connection between the colorful sets and the Kempe chains. 
+It is a natural question to ask whether the existence of Kempe chains
+between all pairs of vertices of a colorful set $S$ implies the existence of a $K_k$ minor rooted at $S$.
+However, Kriesell and Mohr \cite{matthias_2022} showed that this is not true in general.
+
+Usually, in the context of Hadwiger's conjecture, only clique minors were considered. However, Kriesell and Mohr \cite{matthias_2022} considered
+the following question, which does not necessarily look for clique minors. Let $G$ be a graph with a coloring
+$\mathfrak{C}$, let $k = |\mathfrak{C}|$, and let $v_1, ..., v_{k}$ be a vertex set of $G$ with different colors.
+Then, there is a system of Kempe chains for some pairs $(v_i, v_j)$.
+Let $H$ be a graph with vertices $v_1, ..., v_{k}$ and edges between $v_i, v_j$ if and only if there is a Kempe chain between $v_i$ and $v_j$ in $G$.
+They questioned whether there is a rooted minor $H$ of $G$ on vertices $v_1, ..., v_{k}$.
+
+The answer to this question is affirmative for the case $k \leq 4$. For $k = 5$,
+it holds for graphs with at most six edges but generally remains open.
+The case $k = 6$ is also open, while counter-examples exist for $k \geq 7$.
+
+In the next chapter, \ref{chap:background}, we present the main results of Kriesell and Mohr~\cite{matthias_2022}, 
+where they investigate the above question. We discuss the main results from it and set up the necessary 
+terminology for us to do our own investigations. In Chapter~\ref{chap:structural-properties}, 
+we investigate connectivity properties of minimal counter-example graphs for the case $k = 5$. 
+In chapter~\ref{chap:enumeration}, we develop an algorithm which performs computer enumeration for finding 
+counter-examples within graphs with at most 13 vertices, Our results show that there are no counter-examples for $k = 6$ within this range.
+We use the algorithm to verify the result of Kriesell and Mohr \cite{matthias_2022} for the case $k = 7$.
 
 
-\begin{proof}
- For any given pair of differently colored vertices $v_i$ and $v_j$, the induced subgraph of $G$ consisting of the vertices
- of $G$ with only colors of $i$ and $j$ is connected, if this wasn't the case
- then, we could color one of the disconnected components by swapping the colors $i$ and $j$, resulting in another proper coloring. 
- However, $G$ is uniquely k-colorable, hence a contradiction.
-\end{proof}
-
-This claim suggests a question: whether the existence of the Kempe chains forces an existence of $K_k$ minor rooted at
-$\{v_1, v_2, \dots, v_k\}$.
-
-Kriesell showed that there is a $K_k$ minor for 
-cases $k \leq 10$ \cite{Kriesell2021}, if the graph is antitriangle-free \cite{Kriesell2017}, 
-Moreover, with Mohr, they showed it is true for line graphs \cite{Kriesell2021}.
+Before moving to the next chapter, we will present some results regarding the rooted minors and their applications in graph theory. 
 
 \section{Rooted minors}
-One of the central problems in Graph Theory is to find a minor in a given graph. There has been significant progress 
+\label{section:rooted-minors}
+One of the central problems in graph theory is finding a minor in a given graph. There has been significant progress 
 in this direction, one of which is the structure theorem of Robertson and Seymour, which says that if a graph $G$ does not have
-$K_t$ minor, then $G$ is ``almost embeddable'' on a surface of low Euler genus relative to $t$ \cite{RobertsonSeymourGM16}. This result leads Robertson and 
-Seymour to prove Wagner's Conjecture. In the proof, they use the following theorems, which are proved in \cite{RobertsonSeymourGM20}
+$K_t$ minor, then $G$ is ``almost embeddable'' on a surface of low Euler genus relative to $t$ \cite{RobertsonSeymourGM16}.
+This result was developed as part of their proof of Wagner's Conjecture—now known as the Robertson–Seymour Theorem
+—which says that the class of finite undirected graphs is well-quasi-ordered under the graph minor relation.
+In the proof, they use the following theorems, which are proved in \cite{RobertsonSeymourGM20}
 
 \begin{thm}
  let $G$ be a 3-connected graph and let $v_1, v_2, v_3$ be three distinct vertices. Then either $G$ has 
@@ -143,42 +209,21 @@ Seymour to prove Wagner's Conjecture. In the proof, they use the following theor
 \end{thm}
 
 \begin{thm}
- Let $G$ be a 4-connected graph and $v_1, v_2, v_3, v_4$ be four distinct vertices. Then either $G$ has 
- four connected disjoint subgraphs $X_1, X_2, \dots, X_4$ such that $X_i$ contains $v_i$ for every $i = 1,2,3,4$ and each
-    $X_i$ has a neighbour in $X_j$ for every $i,j$ such that $i \neq j$ or $G$ is planar such that $v_1, v_2, v_3, v_4$ are on 
- the boundary.
+ Let $G$ be a 4-connected graph and $v_1, v_2, v_3, v_4$ be four distinct vertices. Then either $G$ has $K_4$ minor rooted
+ at $\{v_1, v_2, v_3, v_4\}$ or $G$ is planar such that $v_1, v_2, v_3, v_4$ are on the boundary.
 \end{thm}
 
 Those two results were the starting points for rooted minor problems. 
 \newline
 It turns out that rooted minors are not only
-useful for the proof of Graph Minor theorem, but also for some structure theorems which are used to prove some existence
+useful for the proof of graph Minor theorem, but also for some structure theorems which are used to prove some existence
 of graph minor, some of which are presented below:
 
-\subsection*{Applications to Hadwiger's Conjecture}
 Robertson, Seymour, and Thomas \cite{robertson_seymour_1993} used rooted $K_4$–minors to prove the case $k=5$ of Hadwiger's conjecture.
 Kawarabayashi and Toft \cite{Kawarabayashi2005} used rooted minors to prove that every 7-chromatic graph has $K_7$ or $K_{4,4}$ as minor.
 
-\subsection*{Embedded graphs and face covers}
 In graphs embedded on surfaces, the concept of a rooted minor extends naturally to problems involving
 face covers. A recent paper \cite{Fiorini2025} shows that in a 3-connected
 graph embedded in a surface of Euler genus $g$, if the graph has no rooted $K_{2,t}$ minor,
 then there exists a face cover whose size is bounded by a function of $g$ and $t$. 
 In the planar case, they got $O(t^4)$ upper bound, which improved the result of Böhme and Mohar~\cite{BOHME2002291}.
-
-\subsection*{Kempe chains and rooted minors}
-Usually, in the context of Hadwiger's conjecture, only clique minors were considered. However, Kriesell and Mohr \cite{matthias_2022} considered
-the following question, which does not necessarily look for clique minors. Let $G$ be a graph with a proper coloring
-$\mathfrak{C}$, let $k = |\mathfrak{C}|$, and let $v_1, ..., v_{k}$ be a vertex set of $G$ with different colors.
-Then, there is a system of Kempe chains for some pairs $(v_i, v_j)$.
-They examined whether there is a rooted minor $H$ of $G$ on vertices $v_1, ..., v_{k}$, where $H$ has edges between 
-$v_i, v_j$ if and only if there is a Kempe chain between $v_i$ and $v_j$ in $G$.
-
-The answer to this question is affirmative for the case $k \leq 4$. For $k = 5$,
-it holds for graphs with at most six edges but remains open in general.
-The case $k = 6$ is also open, while counterexamples exist for $k \geq 7$.
-
-In this paper, we investigate properties of minimal counterexample graphs for the case $k = 5$, where the answer is negative.
-Additionally, we perform a computational enumeration for $k = 6$, examining all graphs with at most sixteen vertices.
-Our results show that the answer remains positive for all graphs in this range.
-

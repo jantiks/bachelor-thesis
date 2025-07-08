@@ -123,22 +123,22 @@ The following proofs are reformulations of those presented in \cite{matthias_202
 To find the graphs which don't have property (*), we need to construct a graph $G$ such that it has all necessary paths between transversal vertices, to construct a routing graph,
 but not enough edges incident to transversal vertices so that it's impossible to have rooted minor as the routing graph.
 
-\begin{defn}[Z(G)]
-    For a graph $G$ $Z(G)$ is defined as follows:
+\begin{defn}[Z(H)]
+    For a graph $H$ $Z(H)$ is defined as follows:
     \begin{itemize}
-        \item[1.] $V(Z(G)) := V(G) \times \{1, 2\}$ \newline
-        For example if $V(G) := \{a, b\}$, then $V(Z(G)) := \{\{a, 1\}, \{b, 1\}, \{a, 2\}, \{b, 2\}\}$,
-        in other words we are duplicating the vertices of $G$ into $Z(G)$
-        \item[2.]  $E(Z(G)) := \{(x, i)(y, j) : xy \in E(G) \land (i \neq 1 \lor j \neq 1)\}$ \newline
-        Here we keep all the edges from original graph $G$ in the component of $Z(G)$ which have label $2$, 
+        \item[1.] $V(Z(H)) := V(H) \times \{1, 2\}$ \newline
+        For example if $V(H) := \{a, b\}$, then $V(Z(H)) := \{\{a, 1\}, \{b, 1\}, \{a, 2\}, \{b, 2\}\}$,
+        in other words we are duplicating the vertices of $G$ into $Z(H)$
+        \item[2.]  $E(Z(H)) := \{(x, i)(y, j) : xy \in E(H) \land (i \neq 1 \lor j \neq 1)\}$ \newline
+        Here we keep all the edges from original graph $H$ in the component of $Z(H)$ which have label $2$, 
         We remove all the edges between the vertices which have label $1$, which induces an anticlique between those vertices.
-        Note: $\forall xy \in E(G)$, we have the following edges in $Z(E(G))$: $\{\{(x, 2), (y, 2)\}, \{(x, 1), (y, 2)\}, \{(x, 2), (y, 1)\}\}$
+        Note: $\forall xy \in E(H)$, we have the following edges in $Z(E(H))$: $\{\{(x, 2), (y, 2)\}, \{(x, 1), (y, 2)\}, \{(x, 2), (y, 1)\}\}$
       \end{itemize}
 \end{defn}
-Let coloring for G be $\mathcal{C} := \{(x, 1)(x, 2)\ \in V(Z(G))\}$ is a coloring of $Z(G)$ and $T := V(G) \times \{1\}$
+Let coloring for G be $\mathcal{C} := \{(x, 1)(x, 2)\ \in V(Z(H))\}$ is a coloring of $Z(H)$ and $T := V(H) \times \{1\}$
 Is transversal of the coloring.
 \begin{example}
-    An example of $Z(G)$ given $G$ is cycle of 7
+    An example of $Z(H)$ given $H$ is cycle of 7
 
     \begin{figure}[H]
         \centering
@@ -171,22 +171,22 @@ Is transversal of the coloring.
                 }
                 \draw (v20) -- (v26);
             \end{tikzpicture}
-            \caption{Example of $Z(G)$ given $G$ is $C_7$}
+            \caption{Example of $Z(H)$ given $H$ is $C_7$}
         \label{Fig:Main}
     \end{figure}
 \end{example}
     
-We can observe that routing graph $H := (Z(G), \mathcal{C}, T)$ is isomorphic to $G$ via $((x, 1) \rightarrow x)$,
-and we also have copy of $G$ in induced subgraph of $Z[V(G) \times \{2\}]$. Now we study if there exists rooted $H$-certificate in 
-$Z(G)$ for different graphs of $G$.
+We can observe that routing graph $H(Z(H), \mathcal{C}, T)$ is isomorphic to $H$ via $((x, 1) \rightarrow x)$,
+and we also have copy of $H$ in induced subgraph of $Z[V(H) \times \{2\}]$. Now we study if there exists $T$-rooted $H$ minor in 
+$Z(H)$ for different graphs $H$.
 
 \begin{claim}
-The bags of any H-certificate $c = (V_{t})_{t \in T}$ in $Z(G)$ have average order at most 2.
+The bags of any H-certificate $c = (V_{t})_{t \in T}$ in $Z(H)$ have average order at most 2.
 \end{claim}
 \begin{proof}
-    $|T| = |V(H)| = |V(G)|$ and $|V(Z(G))| = 2|V(G)|$, all $V_{t}$'s are pairwise disjoint, hence the average size of any bag is:
+    $|T| = |V(H)| = |V(G)|$ and $|V(Z(H))| = 2|V(G)|$, all $V_{t}$'s are pairwise disjoint, hence the average size of any bag is:
     \begin{equation}
-        \frac{1}{|T|} \sum_{t \in T} |V_{t}| \leq \frac{|V(Z(G))|}{|T|} = \frac{2|V(G)|}{|V(G)|} = 2
+        \frac{1}{|T|} \sum_{t \in T} |V_{t}| \leq \frac{|V(Z(H))|}{|T|} = \frac{2|V(G)|}{|V(G)|} = 2
     \end{equation}
 \end{proof}
 
@@ -199,8 +199,8 @@ And locally the inverse implications sounds almost the same.
 \end{claim}
 
 \begin{proof}
-    Let $st \in E(H)$, and suppose $V_{s} = \{s\}$, hence $|V_{s}| = 1$, $|V_{t}| \geq 2$ because $s, t$ are not adjacent in $Z(G)$.
-    If $|V_{t}| = 2$, then for $u \in V(Z(G))$, $V_{t} = \{t, u\}$, this means there is an edge $su \in E(Z(G))$ as well, at the same time 
+    Let $st \in E(H)$, and suppose $V_{s} = \{s\}$, hence $|V_{s}| = 1$, $|V_{t}| \geq 2$ because $s, t$ are not adjacent in $Z(H)$.
+    If $|V_{t}| = 2$, then for $u \in V(Z(H))$, $V_{t} = \{t, u\}$, this means there is an edge $su \in E(Z(H))$ as well, at the same time 
     the corresponding $u'$ of $u$ in $V(H)$ should be adjacent with $t$, but since $s, t$ are not in a triangle of $H$, there is no edge
     between $s$ and $u'$, which means there is no $su$ edge as well, which is a contradiction. Hence $|V_{t}| \geq 3$
 \end{proof}
@@ -208,14 +208,14 @@ And locally the inverse implications sounds almost the same.
 If all the bags of the certificate have order 2, then we can look at a function $f: V(G) \to V(G)$, which for a bag $V_{(x, 1)} = \{(x, 1), (y, 2)\}$ is defined as $f(x) := y$.
 Since the bags are disjoint, $f$ is an injection and therefore a permutation of $V(G)$. Since all the elements of each bag are connected we can observe
 that $xf(x) \in E(G)$, and we can represent $f$ as a partial orientation of $G$, where $xy$ is oriented from $x$ to $y$ if and only if $y = f(x)$. 
-For a rooted $H$-certificate $c$ in $Z(G)$ any $xy \in E(G)$ implies that $V_{(x, 1)}$ and $V_{(y, 1)}$ are adjacent, which is equivalent to say
+For a rooted $H$-certificate $c$ in $Z(H)$ any $xy \in E(G)$ implies that $V_{(x, 1)}$ and $V_{(y, 1)}$ are adjacent, which is equivalent to say
 $f(y)$ is adjacent to $f(x)$ or $x$, or $f(x)$ is adjacent to $f(y)$ or $y$. Conversely, if $f$ is a permutation of $V(G)$ with the following properties:
 
 \begin{itemize}
     \item [\textbf{1.}] $(\forall x \in V(G)) (xf(x) \in E(G))$ 
     \item [\textbf{2.}] $xy \in G$ implies that $f(x)$ is adjacent to either $y$ or $f(y)$, or $f(y)$ is adjacent to either $x$ or $f(x)$
 \end{itemize}
-Then $V_{(x, 1)} = \{(x, 1), (f(x), 2)\}$ defines an $H$-vertificate in $Z(G)$.
+Then $V_{(x, 1)} = \{(x, 1), (f(x), 2)\}$ defines an $H$-vertificate in $Z(H)$.
 Let's call such permutation as a `good permutation' throughout this chapter
 
 \begin{claim}
@@ -269,7 +269,7 @@ Let's call such permutation as a `good permutation' throughout this chapter
         \caption{Graph $G$ obtained from $C_6$}
     \end{figure}
 
-    For contradiction assume that $Z(G)$ has an $H$-certificate $(V_{t})_{t \in T}$ with $T = V(G) \times \{1\}$.
+    For contradiction assume that $Z(H)$ has an $H$-certificate $(V_{t})_{t \in T}$ with $T = V(G) \times \{1\}$.
     Let $A$ be the set of vertices $t \in T$ such that $|V_t| = 1$. Observe that there are 2 vertices of degree 3 in $G$,
     $v_1$ and $v_4$, and both of them are in cycle of 5, and hence by \textbf{Claim \ref{claim:second}} $G$ doesn't
     have a good permutation, which means $|A| \geq 1$. Since $|V_{t}| = 1$ for every element of $A$, it means
@@ -280,11 +280,11 @@ Let's call such permutation as a `good permutation' throughout this chapter
         \item $1|A|$ is the number of vertices of the bags of $A$, because by definition each of $A$ has size 1
         \item $2(7 - (|A| + 1) - |A|)$ is the number of vertices in the rest of the bags. Which all have $|V_t| = 2$
     \end{itemize}
-    Let's denote $q$ the number of vertices in the bags of $Z(G)$ which form $H$. And let's count it.
+    Let's denote $q$ the number of vertices in the bags of $Z(H)$ which form $H$. And let's count it.
     \begin{equation}
         q = \sum_{t \in T} |V_t| \geq 3(|A| + 1) + 2(7 - (|A| + 1) - |A|) + 1|A| = 15
     \end{equation}
-    At the same time, $q \leq |V(Z(G))| = 14$, causing a contradiction. Hence, the graph $G$ doesn't have property (*),
+    At the same time, $q \leq |V(Z(H))| = 14$, causing a contradiction. Hence, the graph $G$ doesn't have property (*),
     and since all the subgraphs of a graph with property (*) have the proprety as well, this implies that $K_7$ doesn't have 
     property (*).
 \end{proof}

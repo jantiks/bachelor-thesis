@@ -42,6 +42,7 @@
 \setlength\headheight{0mm}
 \let\openright=\clearpage
 
+\usepackage{amssymb}
 \usepackage{tikz}
 \tikzset{vertex/.style={fill=black, circle, minimum size=1pt, inner sep=0.3pt}, label distance=1pt, line width=0.8pt}
 
@@ -73,10 +74,15 @@
 \usepackage{indentfirst}    % indent the first paragraph of a chapter
 \usepackage[nopatch=item]{microtype}   % micro-typographic refinement
 \usepackage{paralist}       % improved enumerate and itemize
+\usepackage{enumitem}
 \usepackage[nottoc]{tocbibind} % makes sure that bibliography and the lists
 			    % of figures/tables are included in the table
 			    % of contents
 \usepackage{xcolor}         % typesetting in color
+\usepackage{comment}
+\usepackage{soul}
+\usepackage[utf8]{inputenc}
+\DeclareRobustCommand{\comment}[1]{ {\begingroup\sethlcolor{cyan}\hl{(comment:) #1}\endgroup} }
 
 % The hyperref package for clickable links in PDF and also for storing
 % metadata to PDF (including the table of contents).
@@ -105,7 +111,7 @@
 % format with your supervisor.
 %
 % The basic format according to the ISO 690 standard with numbered references
-\usepackage[natbib,style=iso-numeric,sorting=none]{biblatex}
+\usepackage[natbib,style=iso-numeric,sorting=nyt]{biblatex}
 % ISO 690 with alphanumeric references (abbreviations of authors' names)
 %\usepackage[natbib,style=iso-alphabetic]{biblatex}
 % ISO 690 with references Author (year)

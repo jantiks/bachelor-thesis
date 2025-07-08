@@ -38,7 +38,7 @@
 \def\LangEN{en}
 
 \ifx\StudyLanguage\LangCS
-\else\ifx\StudyLanguage\LangEn
+\else\ifx\StudyLanguage\LangEN
 \else\PackageError{thesis}{Unknown study language.}{Please check the definition of StudyLanguage in metadata.tex.}
 \fi\fi
 
@@ -78,11 +78,11 @@
 \newtheorem{thm}{Theorem}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem{claim}[thm]{Claim}
+\newtheorem{cor}[thm]{Corollary}
 \newtheorem{defn}{Definition}
 \newtheorem{conj}{Conjecture}
 
 \theoremstyle{remark}
-\newtheorem*{cor}{Corollary}
 \newtheorem*{rem}{Remark}
 \newtheorem*{example}{Example}
 
