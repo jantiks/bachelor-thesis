@@ -5,16 +5,16 @@ import random
 from itertools import combinations_with_replacement, groupby
 import copy
 import subprocess
-import json
 import logging
 from typing import Dict, Set, List, Tuple
 
-
+MINOR_TEST_RANGE = 30 # Number of attempts to find a minor embedding
+LOG_FREQUENCY = 20
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 
 # # -- HELPER FUNCTIONS -- ##
-def zg(G: nx.Graph) -> nx.Graph:
+def zh(G: nx.Graph) -> nx.Graph:
     H = nx.Graph()
     for node in G.nodes():
         H.add_node(node)
@@ -98,7 +98,7 @@ def save_counterexample(
     
 
 
-def get_graphs_from_geng(n: int) -> List[nx.Graph]:
+def get_graphs_from_geng(n: int, params: List[str] = []) -> List[nx.Graph]:
     """
     Generates all connected graphs with n vertices and minimum degree at least 2.
 
@@ -115,7 +115,7 @@ def get_graphs_from_geng(n: int) -> List[nx.Graph]:
     """
     try:
         proc = subprocess.run(
-            ['geng', str(n), "-c", "-d2"],
+            ['geng', str(n), "-c", "-d2"] + params,
             capture_output=True,
             text=True,
             check=True  # This raises CalledProcessError on non-zero exit codes
@@ -159,7 +159,6 @@ def test_minor(
         bool: True if an embedding is found in any attempt; False otherwise.
     """
     
-    test_range = 30
     minor_embd = find_embedding(
         minor, parent, suspend_chains=suspend_chains
     )
@@ -167,7 +166,7 @@ def test_minor(
     if minor_embd:
         return True
 
-    for _ in range(test_range):
+    for _ in range(MINOR_TEST_RANGE):
         minor_embd = find_embedding(
             minor,
             parent,
@@ -335,7 +334,7 @@ def main(
     minor_graphs: List[nx.Graph]
 ) -> None:
     """
-    Run the Kempe chain algorithm on a list of minor graphs with colorings.
+    Run the main algorithm on a list of minor graph.
 
     Args:
         n (int): Total number of colors.
@@ -359,12 +358,13 @@ def main(
             for neighbor in neighbors
         })
 
+        number_of_colorings = len(colorings)
         coloring_index = 0
         
         # # The loop below described as Algorithm 4 in the thesis.
         for coloring in colorings:
-            if (coloring_index + 1) % 20 == 0 or coloring_index == 0:
-                logging.info("Minor %d/%d | Coloring %d", index + 1, len(minor_graphs), coloring_index + 1)
+            if (coloring_index + 1) % LOG_FREQUENCY == 0 or coloring_index == 0:
+                logging.info("Minor %d/%d | Coloring %d/%d", index + 1, len(minor_graphs), coloring_index + 1, number_of_colorings)
             color_to_look_for = color(edges[0][1])
             available_vertices = [
                 v for v in coloring.keys() if color(v) == color_to_look_for
@@ -382,46 +382,60 @@ def main(
             coloring_index += 1
         index += 1
         logging.info("Finished minor %d of %d", index, len(minor_graphs))
-if __name__ == "__main__":
-    #### Uncomment each part to run the specific test case
-    #### ------------------------------------------------------------####
-    #### 1. the counterexample from Kriesell's and Mohr's paper for K_7. takes around 10-20 minutes to run.
-    # minors = [
-    #     nx.Graph(
-    #         [
-    #             ("0", "1"),
-    #             ("1", "2"),
-    #             ("2", "3"),
-    #             ("3", "4"),
-    #             ("4", "5"),
-    #             ("5", "0"),
-    #             ("0", "6"),
-    #             ("6", "3"),
-    #         ]
-    #     )
-    # ]
-    # minor_size = 7
-    # parent_size = 14
-    # main(parent_size, minor_size, minors) # - this will find the Z(H) and it's supergraphs. 
-    #### ------------------------------------------------------------####
-
-    #### 2. Checking for all spanning subgraphs of K_6 with supergraphs with 13 vertices - will take around 10-12 hours. For smaller graphs i.e shorter time decrease the parent_size.
-    # minor_size = 6
-    # minors = get_graphs_from_geng(minor_size)
-    # parent_size = 13
-    # main(parent_size, minor_size, minors)
-    #### ------------------------------------------------------------####
-
-    #### 3. Checking for all spanning subgraphs of K_7 with supergraphs with 14 vertices.
-    # minor_size = 7
-    # minors = get_graphs_from_geng(minor_size)
-    # parent_size = 14
-    # main(parent_size, minor_size, minors)
-    #### ------------------------------------------------------------####
+        
+def test_case_1():
+    """The counterexample from Kriesell's and Mohr's paper for K_7."""
+    H = nx.Graph(
+        [
+            ("0", "1"),
+            ("1", "2"),
+            ("2", "3"),
+            ("3", "4"),
+            ("4", "5"),
+            ("5", "0"),
+            ("0", "6"),
+            ("6", "3"),
+        ]
+    )
+    Z_H = zh(H)
     
-    #### 4. the counterexample we found for K_7. takes around 10-20 minutes to run.
-    minors = [
-        nx.Graph(
+    for i in range(100):
+        if test_minor(
+            minor=H,
+            parent=Z_H.edges(),
+            suspend_chains={f"{i}": [[f"{i}"]] for i in H.nodes}
+        ):
+            logging.info("FALSE CALL")
+            return
+
+    logging.info("With probability almost 1, this is a counterexample.")
+
+
+def test_case_2():
+    """Check all spanning subgraphs of K_6 with bigger graphs with 13 vertices."""
+    minor_size = 6
+    minors = get_graphs_from_geng(minor_size)
+    parent_size = 13
+    main(parent_size, minor_size, minors)
+
+def test_case_3():
+    """Check all spanning subgraphs of K_5 with at least seven edges, with bigger graphs with 13 vertices."""
+    minor_size = 5
+    minors = get_graphs_from_geng(minor_size, ["7:"]) ## 7: command will generate the graphs with at least 7 edges.
+    parent_size = 13
+    main(parent_size, minor_size, minors)
+
+def test_case_4():
+    """Check all spanning subgraphs of K_7 with bigger graphs with 14 vertices."""
+    minor_size = 7
+    minors = get_graphs_from_geng(minor_size)
+    parent_size = 14
+    main(parent_size, minor_size, minors)
+
+
+def test_case_5():
+    """Test the counterexample we found for K_7."""
+    H = nx.Graph(
             [
                 ("0", "1"),
                 ("1", "2"),
@@ -433,8 +447,23 @@ if __name__ == "__main__":
                 ("6", "2"),
             ]
         )
-    ]
-    minor_size = 7
-    parent_size = 14
-    main(parent_size, minor_size, minors)  # - this will find the Z(H) and it's supergraphs. 
-    #### ------------------------------------------------------------####
+    Z_H = zh(H)
+    
+    for i in range(100):
+        if test_minor(
+            minor=H,
+            parent=Z_H.edges(),
+            suspend_chains={f"{i}": [[f"{i}"]] for i in H.nodes}
+        ):
+            logging.info("FALSE CALL")
+            return
+
+    logging.info("With probability almost 1, this is a counterexample.")
+
+if __name__ == "__main__":
+    # Uncomment the test case you want to run
+    test_case_1()
+    # test_case_2()
+    # test_case_3()
+    # test_case_4()
+    # test_case_5()
